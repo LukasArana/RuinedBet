@@ -11,6 +11,7 @@ import configuration.ConfigXML;
 import dataAccess.DataAccess;
 import domain.Event;
 import domain.Question;
+import domain.User;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
@@ -116,5 +117,15 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager.open(false);
 		dbManager.initializeDB();
 		dbManager.close();
+	}
+	
+	@WebMethod
+	public User registerNewUser(int age, String username, String password) {
+		return dbManager.register(age,username,password);
+	}
+	
+	@WebMethod
+	public boolean usernameIsFree(String username) {
+		return dbManager.checkUsername(username);
 	}
 }
