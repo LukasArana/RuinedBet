@@ -99,25 +99,26 @@ public class RegistrationGUI extends JFrame {
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(usernameField.getText().equals("")) {
-					answerPane.setText("You must enter a username");
+					answerPane.setText("You must enter a username.");
 				}
 				else if(passField.getPassword().length == 0) {
-					answerPane.setText("You must enter a password");
+					answerPane.setText("You must enter a password.");
 				}
 				else if(ageField.getText().equals("")) {
-					answerPane.setText("You must enter an age");
+					answerPane.setText("You must enter an age.");
 				}
 				else if(!isInteger(ageField.getText())) {
-					answerPane.setText("Your age must be a number");
+					answerPane.setText("Your age must be a number.");
 				}
 				else if(Integer.parseInt(ageField.getText()) <= 18){
-					answerPane.setText("You must be 18 or older to create an account");
+					answerPane.setText("You must be 18 or older to create an account.");
 				}
 				else if(!businessLogic.usernameIsFree(usernameField.getText())){
-					answerPane.setText("Username is already in use");
+					answerPane.setText("Username is already in use.");
 				}
 				else {
-					businessLogic.registerNewUser(Integer.parseInt(ageField.getText()) , usernameField.getText(), passField.getPassword().toString());
+					businessLogic.registerNewUser(Integer.parseInt(ageField.getText()) , usernameField.getText(), new String(passField.getPassword()));
+					System.out.println("You have correctly created an account.");
 				}
 			}
 		});
