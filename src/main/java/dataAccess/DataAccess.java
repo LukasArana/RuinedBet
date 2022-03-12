@@ -234,9 +234,16 @@ public class DataAccess  {
 		return user.isEmpty();
 	}
 	
-	public User register(int age, String username, String password) {
+	public boolean checkEmail(String email) {
+		TypedQuery<User> q1 = db.createQuery("SELECT u FROM User u WHERE u.email = ?1", User.class);
+		q1.setParameter(1, email);
+		List<User> user= q1.getResultList();
+		return user.isEmpty();
+	}
+	
+	public User register(int age, String username, String password, String name, String surname, String email) {
 		db.getTransaction().begin();
-		User u = new User(age,username,password);
+		User u = new User(age,username,password,name,surname,email);
 		db.persist(u);
 		db.getTransaction().commit();
 		System.out.println("New user has been registered in the database");

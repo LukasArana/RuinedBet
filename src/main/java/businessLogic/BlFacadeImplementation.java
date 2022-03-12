@@ -120,12 +120,17 @@ public class BlFacadeImplementation implements BlFacade {
 	}
 	
 	@WebMethod
-	public User registerNewUser(int age, String username, String password) {
-		return dbManager.register(age,username,password);
+	public User registerNewUser(int age, String username, String password, String name, String surname, String email) {
+		return dbManager.register(age,username,password,name,surname,email);
 	}
 	
 	@WebMethod
 	public boolean usernameIsFree(String username) {
 		return dbManager.checkUsername(username);
+	}
+	
+	@WebMethod
+	public boolean emailIsFree(String email) {
+		return dbManager.checkEmail(email);
 	}
 }

@@ -10,11 +10,23 @@ public class User {
 	private String username;
 	private String password;
 	private boolean admin;
+	private String realName;
+	private String surname;
+	private String email;
 	
-	public User(int age, String username, String password) {
+	public User(int age, String username, String password, String realName, String surname, String email) {
 		this.age = age;
 		this.username = username;
 		this.password = password;
+		this.realName = realName;
+		this.surname = surname;
+		this.email = email;
+	}
+	
+	public User(String username, String password) {
+		this.username = username;
+		this.password = password;
+		this.admin = true;
 	}
 	
 	public int getAge() {
