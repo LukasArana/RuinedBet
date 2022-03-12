@@ -27,8 +27,8 @@ public class ApplicationLauncher {
 
 			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 			// Other possibilities are:
-			// UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
-			// UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+//			 UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
+//			 UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
 
 			if (config.isBusinessLogicLocal())
 				businessLogic = new BlFacadeImplementation();
