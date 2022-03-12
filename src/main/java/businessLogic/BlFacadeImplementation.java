@@ -133,4 +133,10 @@ public class BlFacadeImplementation implements BlFacade {
 	public boolean emailIsFree(String email) {
 		return dbManager.checkEmail(email);
 	}
+	
+	@Override
+	public Event createEvent(Integer eventNumber, String description, Date date) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
