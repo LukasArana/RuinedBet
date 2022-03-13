@@ -315,11 +315,14 @@ public class DataAccess  {
 	}
 	
 	public fee setFee(String result,Float fee, Question quest,Event ev) {
-		db.getTransaction().begin();
 		
 		fee f = new fee(fee,result);
-		TypedQuery<Question> q1 = db.createQuery("SELECT q FROM Question q WHERE q.Event = ?1", Question.class);
-		q1.setParameter(ev, q1);
+		TypedQuery<Question> q1 = db.createQuery("SELECT q FROM Question q WHERE q.question = ?1", Question.class);
+		q1.setParameter(quest.getQuestion(), q1);
+		List<Question> questList = q1.getResultList();
+		questList.get(0).addFee(f);
+		return f;
+		
 	}
 
 	public Event createEvent(String description, Date date) throws EventAlreadyExists {
