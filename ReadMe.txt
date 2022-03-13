@@ -1,6 +1,7 @@
 //READ ME FILE
 
 Joanes De Miguel, Asier Mayoz, Lukas Arana and Alexander Diez; Team Lagu
+For testing the code: To use the User view, create an account. To use the Admin view, username:admin password:admin
 
 To do this first iteration of the bet&ruin project, we've done 6 tasks, which are create questions, browse questions, Sign-up, Log-in, 
 create a new event and set a fee. 
