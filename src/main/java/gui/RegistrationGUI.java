@@ -99,6 +99,13 @@ public class RegistrationGUI extends JFrame {
 		JTextPane answerPane = new JTextPane();
 		
 		JButton alreadyRegisteredButton = new JButton("I have an account");
+		alreadyRegisteredButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LogInGUI lig = new LogInGUI();
+				lig.setVisible(true);
+				
+			}
+		});
 		alreadyRegisteredButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
 		JButton registerButton = new JButton("Register");
