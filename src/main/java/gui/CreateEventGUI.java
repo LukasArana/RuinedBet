@@ -38,7 +38,7 @@ public class CreateEventGUI extends JFrame {
 	private BlFacade businessLogic;
 	DefaultComboBoxModel<Event> eventModel = new DefaultComboBoxModel<Event>();
 	private JLabel numberLbl = new JLabel(ResourceBundle.getBundle("Etiquetas").
-			getString("Question"));
+			getString("Event"));
 	private JLabel descriptionLbl = new JLabel(ResourceBundle.getBundle("Etiquetas").
 			getString("MinimumBetPrice"));
 	private JLabel eventDateLbl = new JLabel(ResourceBundle.getBundle("Etiquetas").
@@ -52,7 +52,7 @@ public class CreateEventGUI extends JFrame {
 
 	private JScrollPane eventScrollPane = new JScrollPane();
 
-	private JButton createBtn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestion"));
+	private JButton createBtn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateEvent"));
 	private JButton closeBtn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 	private JLabel msgLbl = new JLabel();
 	private JLabel errorLbl = new JLabel();
@@ -76,7 +76,7 @@ public class CreateEventGUI extends JFrame {
 
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(604, 370));
-		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestion"));
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("CreateEvent"));
 		numberLbl.setBounds(new Rectangle(25, 211, 75, 20));
 		numText.setBounds(new Rectangle(124, 211, 405, 20));
 		descriptionLbl.setBounds(new Rectangle(25, 243, 89, 20));

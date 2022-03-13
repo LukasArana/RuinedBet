@@ -204,9 +204,9 @@ public class MainGUI extends JFrame {
 		createQuestionBtn.setText(ResourceBundle.getBundle("Etiquetas").
 				getString("CreateQuestion"));
 		createEventsButton.setText(ResourceBundle.getBundle("Etiquetas").
-				getString("CreateEvents"));
+				getString("CreateEvent"));
 		setFeesButton.setText(ResourceBundle.getBundle("Etiquetas").
-				getString("SetFees"));
+				getString("SetFee"));
 		
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
