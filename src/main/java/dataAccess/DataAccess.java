@@ -188,16 +188,19 @@ public class DataAccess  {
 	 * @return collection of events
 	 */
 	public Vector<Event> getEvents(Date date) {
+		
 		System.out.println(">> DataAccess: getEvents");
 		Vector<Event> res = new Vector<Event>();	
 		TypedQuery<Event> query = db.createQuery("SELECT ev FROM Event ev WHERE ev.eventDate=?1", 
 				Event.class);   
 		query.setParameter(1, date);
 		List<Event> events = query.getResultList();
+		System.out.println(events);
 		for (Event ev:events){
-			System.out.println(ev.toString());		 
+			System.out.println(" Eventua: " + ev.toString());
 			res.add(ev);
 		}
+		System.out.println("Eventuak = " + res);
 		return res;
 	}
 
@@ -314,7 +317,6 @@ public class DataAccess  {
 		db.getTransaction().begin();
 		
 		Event u = new Event(description, date);
-		System.out.println(u.toString());
 		db.persist(u);
 		db.getTransaction().commit();
 		System.out.println("New event has been registered in the database");

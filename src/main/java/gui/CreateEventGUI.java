@@ -203,7 +203,7 @@ public class CreateEventGUI extends JFrame {
 
 	private void jButtonCreate_actionPerformed(ActionEvent e) {
 			String description = eventext.getText();
-			Date date = calendar.getDate();
+			Date date = UtilDate.trim(new Date(calendar.getCalendar().getTime().getTime()));
 			this.businessLogic.createEvent(description, date);
 	}
 

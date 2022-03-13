@@ -3,7 +3,7 @@ package domain;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Vector;
-
+import java.util.Random;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,8 +23,7 @@ public class Event implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@XmlID
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
-	@Id
-	@GeneratedValue()
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer eventNumber;
 	
 	private String description; 
@@ -51,8 +50,10 @@ public class Event implements Serializable {
 	}
 
 	public Event( String description,Date eventDate) {
+		Random rand = new Random();
 		this.description = description;
 		this.eventDate=eventDate;
+		this.eventNumber = rand.nextInt();
 		System.out.println(this.eventNumber);
 	}
 
