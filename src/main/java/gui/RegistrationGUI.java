@@ -98,6 +98,9 @@ public class RegistrationGUI extends JFrame {
 		
 		JTextPane answerPane = new JTextPane();
 		
+		JButton alreadyRegisteredButton = new JButton("I have an account");
+		alreadyRegisteredButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		
 		JButton registerButton = new JButton("Register");
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -134,14 +137,14 @@ public class RegistrationGUI extends JFrame {
 				else {
 					businessLogic.registerNewUser(Integer.parseInt(ageField.getText()) , usernameField.getText(), new String(passField.getPassword()), nameField.getText(), surnameField.getText(), emailField.getText());
 					System.out.println("You have correctly created an account.");
+					alreadyRegisteredButton.setText("Go to login");
 				}
 			}
 		});
 		registerButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
 		
-		JButton alreadyRegisteredButton = new JButton("I have an account");
-		alreadyRegisteredButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		
 		
 		JLabel nameLbl = new JLabel("Name:");
 		
