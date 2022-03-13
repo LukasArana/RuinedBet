@@ -12,6 +12,7 @@ import dataAccess.DataAccess;
 import domain.Event;
 import domain.Question;
 import domain.User;
+import domain.fee;
 import exceptions.EventAlreadyExists;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
@@ -43,6 +44,11 @@ public class BlFacadeImplementation implements BlFacade {
 			dam.close();
 		}
 		dbManager = dam;		
+	}
+	
+	
+	public fee setFee(String result,Float fee, Question quest,Event ev) {
+		return dbManager.setFee(result,fee,question,ev);
 	}
 
 

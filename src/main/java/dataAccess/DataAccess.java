@@ -19,6 +19,7 @@ import configuration.UtilDate;
 import domain.Event;
 import domain.Question;
 import domain.User;
+import domain.fee;
 import exceptions.EventAlreadyExists;
 import exceptions.QuestionAlreadyExist;
 
@@ -311,6 +312,14 @@ public class DataAccess  {
 		q1.setParameter(1, username);
 		List<User> user= q1.getResultList(); //user.isEmpty == false
 		return(user.get(0).isAdmin());
+	}
+	
+	public fee setFee(String result,Float fee, Question quest,Event ev) {
+		db.getTransaction().begin();
+		
+		fee f = new fee(fee,result);
+		TypedQuery<Question> q1 = db.createQuery("SELECT q FROM Question q WHERE q.Event = ?1", Question.class);
+		q1.setParameter(ev, q1);
 	}
 
 	public Event createEvent(String description, Date date) throws EventAlreadyExists {
