@@ -48,6 +48,7 @@ public class MainGUI extends JFrame {
 	}
 
 
+	//main GUI menu
 	public MainGUI() {
 		super();
 
