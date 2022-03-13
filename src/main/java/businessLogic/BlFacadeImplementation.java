@@ -31,7 +31,7 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager = new DataAccess(initialize);
 		if (initialize)
 			dbManager.initializeDB();
-		dbManager.close();
+		//dbManager.close();
 	}
 
 	public BlFacadeImplementation(DataAccess dam)  {
@@ -133,7 +133,15 @@ public class BlFacadeImplementation implements BlFacade {
 	public boolean emailIsFree(String email) {
 		return dbManager.checkEmail(email);
 	}
+	@WebMethod
+	public boolean checkLogIn(String username, String password) {
+		return dbManager.checkLogIn(username, password);
+	}
 	
+	@WebMethod
+	public boolean isAdmin(String username) {
+		return dbManager.isAdmin(username);
+	}
 	@Override
 	public Event createEvent(Integer eventNumber, String description, Date date) {
 		// TODO Auto-generated method stub

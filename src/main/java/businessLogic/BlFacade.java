@@ -54,6 +54,8 @@ public interface BlFacade  {
 	@WebMethod public User registerNewUser(int age, String username, String password, String name, String surname, String email);
 	
 	@WebMethod public boolean emailIsFree(String email);
+	@WebMethod public boolean checkLogIn(String username, String password);
+	@WebMethod public boolean isAdmin(String username);
 	
 	public Event createEvent(Integer eventNumber, String description,Date date);
 }

@@ -36,5 +36,7 @@ public class User {
 	public String getUsername() {
 		return this.username;
 	}
-
+	public boolean isAdmin() {
+		return this.admin;
+	}
 }

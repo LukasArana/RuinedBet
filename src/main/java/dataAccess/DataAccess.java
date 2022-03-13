@@ -283,9 +283,29 @@ public class DataAccess  {
 		return ev.doesQuestionExist(question);
 	}
 	
+	public boolean checkLogIn(String username, String password) {
+		if (!checkUsername(username)) {
+			TypedQuery<User> q1 = db.createQuery("SELECT u FROM User u WHERE u.username = ?1 AND u,password = ?2 ", User.class); //We tried to use the proof in the database for security reasons 
+			q1.setParameter(1, username);
+			q1.setParameter(2, password);
+			List<User> user = q1.getResultList();
+			return(!user.isEmpty());
+		}
+		return false;
+		
+		//Not making a difference between a wrong password and a non existing username makes imposible to figure out if that username is registered or not. This is a used practice in order to repect the privacy of users.
 
+	}
 	public void close(){
 		db.close();
 		System.out.println("DataBase is closed");
+	}
+
+	public boolean isAdmin(String username) {
+		// TODO Auto-generated method stub
+		TypedQuery<User> q1 = db.createQuery("SELECT u FROM User u WHERE u.username = ?1", User.class);
+		q1.setParameter(1, username);
+		List<User> user= q1.getResultList(); //user.isEmpty == false
+		return(user.get(0).isAdmin());
 	}
 }

@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import businessLogic.BlFacade;
+import businessLogic.BlFacadeImplementation;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -14,12 +18,16 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+import javax.swing.JTextPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class LogInGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUsername;
 	private JTextField txtPassword;
+	private BlFacade businessLogic;
 
 	/**
 	 * Launch the application.
@@ -30,13 +38,17 @@ public class LogInGUI extends JFrame {
 				try {
 					LogInGUI frame = new LogInGUI();
 					frame.setVisible(true);
+					frame.setBusinessLogic(new BlFacadeImplementation());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
-
+	public void setBusinessLogic(BlFacade bl) {
+		businessLogic = bl;		
+	}
+	
 	/**
 	 * Create the frame.
 	 */
@@ -65,19 +77,43 @@ public class LogInGUI extends JFrame {
 		txtPassword = new JTextField();
 		txtPassword.setText("Password");
 		txtPassword.setColumns(10);
-		
+		JTextPane output = new JTextPane();
+
 		JButton btnLogIn = new JButton("Log in");
+		btnLogIn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Username = " + txtUsername.getText() +" " + txtUsername.getText().isBlank() );
+				if (txtUsername.getText().isBlank() || txtPassword.getText().isBlank()) { //No values in text fields
+					output.setText("Please insert valid username and passwords");
+				} 
+				else if (!businessLogic.checkLogIn(txtUsername.getText(), txtPassword.getText())) { 
+						output.setText("Not valid credentials, please try again");
+					} else { //Valid credentials
+						if (businessLogic.isAdmin(txtUsername.getText())) { //open admin gui
+							MainGUI admin = new MainGUI();
+							admin.setVisible(true);
+						} else { //open user gui
+							MainGUI admin = new MainGUI();
+							admin.setVisible(true);
+						}
+					}
+				}
+		});
 		
 		JButton btnRegister = new JButton("Not an acount?");
 		
 		JButton btnForgotPassword = new JButton("Forgot password?");
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblLogIn, GroupLayout.PREFERRED_SIZE, 440, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(output))
+						.addComponent(lblLogIn, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 440, GroupLayout.PREFERRED_SIZE)
+						.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addComponent(usernameLabel)
@@ -87,12 +123,12 @@ public class LogInGUI extends JFrame {
 								.addComponent(txtPassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(txtUsername, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btnLogIn, Alignment.TRAILING)))
-						.addGroup(gl_contentPane.createSequentialGroup()
+						.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
 							.addGap(24)
 							.addComponent(btnRegister)
 							.addGap(66)
 							.addComponent(btnForgotPassword)))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addContainerGap(1053, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -112,7 +148,9 @@ public class LogInGUI extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnRegister)
 						.addComponent(btnForgotPassword))
-					.addContainerGap(81, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(output, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
