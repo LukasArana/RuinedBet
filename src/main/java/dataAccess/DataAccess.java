@@ -285,7 +285,7 @@ public class DataAccess  {
 	
 	public boolean checkLogIn(String username, String password) {
 		if (!checkUsername(username)) {
-			TypedQuery<User> q1 = db.createQuery("SELECT u FROM User u WHERE u.username = ?1 AND u,password = ?2 ", User.class); //We tried to use the proof in the database for security reasons 
+			TypedQuery<User> q1 = db.createQuery("SELECT u FROM User u WHERE u.username = ?1 AND u.password = ?2 ", User.class); //We tried to use the proof in the database for security reasons 
 			q1.setParameter(1, username);
 			q1.setParameter(2, password);
 			List<User> user = q1.getResultList();

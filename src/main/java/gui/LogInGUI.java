@@ -105,6 +105,7 @@ public class LogInGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				RegistrationGUI register = new RegistrationGUI();
 				register.setVisible(true);
+				register.setBusinessLogic(businessLogic);
 			}
 		});
 		

@@ -103,7 +103,7 @@ public class RegistrationGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				LogInGUI lig = new LogInGUI();
 				lig.setVisible(true);
-				
+				lig.setBusinessLogic(businessLogic);
 			}
 		});
 		alreadyRegisteredButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -143,7 +143,7 @@ public class RegistrationGUI extends JFrame {
 				}
 				else {
 					businessLogic.registerNewUser(Integer.parseInt(ageField.getText()) , usernameField.getText(), new String(passField.getPassword()), nameField.getText(), surnameField.getText(), emailField.getText());
-					System.out.println("You have correctly created an account.");
+					answerPane.setText("You have correctly created an account.");
 					alreadyRegisteredButton.setText("Go to login");
 				}
 			}
