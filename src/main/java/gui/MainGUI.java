@@ -88,25 +88,33 @@ public class MainGUI extends JFrame {
 		mainPane.add(browseQuestionsBtn);
 		initializeCreateQuestionBtn();
 		mainPane.add(createQuestionBtn);
-
+		initializeCreateEventsButton();
+		mainPane.add(createEventsButton);
+		initializeSetFeesButton();
+		mainPane.add(setFeesButton);
+		
 		initializeLocalePane();
-		{
-			createEventsButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
-			createEventsButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					CreateEventGUI createQuestionWindow = new CreateEventGUI(businessLogic,
-							new Vector<Event>());
-					createQuestionWindow.setBusinessLogic(businessLogic);
-					createQuestionWindow.setVisible(true);
-				}
-			});
-			mainPane.add(createEventsButton);
-		}
-		{
-			setFeesButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton_1.text")); //$NON-NLS-1$ //$NON-NLS-2$
-			mainPane.add(setFeesButton);
-		}
+//		{
+//		}
+//		{
+//		}
 		mainPane.add(localePane);
+	}
+	
+	private void initializeSetFeesButton() {
+		setFeesButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton_1.text")); //$NON-NLS-1$ //$NON-NLS-2$
+	}
+	
+	private void initializeCreateEventsButton() {
+		createEventsButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		createEventsButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CreateEventGUI createQuestionWindow = new CreateEventGUI(businessLogic,
+						new Vector<Event>());
+				createQuestionWindow.setBusinessLogic(businessLogic);
+				createQuestionWindow.setVisible(true);
+			}
+		});
 	}
 
 	private void initializeBrowseQuestionsBtn() {
