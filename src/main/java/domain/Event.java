@@ -133,6 +133,7 @@ public class Event implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Event other = (Event) obj;
+		if (other.description.equals(this.description) && other.eventDate.equals(this.eventDate)) return true;
 		if (eventNumber != other.eventNumber)
 			return false;
 		return true;

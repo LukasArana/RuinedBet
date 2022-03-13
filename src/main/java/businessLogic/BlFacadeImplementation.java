@@ -168,7 +168,6 @@ public class BlFacadeImplementation implements BlFacade {
 	public Event createEvent(String description, Date date) throws EventAlreadyExists {
 		// TODO Auto-generated method stub
 		dbManager.open(false);
-
 		Event e = dbManager.createEvent(description, date);
 		dbManager.close();
 		return e;
