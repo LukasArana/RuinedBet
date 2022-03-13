@@ -36,6 +36,8 @@ public class MainGUI extends JFrame {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	private BlFacade businessLogic;
+	private JButton createEventsButton;
+	private JButton setFeesButton;
 
 	public BlFacade getBusinessLogic(){
 		return businessLogic;
@@ -63,7 +65,7 @@ public class MainGUI extends JFrame {
 			}
 		});
 
-		this.setBounds(100, 100, 500, 300);
+		this.setBounds(100, 100, 449, 262);
 
 		this.initializeMainPane();
 		this.setContentPane(mainPane);
@@ -75,7 +77,7 @@ public class MainGUI extends JFrame {
 
 	private void initializeMainPane() {
 		mainPane = new JPanel();
-		mainPane.setLayout(new GridLayout(4, 1, 0, 0));
+		mainPane.setLayout(new GridLayout(6, 1, 0, 0));
 
 		selectOptionLbl = new JLabel(ResourceBundle.getBundle("Etiquetas").
 				getString("SelectUseCase"));
@@ -88,6 +90,22 @@ public class MainGUI extends JFrame {
 		mainPane.add(createQuestionBtn);
 
 		initializeLocalePane();
+		{
+			createEventsButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			createEventsButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					CreateEventGUI createQuestionWindow = new CreateEventGUI(businessLogic,
+							new Vector<Event>());
+					createQuestionWindow.setBusinessLogic(businessLogic);
+					createQuestionWindow.setVisible(true);
+				}
+			});
+			mainPane.add(createEventsButton);
+		}
+		{
+			setFeesButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton_1.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			mainPane.add(setFeesButton);
+		}
 		mainPane.add(localePane);
 	}
 
@@ -177,6 +195,11 @@ public class MainGUI extends JFrame {
 				getString("BrowseQuestions"));
 		createQuestionBtn.setText(ResourceBundle.getBundle("Etiquetas").
 				getString("CreateQuestion"));
+		createEventsButton.setText(ResourceBundle.getBundle("Etiquetas").
+				getString("CreateEvents"));
+		setFeesButton.setText(ResourceBundle.getBundle("Etiquetas").
+				getString("SetFees"));
+		
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
 }
