@@ -23,8 +23,7 @@ public class Event implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@XmlID
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
-	@Id
-	@GeneratedValue()
+	@Id @GeneratedValue
 	private Integer eventNumber;
 	
 	private String description; 
