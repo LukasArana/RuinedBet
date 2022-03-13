@@ -19,6 +19,7 @@ import configuration.UtilDate;
 import domain.Event;
 import domain.Question;
 import domain.User;
+import exceptions.EventAlreadyExists;
 import exceptions.QuestionAlreadyExist;
 
 /**
@@ -312,11 +313,17 @@ public class DataAccess  {
 		return(user.get(0).isAdmin());
 	}
 
-	public Event createEvent(String description, Date date) {
+	public Event createEvent(String description, Date date) throws EventAlreadyExists {
 		// TODO Auto-generated method stub
 		db.getTransaction().begin();
 		
 		Event u = new Event(description, date);
+		List<Event> events  = getEvents(date);
+		for (Event i : events) {
+			if (i.equals(u)) {
+				throw new EventAlreadyExists("Event already exists");
+			}
+		}
 		db.persist(u);
 		db.getTransaction().commit();
 		System.out.println("New event has been registered in the database");

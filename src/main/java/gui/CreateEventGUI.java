@@ -28,6 +28,7 @@ import com.toedter.calendar.JCalendar;
 import businessLogic.BlFacade;
 import configuration.UtilDate;
 import domain.Event;
+import exceptions.EventAlreadyExists;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
@@ -204,7 +205,18 @@ public class CreateEventGUI extends JFrame {
 	private void jButtonCreate_actionPerformed(ActionEvent e) {
 			String description = eventext.getText();
 			Date date = UtilDate.trim(new Date(calendar.getCalendar().getTime().getTime()));
-			this.businessLogic.createEvent(description, date);
+			if (date.before(new Date())){ //New date initiates with the current date
+				this.errorLbl.setText("Invalid date");
+			}else {
+				try {
+					this.errorLbl.setText("");
+
+					this.businessLogic.createEvent(description, date);
+				} catch (EventAlreadyExists e1) {
+					// TODO Auto-generated catch block
+					this.errorLbl.setText("Event has already been created");
+				}
+			}
 	}
 
 	private void jButtonClose_actionPerformed(ActionEvent e) {
