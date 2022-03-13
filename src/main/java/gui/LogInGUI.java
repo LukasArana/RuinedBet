@@ -83,14 +83,14 @@ public class LogInGUI extends JFrame {
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Username = " + txtUsername.getText() +" " + txtUsername.getText().isBlank() );
-				if (txtUsername.getText().isBlank() || txtPassword.getText().isBlank()) { //No values in text fields
+				if (txtUsername.getText().isBlank() || (new String(txtPassword.getPassword()).isBlank())) { //No values in text fields
 					output.setText("Please insert valid username and passwords");
 				} 
 				else if (!businessLogic.checkLogIn(txtUsername.getText(), txtPassword.getText())) { 
 						output.setText("Not valid credentials, please try again");
 					} else { //Valid credentials
-						//if (businessLogic.isAdmin(txtUsername.getText())) { //open admin gui
-						if (true) {
+						if (businessLogic.isAdmin(txtUsername.getText())) { //open admin gui
+//						if (true) {
 							MainGUI admin = new MainGUI();
 							admin.setVisible(true);
 							admin.setBussinessLogic(businessLogic);
@@ -112,8 +112,6 @@ public class LogInGUI extends JFrame {
 			}
 		});
 		
-		JButton btnForgotPassword = new JButton("Forgot password?");
-		
 		txtPassword = new JPasswordField();
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -123,20 +121,20 @@ public class LogInGUI extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblLogIn, GroupLayout.PREFERRED_SIZE, 440, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addContainerGap()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(usernameLabel)
-								.addComponent(lblPassword, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE))
-							.addGap(52)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addContainerGap()
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(usernameLabel)
+										.addComponent(lblPassword, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(27)
+									.addComponent(btnRegister)))
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
 								.addComponent(txtPassword)
 								.addComponent(txtUsername, GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
 								.addComponent(btnLogIn, Alignment.TRAILING)))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(24)
-							.addComponent(btnRegister)
-							.addGap(66)
-							.addComponent(btnForgotPassword))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(output, GroupLayout.PREFERRED_SIZE, 321, GroupLayout.PREFERRED_SIZE)))
@@ -155,12 +153,10 @@ public class LogInGUI extends JFrame {
 						.addComponent(lblPassword, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtPassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
-					.addComponent(btnLogIn)
-					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnRegister)
-						.addComponent(btnForgotPassword))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addComponent(btnLogIn)
+						.addComponent(btnRegister))
+					.addGap(37)
 					.addComponent(output, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(36, Short.MAX_VALUE))
 		);
