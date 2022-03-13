@@ -47,7 +47,7 @@ public class BlFacadeImplementation implements BlFacade {
 	}
 	
 	
-	public fee setFee(String result,Float fee, Question quest,Event ev) {
+	public fee setFee(String result,Float fee, String quest,Event ev) {
 		return dbManager.setFee(result,fee,quest,ev);
 	}
 

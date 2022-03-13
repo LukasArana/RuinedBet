@@ -166,7 +166,7 @@ public class setFeesGUI extends JFrame {
 				}
 				else {
 					domain.Event ev = (domain.Event)eventTableModel.getValueAt(i,2);
-					domain.Question quest = (domain.Question)questionTableModel.getValueAt(i,1);
+					String quest = (String) questionTableModel.getValueAt(j,1);
 					businessLogic.setFee(resultTxtField.getText(),Float.parseFloat(feeTxtField.getText()),quest,ev);
 					answerTextPane.setText("Fee entered correctly.");
 				}

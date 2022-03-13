@@ -314,13 +314,16 @@ public class DataAccess  {
 		return(user.get(0).isAdmin());
 	}
 	
-	public fee setFee(String result,Float fee, Question quest,Event ev) {
-		
+	public fee setFee(String result,Float fee, String quest,Event ev) {
 		fee f = new fee(fee,result);
 		TypedQuery<Question> q1 = db.createQuery("SELECT q FROM Question q WHERE q.question = ?1", Question.class);
-		q1.setParameter(quest.getQuestion(), q1);
+		q1.setParameter(quest, q1);
 		List<Question> questList = q1.getResultList();
-		questList.get(0).addFee(f);
+		
+		Question q = questList.get(0);
+		db.getTransaction().begin();
+		q.addFee(f);
+		db.getTransaction().commit();
 		return f;
 		
 	}

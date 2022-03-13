@@ -61,5 +61,5 @@ public interface BlFacade  {
 	
 	public Event createEvent(String description,Date date) throws EventAlreadyExists;
 	
-	public fee setFee(String result,Float fee, Question quest,Event ev);
+	public fee setFee(String result,Float fee, String quest,Event ev);
 }

@@ -25,6 +25,8 @@ public class Question implements Serializable {
 	private String question; 
 	private float betMinimum;
 	private String result;  
+	
+	@XmlIDREF
 	private ArrayList<fee> feeList;
 
 	@XmlIDREF
