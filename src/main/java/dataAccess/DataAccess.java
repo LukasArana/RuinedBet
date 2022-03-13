@@ -38,7 +38,7 @@ public class DataAccess  {
 	}
 
 	public DataAccess()  {	
-		this(false);
+		this(true);
 	}
 
 
@@ -307,5 +307,16 @@ public class DataAccess  {
 		q1.setParameter(1, username);
 		List<User> user= q1.getResultList(); //user.isEmpty == false
 		return(user.get(0).isAdmin());
+	}
+
+	public Event createEvent(Integer eventNumber, String description, Date date) {
+		// TODO Auto-generated method stub
+		db.getTransaction().begin();
+		Event u = new Event(eventNumber, description, date);
+		db.persist(u);
+		db.getTransaction().commit();
+		System.out.println("New event has been registered in the database");
+		System.out.println(u.toString());
+		return u;
 	}
 }

@@ -60,7 +60,7 @@ public class CreateEventGUI extends JFrame {
 	private Vector<Date> datesWithEventsInCurrentMonth = new Vector<Date>();
 
 	public void setBusinessLogic(BlFacade bl) {
-		businessLogic = bl;		
+		businessLogic = bl;
 	}
 
 	public CreateEventGUI(BlFacade bl, Vector<domain.Event> v) {
@@ -78,7 +78,7 @@ public class CreateEventGUI extends JFrame {
 		this.setSize(new Dimension(604, 370));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("CreateEvent"));
 		numberLbl.setBounds(new Rectangle(25, 211, 75, 20));
-		numText.setBounds(new Rectangle(124, 211, 405, 20));
+		numText.setBounds(new Rectangle(118, 224, 405, 20));
 		descriptionLbl.setBounds(new Rectangle(25, 243, 89, 20));
 		eventText.setBounds(new Rectangle(124, 243, 405, 20));
 
@@ -86,7 +86,7 @@ public class CreateEventGUI extends JFrame {
 		eventScrollPane.setBounds(new Rectangle(25, 44, 346, 116));
 
 		createBtn.setBounds(new Rectangle(100, 275, 130, 30));
-		createBtn.setEnabled(false);
+		createBtn.setEnabled(true);
 
 		createBtn.addActionListener(new ActionListener() {
 			@Override
@@ -102,7 +102,7 @@ public class CreateEventGUI extends JFrame {
 			}
 		});
 
-		msgLbl.setBounds(new Rectangle(275, 182, 305, 20));
+		msgLbl.setBounds(new Rectangle(118, 333, 305, 20));
 		msgLbl.setForeground(Color.red);
 		// jLabelMsg.setSize(new Dimension(305, 20));
 
@@ -217,13 +217,14 @@ public class CreateEventGUI extends JFrame {
 			msgLbl.setText("");
 
 			// Displays an exception if the query field is empty
-			String eventNumber = numText.getText();
+			String nEvent = numText.getText();
 
-			if (eventNumber.length() > 0) {
+			if (nEvent.length() > 0) {
 
 				// It could be to trigger an exception if the introduced string is not a number
-				int nEvent  = Integer.parseInt(eventText.getText());
-
+				int eventNumber  = Integer.parseInt(eventText.getText());
+				
+				businessLogic.createEvent(eventNumber, nEvent, this.calendar.getDate());
 				
 			} else
 				msgLbl.setText(ResourceBundle.getBundle("Etiquetas").getString("ErrorQuestion"));

@@ -145,6 +145,6 @@ public class BlFacadeImplementation implements BlFacade {
 	@Override
 	public Event createEvent(Integer eventNumber, String description, Date date) {
 		// TODO Auto-generated method stub
-		return null;
+		return dbManager.createEvent(eventNumber, description, date);
 	}
 }
