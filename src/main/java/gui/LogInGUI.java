@@ -93,14 +93,20 @@ public class LogInGUI extends JFrame {
 							MainGUI admin = new MainGUI();
 							admin.setVisible(true);
 						} else { //open user gui
-							MainGUI admin = new MainGUI();
-							admin.setVisible(true);
+							UserMainGUI user = new UserMainGUI();
+							user.setVisible(true);
 						}
 					}
 				}
 		});
-		
+
 		JButton btnRegister = new JButton("Not an acount?");
+		btnRegister.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegistrationGUI register = new RegistrationGUI();
+				register.setVisible(true);
+			}
+		});
 		
 		JButton btnForgotPassword = new JButton("Forgot password?");
 		
