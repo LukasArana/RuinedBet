@@ -97,6 +97,7 @@ public class UserMainGUI extends JFrame {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				BrowseQuestionsGUI findQuestionsWindow = new BrowseQuestionsGUI(businessLogic);
 				findQuestionsWindow.setVisible(true);
+				findQuestionsWindow.setBusinessLogic(businessLogic);
 			}
 		});
 	}
