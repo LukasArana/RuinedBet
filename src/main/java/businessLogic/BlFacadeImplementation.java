@@ -121,30 +121,49 @@ public class BlFacadeImplementation implements BlFacade {
 	
 	@WebMethod
 	public User registerNewUser(int age, String username, String password, String name, String surname, String email) {
-		return dbManager.register(age,username,password,name,surname,email);
+		dbManager.open(false);
+		User e =  dbManager.register(age,username,password,name,surname,email);
+		dbManager.close();
+		return e;
 	}
 	
 	@WebMethod
 	public boolean usernameIsFree(String username) {
-		return dbManager.checkUsername(username);
+		dbManager.open(false);
+		boolean e = dbManager.checkUsername(username);
+		dbManager.close();
+		return e;
 	}
 	
 	@WebMethod
 	public boolean emailIsFree(String email) {
-		return dbManager.checkEmail(email);
+		dbManager.open(false);
+		boolean e =  dbManager.checkEmail(email);
+		dbManager.close();
+		return e;
 	}
 	@WebMethod
 	public boolean checkLogIn(String username, String password) {
-		return dbManager.checkLogIn(username, password);
+		dbManager.open(false);
+		boolean e =  dbManager.checkLogIn(username, password);
+		dbManager.close();
+		return e;
 	}
 	
 	@WebMethod
 	public boolean isAdmin(String username) {
-		return dbManager.isAdmin(username);
+		dbManager.open(false);
+		boolean e =  dbManager.isAdmin(username);
+		dbManager.close();
+		return e;
 	}
 	@Override
-	public Event createEvent(Integer eventNumber, String description, Date date) {
+	public Event createEvent(String description, Date date) {
 		// TODO Auto-generated method stub
-		return dbManager.createEvent(eventNumber, description, date);
+		dbManager.open(false);
+
+		Event e = dbManager.createEvent(description, date);
+		dbManager.close();
+		return e;
 	}
 }

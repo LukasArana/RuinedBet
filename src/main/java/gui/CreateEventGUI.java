@@ -39,13 +39,10 @@ public class CreateEventGUI extends JFrame {
 	DefaultComboBoxModel<Event> eventModel = new DefaultComboBoxModel<Event>();
 	private JLabel numberLbl = new JLabel(ResourceBundle.getBundle("Etiquetas").
 			getString("Event"));
-	private JLabel descriptionLbl = new JLabel(ResourceBundle.getBundle("Etiquetas").
-			getString("MinimumBetPrice"));
 	private JLabel eventDateLbl = new JLabel(ResourceBundle.getBundle("Etiquetas").
 			getString("EventDate"));
 
-	private JTextField numText = new JTextField();
-	private JTextField eventText = new JTextField();
+	private JTextField eventext = new JTextField();
 	private JCalendar calendar = new JCalendar();
 	private Calendar previousCalendar = null;
 	private Calendar currentCalendar = null;
@@ -77,10 +74,8 @@ public class CreateEventGUI extends JFrame {
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(604, 370));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("CreateEvent"));
-		numberLbl.setBounds(new Rectangle(25, 211, 75, 20));
-		numText.setBounds(new Rectangle(118, 224, 405, 20));
-		descriptionLbl.setBounds(new Rectangle(25, 243, 89, 20));
-		eventText.setBounds(new Rectangle(124, 243, 405, 20));
+		numberLbl.setBounds(new Rectangle(25, 223, 75, 20));
+		eventext.setBounds(new Rectangle(118, 224, 405, 20));
 
 		calendar.setBounds(new Rectangle(40, 50, 225, 150));
 		eventScrollPane.setBounds(new Rectangle(25, 44, 346, 116));
@@ -114,11 +109,8 @@ public class CreateEventGUI extends JFrame {
 
 		this.getContentPane().add(closeBtn, null);
 		this.getContentPane().add(createBtn, null);
-		this.getContentPane().add(numText, null);
+		this.getContentPane().add(eventext, null);
 		this.getContentPane().add(numberLbl, null);
-		this.getContentPane().add(eventText, null);
-
-		this.getContentPane().add(descriptionLbl, null);
 
 		this.getContentPane().add(calendar, null);
 
@@ -210,30 +202,9 @@ public class CreateEventGUI extends JFrame {
 	}
 
 	private void jButtonCreate_actionPerformed(ActionEvent e) {
-		
-
-		try {
-			errorLbl.setText("");
-			msgLbl.setText("");
-
-			// Displays an exception if the query field is empty
-			String nEvent = numText.getText();
-
-			if (nEvent.length() > 0) {
-
-				// It could be to trigger an exception if the introduced string is not a number
-				int eventNumber  = Integer.parseInt(eventText.getText());
-				
-				businessLogic.createEvent(eventNumber, nEvent, this.calendar.getDate());
-				
-			} else
-				msgLbl.setText(ResourceBundle.getBundle("Etiquetas").getString("ErrorQuestion"));
-		
-		} catch (java.lang.NumberFormatException e1) {
-			errorLbl.setText(ResourceBundle.getBundle("Etiquetas").getString("ErrorNumber"));
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
+			String description = eventext.getText();
+			Date date = calendar.getDate();
+			this.businessLogic.createEvent(description, date);
 	}
 
 	private void jButtonClose_actionPerformed(ActionEvent e) {

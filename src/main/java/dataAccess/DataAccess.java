@@ -297,7 +297,7 @@ public class DataAccess  {
 
 	}
 	public void close(){
-		db.close();
+		//db.close();
 		System.out.println("DataBase is closed");
 	}
 
@@ -309,14 +309,15 @@ public class DataAccess  {
 		return(user.get(0).isAdmin());
 	}
 
-	public Event createEvent(Integer eventNumber, String description, Date date) {
+	public Event createEvent(String description, Date date) {
 		// TODO Auto-generated method stub
 		db.getTransaction().begin();
-		Event u = new Event(eventNumber, description, date);
+		
+		Event u = new Event(description, date);
+		System.out.println(u.toString());
 		db.persist(u);
 		db.getTransaction().commit();
 		System.out.println("New event has been registered in the database");
-		System.out.println(u.toString());
 		return u;
 	}
 }

@@ -16,7 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 import configuration.ConfigXML;
 
-/**
+/**o
  * Runs the Data Access node as a separate, possibly remote process.
  */
 public class ObjectDbManagerServer extends JDialog {
