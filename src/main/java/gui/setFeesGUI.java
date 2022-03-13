@@ -36,7 +36,7 @@ public class setFeesGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private BlFacade businessLogic;
-
+	private JTable eventTable= new JTable();
 	private final JLabel eventDateLbl = new JLabel(ResourceBundle.getBundle("Etiquetas").
 			getString("EventDate"));
 	private final JLabel questionLbl = new JLabel(ResourceBundle.getBundle("Etiquetas").
@@ -51,7 +51,8 @@ public class setFeesGUI extends JFrame {
 	private JCalendar calendar = new JCalendar();
 	private Calendar previousCalendar;
 	private Calendar currentCalendar;
-
+	JScrollPane eventScrollPane = new JScrollPane();
+	JScrollPane questionScrollPane = new JScrollPane();
 	private Vector<Date> datesWithEventsInCurrentMonth = new Vector<Date>();
 
 	private DefaultTableModel eventTableModel;
@@ -87,20 +88,12 @@ public class setFeesGUI extends JFrame {
 
 	private void jbInit() throws Exception {
 		
-		JComboBox eventBox = new JComboBox();
-		eventBox.setBounds(295, 47, 324, 24);
-		getContentPane().add(eventBox);
-		
-		JComboBox questionBox_1 = new JComboBox();
-		questionBox_1.setBounds(295, 176, 324, 24);
-		getContentPane().add(questionBox_1);
-		
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(700, 500));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("BrowseQuestions"));
 
 		eventDateLbl.setBounds(new Rectangle(40, 15, 140, 25));
-		questionLbl.setBounds(295, 136, 406, 14);
+		questionLbl.setBounds(295, 173, 406, 14);
 		eventLbl.setBounds(295, 19, 259, 16);
 
 		this.getContentPane().add(eventDateLbl, null);
@@ -171,8 +164,16 @@ public class setFeesGUI extends JFrame {
 						for (domain.Event ev : events){
 							Vector<Object> row = new Vector<Object>();
 							System.out.println("Events " + ev);
-							eventBox.addItem(ev.getDescription().toString());
+							row.add(ev.getEventNumber());
+							row.add(ev.getDescription());
+							row.add(ev); 	// ev object added in order to obtain it with 
+							// tableModelEvents.getValueAt(i,2)
+							eventTableModel.addRow(row);
 						}
+						eventTable.getColumnModel().getColumn(0).setPreferredWidth(25);
+						eventTable.getColumnModel().getColumn(1).setPreferredWidth(268);
+						eventTable.getColumnModel().removeColumn(eventTable.getColumnModel().
+								getColumn(2)); // not shown in JTable
 					}
 					catch (Exception e1) {
 						questionLbl.setText(e1.getMessage());
@@ -182,16 +183,46 @@ public class setFeesGUI extends JFrame {
 		});
 
 		this.getContentPane().add(calendar, null);
+		
+		eventScrollPane.setBounds(new Rectangle(292, 50, 346, 150));
+		questionScrollPane.setBounds(new Rectangle(138, 274, 406, 116));
+		
+		eventTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int i = eventTable.getSelectedRow();
+				domain.Event ev = (domain.Event)eventTableModel.getValueAt(i,2); // obtain ev object
+				Vector<Question> queries = ev.getQuestions();
+
+				questionTableModel.setDataVector(null, questionColumnNames);
+
+				if (queries.isEmpty())
+					questionLbl.setText(ResourceBundle.getBundle("Etiquetas").
+							getString("NoQuestions") + ": " + ev.getDescription());
+				else 
+					questionLbl.setText(ResourceBundle.getBundle("Etiquetas").
+							getString("SelectedEvent") + " " + ev.getDescription());
+
+				for (domain.Question q : queries) {
+					Vector<Object> row = new Vector<Object>();
+					row.add(q.getQuestionNumber());
+					row.add(q.getQuestion());
+					questionTableModel.addRow(row);	
+				}
+				questionTable.getColumnModel().getColumn(0).setPreferredWidth(25);
+				questionTable.getColumnModel().getColumn(1).setPreferredWidth(268);
+			}
+		});
 
 		
 		JLabel Resultxt = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("setFeesGUI.Result.text")); //$NON-NLS-1$ //$NON-NLS-2$
 		Resultxt.setBounds(new Rectangle(40, 15, 140, 25));
-		Resultxt.setBounds(40, 259, 140, 25);
+		Resultxt.setBounds(40, 259, 45, 25);
 		getContentPane().add(Resultxt);
 		
 		JLabel feeTxt_1 = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("setFeesGUI.feeTxt_1.text")); //$NON-NLS-1$ //$NON-NLS-2$
 		feeTxt_1.setBounds(new Rectangle(40, 15, 140, 25));
-		feeTxt_1.setBounds(40, 316, 140, 25);
+		feeTxt_1.setBounds(40, 316, 45, 25);
 		getContentPane().add(feeTxt_1);
 		
 		resultField = new JTextField();
@@ -205,6 +236,14 @@ public class setFeesGUI extends JFrame {
 		feeField.setColumns(10);
 		feeField.setBounds(135, 319, 114, 19);
 		getContentPane().add(feeField);
+		
+		
+		eventScrollPane.setBounds(305, 48, 329, 115);
+		getContentPane().add(eventScrollPane);
+		
+
+		questionScrollPane.setBounds(302, 211, 332, 127);
+		getContentPane().add(questionScrollPane);
 		eventTableModel = new DefaultTableModel(null, eventColumnNames);
 		questionTableModel = new DefaultTableModel(null, questionColumnNames);
 	}

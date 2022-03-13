@@ -12,6 +12,7 @@ import dataAccess.DataAccess;
 import domain.Event;
 import domain.Question;
 import domain.User;
+import exceptions.EventAlreadyExists;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
@@ -158,7 +159,7 @@ public class BlFacadeImplementation implements BlFacade {
 		return e;
 	}
 	@Override
-	public Event createEvent(String description, Date date) {
+	public Event createEvent(String description, Date date) throws EventAlreadyExists {
 		// TODO Auto-generated method stub
 		dbManager.open(false);
 

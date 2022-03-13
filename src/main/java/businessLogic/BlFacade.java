@@ -10,6 +10,7 @@ import javax.jws.WebService;
 import domain.Event;
 import domain.Question;
 import domain.User;
+import exceptions.EventAlreadyExists;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
@@ -57,5 +58,5 @@ public interface BlFacade  {
 	@WebMethod public boolean checkLogIn(String username, String password);
 	@WebMethod public boolean isAdmin(String username);
 	
-	public Event createEvent(String description,Date date);
+	public Event createEvent(String description,Date date) throws EventAlreadyExists;
 }
