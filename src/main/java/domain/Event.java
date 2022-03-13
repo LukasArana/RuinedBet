@@ -2,6 +2,7 @@ package domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Random;
 import java.util.Vector;
 
 import javax.persistence.CascadeType;
@@ -50,9 +51,11 @@ public class Event implements Serializable {
 	}
 
 	public Event( String description,Date eventDate) {
+		Random rand = new Random();
+		
 		this.description = description;
 		this.eventDate=eventDate;
-		System.out.println(this.eventNumber);
+		this.eventNumber = rand.nextInt();
 	}
 
 	public Integer getEventNumber() {
