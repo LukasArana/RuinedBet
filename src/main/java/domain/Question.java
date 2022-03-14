@@ -27,13 +27,17 @@ public class Question implements Serializable {
 	private String result;  
 	
 	@XmlIDREF
-	private ArrayList<fee> feeList;
+	private ArrayList<fee> feeList = new ArrayList<>();
 
 	@XmlIDREF
 	private Event event;
 	
 	public void addFee(fee f) {
 		feeList.add(f);
+	}
+	
+	public ArrayList<fee> getFeeList(){
+		return this.feeList;
 	}
 
 	public Question(){
@@ -46,7 +50,6 @@ public class Question implements Serializable {
 		this.question = query;
 		this.betMinimum=betMinimum;
 		this.event = event;
-		this.feeList = new ArrayList<fee>();
 	}
 
 	public Question(String query, float betMinimum,  Event event) {

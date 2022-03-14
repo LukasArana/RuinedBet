@@ -321,7 +321,7 @@ public class DataAccess  {
 	public fee setFee(String result,Float fee, String quest,Event ev) {
 		fee f = new fee(fee,result);
 		TypedQuery<Question> q1 = db.createQuery("SELECT q FROM Question q WHERE q.question = ?1", Question.class);
-		q1.setParameter(quest, q1);
+		q1.setParameter(1, quest);
 		List<Question> questList = q1.getResultList();
 		
 		Question q = questList.get(0);
@@ -330,6 +330,19 @@ public class DataAccess  {
 		db.getTransaction().commit();
 		return f;
 		
+	}
+	
+	public boolean feeExists(String f, String s) {
+		TypedQuery<Question> q1 = db.createQuery("SELECT q FROM Question q WHERE q.question = ?1", Question.class);
+		q1.setParameter(1, s);
+		List<Question> questList = q1.getResultList();
+		Question q = questList.get(0);
+		for(fee fe:q.getFeeList()) {
+			if(fe.getResult().equals(f)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public Event createEvent(String description, Date date) throws EventAlreadyExists {

@@ -59,7 +59,9 @@ public interface BlFacade  {
 	@WebMethod public boolean checkLogIn(String username, String password);
 	@WebMethod public boolean isAdmin(String username);
 	
-	public Event createEvent(String description,Date date) throws EventAlreadyExists;
+	@WebMethod public Event createEvent(String description,Date date) throws EventAlreadyExists;
 	
-	public fee setFee(String result,Float fee, String quest,Event ev);
+	@WebMethod public fee setFee(String result,Float fee, String quest,Event ev);
+	
+	@WebMethod public boolean feeExists(String f, String s);
 }

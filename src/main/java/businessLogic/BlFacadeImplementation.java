@@ -46,6 +46,10 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager = dam;		
 	}
 	
+	public boolean feeExists(String f, String s) {
+		return dbManager.feeExists(f,s);
+	}
+	
 	
 	public fee setFee(String result,Float fee, String quest,Event ev) {
 		return dbManager.setFee(result,fee,quest,ev);

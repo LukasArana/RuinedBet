@@ -141,7 +141,7 @@ public class setFeesGUI extends JFrame {
 			}
 		});
 		
-		setFeeBtn.setBounds(73, 380, 85, 21);
+		setFeeBtn.setBounds(55, 380, 125, 21);
 		
 		setFeeBtn.addActionListener(new ActionListener() {
 			@Override
@@ -163,6 +163,9 @@ public class setFeesGUI extends JFrame {
 				}
 				else if(j == -1) {
 					answerTextPane.setText("You must select a question.");
+				}
+				else if(businessLogic.feeExists(resultTxtField.getText(),(String) questionTableModel.getValueAt(j,1))) {
+					answerTextPane.setText("You must select another result.");
 				}
 				else {
 					domain.Event ev = (domain.Event)eventTableModel.getValueAt(i,2);
