@@ -103,7 +103,7 @@ public class MainGUI extends JFrame {
 	}
 	
 	private void initializeSetFeesButton() {
-		setFeesButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton_1.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		setFeesButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("SetFee")); //$NON-NLS-1$ //$NON-NLS-2$
 		setFeesButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setFeesGUI createQuestionWindow = new setFeesGUI(businessLogic);
@@ -114,7 +114,7 @@ public class MainGUI extends JFrame {
 	}
 	
 	private void initializeCreateEventsButton() {
-		createEventsButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		createEventsButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateEvent")); //$NON-NLS-1$ //$NON-NLS-2$
 		createEventsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CreateEventGUI createQuestionWindow = new CreateEventGUI(businessLogic,

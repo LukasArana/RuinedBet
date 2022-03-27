@@ -52,10 +52,10 @@ public class setFeesGUI extends JFrame {
 	JTextPane answerTextPane = new JTextPane();
 	
 	
-	JLabel resultLbl = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("setFeesGUIPROBA.lblNewLabel.text")); //$NON-NLS-1$ //$NON-NLS-2$
+	JLabel resultLbl = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Result")); //$NON-NLS-1$ //$NON-NLS-2$
 	
 	
-	JLabel feeLbl = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("setFeesGUIPROBA.lblNewLabel_1.text")); //$NON-NLS-1$ //$NON-NLS-2$
+	JLabel feeLbl = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("SetFee")); //$NON-NLS-1$ //$NON-NLS-2$
 	
 	
 
