@@ -87,7 +87,7 @@ public class MainGUI {
     mainLag = load("/MainGUI.fxml");
     browseQuestionsLag = load("/BrowseQuestions.fxml");
     createQuestionLag = load("/CreateQuestion.fxml");
-    loginWin = load("Login.fxlm");
+    loginWin = load("/Login.fxml");
 
     showMain();
 
