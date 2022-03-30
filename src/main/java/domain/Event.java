@@ -51,11 +51,11 @@ public class Event implements Serializable {
 	}
 
 	public Event( String description,Date eventDate) {
-		Random rand = new Random();
+
 		
 		this.description = description;
 		this.eventDate=eventDate;
-		this.eventNumber = rand.nextInt();
+
 	}
 
 	public Integer getEventNumber() {
