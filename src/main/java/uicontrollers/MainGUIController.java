@@ -20,7 +20,6 @@ public class MainGUIController implements Controller{
     @FXML
     private Button createQuestionBtn;
 
-
     @FXML
     private ResourceBundle resources;
 
@@ -28,6 +27,9 @@ public class MainGUIController implements Controller{
     private URL location;
 
     private MainGUI mainGUI;
+
+    @FXML
+    private Button createEventBtn1;
 
     @FXML
     void browseQuestions(ActionEvent event) {
@@ -39,6 +41,8 @@ public class MainGUIController implements Controller{
         mainGUI.showCreateQuestion();
     }
 
+    @FXML
+    void createEvent(ActionEvent event){mainGUI.showSetFees();}
 
     @FXML
     void initialize() {

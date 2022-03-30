@@ -3,16 +3,13 @@ package uicontrollers;
 import businessLogic.BlFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import ui.MainGUI;
 
 public class LoginController implements Controller{
 
     @FXML
-    private TextArea answrField;
+    private Label answrLbl;
 
     @FXML
     private Button loginBtn;
@@ -36,20 +33,40 @@ public class LoginController implements Controller{
 
     @FXML
     void loginAction(ActionEvent event) {
-        if(usrField.getText().equals("")){
-            answrField.setText("You must enter a username");
+//        if(usrField.getText().equals("")){
+//            answrLbl.setText("You must enter a username");
+//            answrLbl.getStyleClass().setAll("lbl","lbl-danger");
+//        }
+//        else if(passField.getText().equals("")){
+//            answrLbl.setText("You must enter a password");
+//            answrLbl.getStyleClass().setAll("lbl","lbl-danger");
+//        }
+//        else{
+//            mainGUI.showMain();
+//        }
+
+        if (usrField.getText().isBlank() || passField.getText().isBlank()) { //No values in text fields
+            answrLbl.setText("Please insert valid username and passwords");
+            answrLbl.getStyleClass().setAll("lbl","lbl-danger");
+            passField.setText("");
         }
-        else if(passField.getText().equals("")){
-            answrField.setText("You must enter a password");
-        }
-        else{
-            mainGUI.showMain();
+        else if (!businessLogic.checkLogIn(usrField.getText(), passField.getText())) {
+            answrLbl.setText("Not valid credentials, please try again");
+            answrLbl.getStyleClass().setAll("lbl","lbl-danger");
+            passField.setText("");
+        } else { //Valid credentials
+            if (businessLogic.isAdmin(usrField.getText())) { //open admin gui
+                mainGUI.showMain();
+            } else { //open user gui
+                mainGUI.showMain();
+            }
         }
     }
 
+
     @FXML
     void registerAction(ActionEvent event) {
-
+        mainGUI.showRegister();
     }
 
     @Override

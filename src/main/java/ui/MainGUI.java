@@ -7,10 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
-import uicontrollers.BrowseQuestionsController;
-import uicontrollers.Controller;
-import uicontrollers.CreateQuestionController;
-import uicontrollers.LoginController;
+import uicontrollers.*;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -18,7 +15,7 @@ import java.util.ResourceBundle;
 
 public class MainGUI {
 
-  private Window mainLag, createQuestionLag, browseQuestionsLag, loginWin;
+  private Window mainLag, createQuestionLag, browseQuestionsLag, loginWin, registerWin, setFeesWin;
 
   private BlFacade businessLogic;
   private Stage stage;
@@ -62,7 +59,14 @@ public class MainGUI {
       }
       if(controllerClass == LoginController.class){
         return new LoginController(businessLogic);
-      }else {
+      }
+      if(controllerClass == RegisterController.class){
+        return new RegisterController(businessLogic);
+      }
+      if(controllerClass == setFeesController.class){
+        return new setFeesController(businessLogic);
+      }
+      else {
         // default behavior for controllerFactory:
         try {
           return controllerClass.getDeclaredConstructor().newInstance();
@@ -88,8 +92,10 @@ public class MainGUI {
     browseQuestionsLag = load("/BrowseQuestions.fxml");
     createQuestionLag = load("/CreateQuestion.fxml");
     loginWin = load("/Login.fxml");
+    registerWin = load("/Register.fxml");
+    setFeesWin = load("/setFees.fxml");
 
-    showMain();
+    showLogin();
 
   }
 
@@ -113,6 +119,10 @@ public class MainGUI {
   public void showLogin(){
     setupScene(loginWin.ui,"Login",355,240);
   }
+
+  public void showRegister(){setupScene(registerWin.ui,"Register",466,303);}
+
+  public void showSetFees(){setupScene(setFeesWin.ui,"Set Fees",600,454);}
 
   private void setupScene(Parent ui, String title, int width, int height) {
     if (scene == null){

@@ -45,8 +45,5 @@ public class ApplicationLauncher {
     catch (Exception e) {
       System.err.println("Error in ApplicationLauncher: " + e);
     }
-
   }
-
-
 }
