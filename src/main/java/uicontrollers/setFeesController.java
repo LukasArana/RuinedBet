@@ -109,6 +109,10 @@ public class setFeesController implements Controller {
                 answerLbl.setText("You must select a fee");
                 answerLbl.getStyleClass().setAll("lbl","lbl-danger");
             }
+            else if(Float.parseFloat(feeField.getText()) < 1){
+                answerLbl.setText("The fee must be at least 1");
+                answerLbl.getStyleClass().setAll("lbl","lbl-danger");
+            }
             //else if(businessLogic.feeExists(answerLbl.getText(),(String) questionTableModel.getValueAt(j,1))) {
             //    answerLbl.setText("You must select another result.");
             //}
@@ -123,7 +127,7 @@ public class setFeesController implements Controller {
             }
         }
         catch (NumberFormatException ex){
-            answerLbl.setText("You must enter a number");
+            answerLbl.setText("The fee must be a number");
             answerLbl.getStyleClass().setAll("lbl","lbl-danger");
         }
 
