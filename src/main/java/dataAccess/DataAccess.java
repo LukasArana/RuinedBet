@@ -1,13 +1,6 @@
 	package dataAccess;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.ResourceBundle;
-import java.util.Vector;
+import java.util.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -312,10 +305,10 @@ public class DataAccess  {
 
 	public boolean isAdmin(String username) {
 		// TODO Auto-generated method stub
-		TypedQuery<User> q1 = db.createQuery("SELECT u FROM User u WHERE u.username = ?1", User.class);
+		TypedQuery<User> q1 = db.createQuery("SELECT u FROM User u WHERE u.username = ?1 AND u.admin= true", User.class);
 		q1.setParameter(1, username);
-		List<User> user= q1.getResultList(); //user.isEmpty == false
-		return(user.get(0).isAdmin());
+		List<User> userList= q1.getResultList(); //user.isEmpty == false
+		return(userList.isEmpty() == false);
 	}
 	
 	public fee setFee(String result,Float fee, String quest,Event ev) {

@@ -1,6 +1,7 @@
 package businessLogic;
 
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
@@ -129,7 +130,7 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager.initializeDB();
 		dbManager.close();
 	}
-	
+
 	@WebMethod
 	public User registerNewUser(int age, String username, String password, String name, String surname, String email) {
 		dbManager.open(false);
@@ -176,4 +177,5 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager.close();
 		return e;
 	}
+
 }

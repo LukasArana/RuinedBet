@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 
 public class MainGUI {
 
-  private Window mainLag, createQuestionLag, browseQuestionsLag, loginWin, registerWin, setFeesWin;
+  private Window mainLag, createQuestionLag, browseQuestionsLag, loginWin, registerWin, setFeesWin, createEventsWin;
 
   private BlFacade businessLogic;
   private Stage stage;
@@ -66,6 +66,9 @@ public class MainGUI {
       if(controllerClass == setFeesController.class){
         return new setFeesController(businessLogic);
       }
+      if(controllerClass == CreateEventsController.class){
+        return new CreateEventsController(businessLogic);
+      }
       else {
         // default behavior for controllerFactory:
         try {
@@ -94,6 +97,7 @@ public class MainGUI {
     loginWin = load("/Login.fxml");
     registerWin = load("/Register.fxml");
     setFeesWin = load("/setFees.fxml");
+    createEventsWin = load("/createEvents.fxml");
 
     showLogin();
 
@@ -105,7 +109,7 @@ public class MainGUI {
 
 
   public void showMain(){
-    setupScene(mainLag.ui, "MainTitle", 320, 250);
+    setupScene(mainLag.ui, "MainTitle", 320, 290);
   }
 
   public void showBrowseQuestions() {
@@ -123,6 +127,8 @@ public class MainGUI {
   public void showRegister(){setupScene(registerWin.ui,"Register",466,303);}
 
   public void showSetFees(){setupScene(setFeesWin.ui,"Set Fees",600,454);}
+
+  public void showCreateEvents(){setupScene(createEventsWin.ui, "CreateEvent", 446, 302);}
 
   private void setupScene(Parent ui, String title, int width, int height) {
     if (scene == null){

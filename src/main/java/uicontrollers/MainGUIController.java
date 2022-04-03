@@ -1,12 +1,16 @@
 package uicontrollers;
 
+import com.sun.tools.javac.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import ui.MainGUI;
 
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class MainGUIController implements Controller{
@@ -29,7 +33,22 @@ public class MainGUIController implements Controller{
     private MainGUI mainGUI;
 
     @FXML
-    private Button createEventBtn1;
+    private Button setFeesBtn;
+
+    @FXML
+    private RadioButton englishRB;
+
+    @FXML
+    private RadioButton euskaraRB;
+
+    @FXML
+    private RadioButton castellanoRB;
+
+    @FXML
+    private ToggleGroup g1;
+
+    @FXML
+    private Button createEventBtn;
 
     @FXML
     void browseQuestions(ActionEvent event) {
@@ -42,7 +61,31 @@ public class MainGUIController implements Controller{
     }
 
     @FXML
-    void createEvent(ActionEvent event){mainGUI.showSetFees();}
+    void setFeesClick(ActionEvent event){mainGUI.showSetFees();}
+
+    @FXML
+    void createEvent(ActionEvent event) {mainGUI.showCreateEvents();}
+
+    @FXML
+    void putCastellano(ActionEvent event) {
+        Locale.setDefault(new Locale("es"));
+        System.out.println("Locale: " + Locale.getDefault());
+        redraw();
+    }
+
+    @FXML
+    void putEnglish(ActionEvent event) {
+        Locale.setDefault(new Locale("en"));
+        System.out.println("Locale: " + Locale.getDefault());
+        redraw();
+    }
+
+    @FXML
+    void putEuskara(ActionEvent event) {
+        Locale.setDefault(new Locale("eus"));
+        System.out.println("Locale: " + Locale.getDefault());
+        redraw();
+    }
 
     @FXML
     void initialize() {
@@ -53,5 +96,20 @@ public class MainGUIController implements Controller{
     @Override
     public void setMainApp(MainGUI mainGUI) {
         this.mainGUI = mainGUI;
+    }
+
+    private void redraw() {
+        selectOptionLbl.setText(ResourceBundle.getBundle("Etiquetas").
+                getString("SelectUseCase"));
+        browseQuestionsBtn.setText(ResourceBundle.getBundle("Etiquetas").
+                getString("BrowseQuestions"));
+        createQuestionBtn.setText(ResourceBundle.getBundle("Etiquetas").
+                getString("CreateQuestion"));
+        setFeesBtn.setText(ResourceBundle.getBundle("Etiquetas").
+                getString("SetFee"));
+        createEventBtn.setText(ResourceBundle.getBundle("Etiquetas").
+               getString("CreateEvent"));
+
+        //this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
     }
 }
