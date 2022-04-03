@@ -44,7 +44,6 @@ public class LoginController implements Controller{
 //        else{
 //            mainGUI.showMain();
 //        }
-
         if (usrField.getText().isBlank() || passField.getText().isBlank()) { //No values in text fields
             answrLbl.setText("Please insert valid username and passwords");
             answrLbl.getStyleClass().setAll("lbl","lbl-danger");
@@ -55,15 +54,9 @@ public class LoginController implements Controller{
             answrLbl.getStyleClass().setAll("lbl","lbl-danger");
             passField.setText("");
         } else { //Valid credentials
-            if (businessLogic.isAdmin(usrField.getText())) { //open admin gui
-                mainGUI.showMain();
-            } else { //open user gui
-                mainGUI.showMain();
-            }
+            mainGUI.showMain(usrField.getText());
         }
     }
-
-
     @FXML
     void registerAction(ActionEvent event) {
         mainGUI.showRegister();

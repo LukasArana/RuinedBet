@@ -111,7 +111,8 @@ public class DataAccess  {
 				q6 = ev17.addQuestion("Golak sartuko dira lehenengo zatian?", 2);
 			}
 			
-			User u = new User("admin","admin");
+			User u2 = new User("user", "user", false);
+			User u1 = new User("admin","admin", true);
 
 			db.persist(q1);
 			db.persist(q2);
@@ -141,8 +142,8 @@ public class DataAccess  {
 			db.persist(ev19);
 			db.persist(ev20);	
 			
-			db.persist(u);
-
+			db.persist(u1);
+			//db.persist(u2);
 			db.getTransaction().commit();
 			System.out.println("The database has been initialized");
 		}

@@ -20,6 +20,7 @@ public class MainGUI {
   private BlFacade businessLogic;
   private Stage stage;
   private Scene scene;
+  private String username;
 
   public BlFacade getBusinessLogic() {
     return businessLogic;
@@ -104,7 +105,7 @@ public class MainGUI {
     createEventsWin = load("/CreateEvents.fxml");
     userLag = load("/UserGUI.fxml");
 
-    showUser();
+    showLogin();
 
   }
 
@@ -112,9 +113,17 @@ public class MainGUI {
 //      init(stage);
 //  }
 
-
+//This method will only be called from LoginController
+  public void showMain(String username){
+    this.username = username;
+    this.showMain();
+  }
   public void showMain(){
-    setupScene(mainLag.ui, "MainTitle", 320, 290);
+    if (businessLogic.isAdmin(this.username)) {
+      setupScene(mainLag.ui, "MainTitle", 320, 290);
+    } else{
+      setupScene(userLag.ui, "userTitle", 320, 290);
+    }
   }
 
   public void showBrowseQuestions() {
