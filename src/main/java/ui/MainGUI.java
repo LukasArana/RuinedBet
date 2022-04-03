@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 
 public class MainGUI {
 
-  private Window mainLag, createQuestionLag, browseQuestionsLag, loginWin, registerWin, setFeesWin, createEventsWin;
+  private Window mainLag, userLag, createQuestionLag, browseQuestionsLag, loginWin, registerWin, setFeesWin, createEventsWin;
 
   private BlFacade businessLogic;
   private Stage stage;
@@ -69,6 +69,10 @@ public class MainGUI {
       if(controllerClass == CreateEventsController.class){
         return new CreateEventsController(businessLogic);
       }
+      if(controllerClass == UserGUIController.class){
+        return new UserGUIController(businessLogic);
+      }
+
       else {
         // default behavior for controllerFactory:
         try {
@@ -97,9 +101,10 @@ public class MainGUI {
     loginWin = load("/Login.fxml");
     registerWin = load("/Register.fxml");
     setFeesWin = load("/setFees.fxml");
-    createEventsWin = load("/createEvents.fxml");
+    createEventsWin = load("/CreateEvents.fxml");
+    userLag = load("/UserGUI.fxml");
 
-    showLogin();
+    showUser();
 
   }
 
@@ -127,7 +132,10 @@ public class MainGUI {
   public void showRegister(){setupScene(registerWin.ui,"Register",466,303);}
 
   public void showSetFees(){setupScene(setFeesWin.ui,"Set Fees",600,454);}
-
+  public void showUser(){setupScene(userLag.ui,"MainTitle",600,454);}
+  public void showDeposit(){setupScene(userLag.ui,"Show Deposit",600,454);}
+  public void showPlace(){setupScene(userLag.ui,"Show Deposit",600,454);}
+  public void showMovements(){setupScene(userLag.ui,"Show Deposit",600,454);}
   public void showCreateEvents(){setupScene(createEventsWin.ui, "CreateEvent", 446, 302);}
 
   private void setupScene(Parent ui, String title, int width, int height) {

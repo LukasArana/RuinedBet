@@ -51,6 +51,9 @@ public class MainGUIController implements Controller{
     private Button createEventBtn;
 
     @FXML
+    void userLogIn(ActionEvent event){ mainGUI.showUser();}
+
+    @FXML
     void browseQuestions(ActionEvent event) {
         mainGUI.showBrowseQuestions();
     }
@@ -88,10 +91,8 @@ public class MainGUIController implements Controller{
     }
 
     @FXML
-    void initialize() {
+    void showMovements(ActionEvent event){mainGUI.showMovements();}
 
-
-    }
 
     @Override
     public void setMainApp(MainGUI mainGUI) {
