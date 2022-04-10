@@ -3,8 +3,10 @@ package ui;
 import businessLogic.BlFacade;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
 import uicontrollers.*;
@@ -122,7 +124,7 @@ public class MainGUI {
     if (businessLogic.isAdmin(this.username)) {
       setupScene(mainLag.ui, "MainTitle", 320, 290);
     } else{
-      setupScene(userLag.ui, "userTitle", 320, 290);
+      setupScene(userLag.ui, "userTitle", 600, 400);
     }
   }
 
@@ -158,6 +160,9 @@ public class MainGUI {
     stage.setTitle(ResourceBundle.getBundle("Etiquetas",Locale.getDefault()).getString(title));
     scene.setRoot(ui);
     stage.show();
+    Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+    stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
+    stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
   }
 
 //  public static void main(String[] args) {
