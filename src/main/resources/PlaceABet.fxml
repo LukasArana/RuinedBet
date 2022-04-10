@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="432.0" prefWidth="992.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uicontrollers.PlaceBetController">
+    <children>
+        <DatePicker fx:id="datepicker" layoutX="309.0" layoutY="45.0" />
+        <Label layoutX="365.0" layoutY="27.0" text="%EventDate" />
+        <TableView fx:id="tblEvents" layoutX="24.0" layoutY="111.0" prefHeight="200.0" prefWidth="330.0">
+            <columns>
+                <TableColumn fx:id="ec1" maxWidth="200.0" minWidth="30.0" prefWidth="200.0" text="Id" />
+                <TableColumn fx:id="ec2" prefWidth="284.0" text="%Event" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+        <TableView fx:id="tblQuestions" layoutX="397.0" layoutY="111.0" prefHeight="200.0" prefWidth="393.0">
+            <columns>
+                <TableColumn fx:id="qc1" prefWidth="39.0" text="%QuestionN" />
+                <TableColumn fx:id="qc2" prefWidth="352.0" text="%Question" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+        <Label layoutX="24.0" layoutY="84.0" text="%Events" />
+        <Label layoutX="358.0" layoutY="49.0" text="  " />
+        <Label layoutX="397.0" layoutY="84.0" text="%SelectedEvent" />
+        <Button fx:id="btnClose" layoutX="404.0" layoutY="392.0" mnemonicParsing="false" onAction="#closeClick" text="%Back" />
+      <ComboBox fx:id="feeComboBox" layoutX="194.0" layoutY="328.0" prefHeight="25.0" prefWidth="115.0" />
+      <Label layoutX="154.0" layoutY="332.0" text="%Fee" />
+      <Label layoutX="410.0" layoutY="332.0" text="%Stake" />
+      <Button fx:id="betBt" layoutX="283.0" layoutY="392.0" mnemonicParsing="false" onAction="#placeBetClick" text="%PlaceBet" />
+      <TextField fx:id="stakeField" layoutX="457.0" layoutY="328.0" prefHeight="25.0" prefWidth="90.0" />
+      <Label layoutX="318.0" layoutY="363.0" text="%Winnings" />
+      <Label fx:id="winningsLb" layoutX="390.0" layoutY="363.0" />
+    </children>
+</AnchorPane>
