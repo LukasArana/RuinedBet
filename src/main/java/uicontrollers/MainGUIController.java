@@ -51,6 +51,9 @@ public class MainGUIController implements Controller{
     private Button createEventBtn;
 
     @FXML
+    private Button showBalancebtn;
+
+    @FXML
     void userLogIn(ActionEvent event){ mainGUI.showUser();}
 
     @FXML
@@ -68,6 +71,9 @@ public class MainGUIController implements Controller{
 
     @FXML
     void createEvent(ActionEvent event) {mainGUI.showCreateEvents();}
+
+    @FXML
+    void showBalance(ActionEvent event) {mainGUI.showBalance();}
 
     @FXML
     void putCastellano(ActionEvent event) {

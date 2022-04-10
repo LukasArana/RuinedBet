@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 
 public class MainGUI {
 
-  private Window mainLag, userLag, createQuestionLag, browseQuestionsLag, loginWin, registerWin, setFeesWin, createEventsWin;
+  private Window mainLag, userLag, createQuestionLag, browseQuestionsLag, loginWin, registerWin, setFeesWin, createEventsWin, showBal;
 
   private BlFacade businessLogic;
   private Stage stage;
@@ -104,6 +104,7 @@ public class MainGUI {
     setFeesWin = load("/setFees.fxml");
     createEventsWin = load("/CreateEvents.fxml");
     userLag = load("/UserGUI.fxml");
+    showBal = load("/showBalance.fxml");
 
     showLogin();
 
@@ -146,6 +147,7 @@ public class MainGUI {
   public void showPlace(){setupScene(userLag.ui,"Show Deposit",600,454);}
   public void showMovements(){setupScene(userLag.ui,"Show Deposit",600,454);}
   public void showCreateEvents(){setupScene(createEventsWin.ui, "CreateEvent", 446, 302);}
+  public void showBalance(){setupScene(showBal.ui, "Show Balance", 600,454);  }
 
   private void setupScene(Parent ui, String title, int width, int height) {
     if (scene == null){

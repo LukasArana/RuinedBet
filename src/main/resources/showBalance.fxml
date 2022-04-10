@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="255.0" prefWidth="334.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uicontrollers.ShowBalanceController">
+   <children>
+      <TableView fx:id="operationTable" layoutX="32.0" layoutY="25.0" prefHeight="200.0" prefWidth="264.0">
+        <columns>
+          <TableColumn fx:id="dateColumn" prefWidth="91.20000839233398" text="Date" />
+          <TableColumn fx:id="balanceColumn" prefWidth="172.00001525878906" text="Balance" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
