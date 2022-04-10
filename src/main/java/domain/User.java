@@ -5,8 +5,8 @@ import javax.persistence.Id;
 
 @Entity
 public class User {
-	@Id
 	private int age;
+	@Id
 	private String username;
 	private String password;
 	private boolean admin;
