@@ -1,19 +1,27 @@
 package uicontrollers;
 
 import com.sun.tools.javac.Main;
+import configuration.ConfigXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.text.TextAlignment;
 import ui.MainGUI;
 
+import java.io.*;
 import java.net.URL;
+import java.nio.file.Files;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class MainGUIController implements Controller{
+
+    @FXML
+    private Label answerLbl;
 
     @FXML
     private Label selectOptionLbl;
@@ -69,12 +77,61 @@ public class MainGUIController implements Controller{
     @FXML
     void createEvent(ActionEvent event) {mainGUI.showCreateEvents();}
 
+    @FXML void changeLanguage(ActionEvent event) {
+        String language = ((RadioButton) g1.getSelectedToggle()).getText();
 
+        switch (language){
+            case "English":
+                ConfigXML.getInstance().setLocale("en");
+                answerLbl.setText("Restart to apply changes");
+                break;
+            case "Castellano":
+                ConfigXML.getInstance().setLocale("es");
+                answerLbl.setText("Reinicia para aplicar cambios");
+                break;
+            case "Euskara":
+                ConfigXML.getInstance().setLocale("eus");
+                answerLbl.setText("Berrireki aldaketak aplikatzeko");
+
+                break;
+        }
+        answerLbl.setTextAlignment(TextAlignment.CENTER);
+        answerLbl.getStyleClass().setAll("lbl-warning");
+
+    }
+    /*
     @FXML
     void putCastellano(ActionEvent event) {
-        Locale.setDefault(new Locale("es"));
-        System.out.println("Locale: " + Locale.getDefault());
-        redraw();
+        try {
+            // input the (modified) file content to the StringBuffer "input"
+
+            BufferedReader file = new BufferedReader(new FileReader(getClass().getClassLoader().getResource("config.xml").toString()));
+            StringBuffer inputBuffer = new StringBuffer();
+            String line;
+            int i=1;
+
+            while ((line = file.readLine()) != null) {
+                if(i==16){
+                    line = "  <locale>es</locale>"; // replace the line here
+                }
+                inputBuffer.append(line);
+                inputBuffer.append('\n');
+                i++;
+            }
+            file.close();
+
+            // write the new string with the replaced line OVER the same file
+            FileOutputStream fileOut = new FileOutputStream(getClass().getClassLoader().getResource("config.xml").toString());
+            fileOut.write(inputBuffer.toString().getBytes());
+            fileOut.close();
+
+        } catch (Exception e) {
+            System.out.println("Problem reading file.");
+        }
+
+        //Locale.setDefault(new Locale("es"));
+        //System.out.println("Locale: " + Locale.getDefault());
+        //redraw();
     }
 
     @FXML
@@ -91,24 +148,11 @@ public class MainGUIController implements Controller{
         redraw();
     }
 
+    */
 
     @Override
     public void setMainApp(MainGUI mainGUI) {
         this.mainGUI = mainGUI;
     }
 
-    private void redraw() {
-        selectOptionLbl.setText(ResourceBundle.getBundle("Etiquetas").
-                getString("SelectUseCase"));
-        browseQuestionsBtn.setText(ResourceBundle.getBundle("Etiquetas").
-                getString("BrowseQuestions"));
-        createQuestionBtn.setText(ResourceBundle.getBundle("Etiquetas").
-                getString("CreateQuestion"));
-        setFeesBtn.setText(ResourceBundle.getBundle("Etiquetas").
-                getString("SetFee"));
-        createEventBtn.setText(ResourceBundle.getBundle("Etiquetas").
-               getString("CreateEvent"));
-
-        //this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
-    }
 }

@@ -4,6 +4,10 @@ import java.io.File;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -50,6 +54,31 @@ public class ConfigXML {
 	private String dataBaseUser;
 	private String dataBasePassword;
 
+
+	public void setLocale(String loc) {
+		try {
+			// Open xml file
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(new File(CONFIGURATION_FILENAME));
+			doc.getDocumentElement().normalize();
+
+			// Get locale node
+			Node localeNode = doc.getElementsByTagName("locale").item(0);
+			localeNode.setTextContent(loc);
+
+			// Write changes
+			TransformerFactory tf = TransformerFactory.newInstance();
+			Transformer transformer = tf.newTransformer();
+			DOMSource src = new DOMSource(doc);
+			StreamResult res = new StreamResult(new File(CONFIGURATION_FILENAME));
+			transformer.transform(src, res);
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+
+
+	}
 
 	public String getLocale() {
 		return locale;

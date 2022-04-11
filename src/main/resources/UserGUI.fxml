@@ -6,19 +6,19 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uicontrollers.UserGUIController">
+<AnchorPane prefHeight="283.0" prefWidth="332.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uicontrollers.UserGUIController">
    <children>
-      <Button fx:id="browseBtn" layoutX="216.0" layoutY="91.0" mnemonicParsing="false" onAction="#browseClick" prefHeight="25.0" prefWidth="167.0" text="%BrowseQuestions" />
-      <Button fx:id="placeBetBtn" layoutX="216.0" layoutY="155.0" mnemonicParsing="false" onAction="#placeClick" prefHeight="25.0" prefWidth="167.0" text="%PlaceBet" />
-      <Button fx:id="depositBtn" layoutX="216.0" layoutY="220.0" mnemonicParsing="false" onAction="#depositClick" prefHeight="25.0" prefWidth="167.0" text="%DepositMoney" />
-      <Button fx:id="ShowMoveBtn" layoutX="217.0" layoutY="280.0" mnemonicParsing="false" onAction="#showMovements" prefHeight="25.0" prefWidth="167.0" text="%ShowMovements" />
-      <Label layoutX="232.0" layoutY="31.0" prefHeight="31.0" prefWidth="137.0" text="SELECT USE CASE" />
-      <RadioButton layoutX="265.0" layoutY="338.0" mnemonicParsing="false" onAction="#putEnglish" text="English">
+      <Button fx:id="browseBtn" layoutX="81.0" layoutY="76.0" mnemonicParsing="false" onAction="#browseClick" prefHeight="25.0" prefWidth="167.0" text="%BrowseQuestions" />
+      <Button fx:id="placeBetBtn" layoutX="81.0" layoutY="118.0" mnemonicParsing="false" onAction="#placeClick" prefHeight="25.0" prefWidth="167.0" text="%PlaceBet" />
+      <Button fx:id="depositBtn" layoutX="81.0" layoutY="159.0" mnemonicParsing="false" onAction="#depositClick" prefHeight="25.0" prefWidth="167.0" text="%DepositMoney" />
+      <Button fx:id="ShowMoveBtn" layoutX="81.0" layoutY="199.0" mnemonicParsing="false" onAction="#showMovements" prefHeight="25.0" prefWidth="167.0" text="%ShowMovements" />
+      <Label layoutX="113.0" layoutY="30.0" prefHeight="31.0" prefWidth="115.0" text="%SelectUseCase" />
+      <RadioButton layoutX="135.0" layoutY="245.0" mnemonicParsing="false" onAction="#putEnglish" text="English">
          <toggleGroup>
             <ToggleGroup fx:id="Idioms" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="81.0" layoutY="338.0" mnemonicParsing="false" onAction="#putEuskara" text="Euskera" toggleGroup="$Idioms" />
-      <RadioButton layoutX="429.0" layoutY="338.0" mnemonicParsing="false" onAction="#putCastellano" text="Castellano" toggleGroup="$Idioms" />
+      <RadioButton layoutX="36.0" layoutY="245.0" mnemonicParsing="false" onAction="#putEuskara" text="Euskera" toggleGroup="$Idioms" />
+      <RadioButton layoutX="216.0" layoutY="245.0" mnemonicParsing="false" onAction="#putCastellano" text="Castellano" toggleGroup="$Idioms" />
    </children>
 </AnchorPane>

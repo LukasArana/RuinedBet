@@ -44,6 +44,10 @@ public class MainGUI {
     });
   }
 
+  public void setTitle(String title) {
+    stage.setTitle(title);
+  }
+
 
   class Window {
     Controller c;
@@ -130,7 +134,7 @@ public class MainGUI {
   }
   public void showMain(){
     if (businessLogic.isAdmin(this.username)) {
-      setupScene(mainLag.ui, "MainTitle", 320, 290);
+      setupScene(mainLag.ui, "MainTitle", 320, 320);
     } else{
       setupScene(userLag.ui, "userTitle", 600, 400);
     }
@@ -151,7 +155,7 @@ public class MainGUI {
   public void showRegister(){setupScene(registerWin.ui,"Register",466,303);}
 
   public void showSetFees(){setupScene(setFeesWin.ui,"Set Fees",600,454);}
-  public void showUser(){setupScene(userLag.ui,"MainTitle",600,454);}
+  public void showUser(){setupScene(userLag.ui,"MainTitle",332,283);}
   public void showDeposit(){setupScene(userLag.ui,"Show Deposit",600,454);}
   public void showPlace(){setupScene(placeBetWin.ui,"PlaceBet",800,500);}
   public void showCreateEvents(){setupScene(createEventsWin.ui, "CreateEvent", 446, 302);}
