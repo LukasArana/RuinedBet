@@ -4,6 +4,8 @@ import businessLogic.BlFacade;
 import domain.Event;
 import domain.Question;
 import domain.fee;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -65,6 +67,7 @@ public class PlaceBetController implements Controller{
     private MainGUI mainGUI;
     private BlFacade businessLogic;
     private List<LocalDate> holidays = new ArrayList<>();
+    private ObservableList<fee> fees;
 
     public PlaceBetController(BlFacade bl) {
         businessLogic = bl;
@@ -82,6 +85,15 @@ public class PlaceBetController implements Controller{
         if(stakeField.getText().equals("")) {
             messageLbl.setText("You must introduce the stake to bet");
             messageLbl.getStyleClass().setAll("lbl", "lbl-danger");
+        }
+        if (Float.parseFloat(stakeField.getText()) >= 10){
+            messageLbl.setText("You don't have enough money to place the bet");
+            messageLbl.getStyleClass().setAll("lbl", "lbl-danger");
+        }
+        else{
+            messageLbl.setText("Bet placed correctly");
+            messageLbl.getStyleClass().setAll("lbl","lbl-success");
+            stakeField.setText("");
         }
     }
 
@@ -171,13 +183,27 @@ public class PlaceBetController implements Controller{
         tblQuestions.getSelectionModel().selectedItemProperty().addListener((obs, oldselection, newselection) -> {
             if(newselection != null){
                 feeComboBox.getItems().clear();
-                ArrayList<fee> fees = tblQuestions.getSelectionModel().getSelectedItem().getFeeList();
-                for(fee f:fees){
-                    feeComboBox.getItems().add(f);
+                fees = FXCollections.observableArrayList(new ArrayList<>());
+                fees.setAll(tblQuestions.getSelectionModel().getSelectedItem().getFeeList());
+                //fees = tblQuestions.getSelectionModel().getSelectedItem().getFeeList();
+                feeComboBox.setItems(fees);
+                if(feeComboBox.getItems().size() == 0){
+                    betBt.setDisable(true);
+                    messageLbl.setText("There are no fees for this question");
+                    messageLbl.getStyleClass().setAll("lbl", "lbl-danger");
+                }else {
+                    betBt.setDisable(false);
+                    messageLbl.setText("");
+                    messageLbl.getStyleClass().clear();
+
                 }
+
             }
+
         });
 
+        //float winnings = feeComboBox.getSelectionModel().getSelectedItem().getFee()*Float.parseFloat (stakeField.getText());
+        //winningsLb.setText(String.valueOf(winnings));
 
     }
 }

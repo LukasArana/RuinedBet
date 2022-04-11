@@ -10,10 +10,7 @@ import javax.jws.WebService;
 
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
-import domain.Event;
-import domain.Question;
-import domain.User;
-import domain.fee;
+import domain.*;
 import exceptions.EventAlreadyExists;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
@@ -50,8 +47,13 @@ public class BlFacadeImplementation implements BlFacade {
 	public boolean feeExists(String f, String s) {
 		return dbManager.feeExists(f,s);
 	}
-	
-	
+
+	@Override
+	public Bet placeBet(fee f, Float stake) {
+		return null;
+	}
+
+
 	public fee setFee(String result,Float fee, String quest,Event ev) {
 		return dbManager.setFee(result,fee,quest,ev);
 	}

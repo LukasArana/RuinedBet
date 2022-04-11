@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 @Entity
 public class fee {
+	@Id
 	private Float fee;
 	@Id
 	private String result;
@@ -17,5 +18,16 @@ public class fee {
 	
 	public String getResult() {
 		return this.result;
+	}
+
+	public void setFee(Float fee) {
+		this.fee = fee;
+	}
+
+	public Float getFee() {return this.fee;}
+
+	@Override
+	public String toString() {
+		return result+ ": " + fee;
 	}
 }

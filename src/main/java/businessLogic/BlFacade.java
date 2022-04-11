@@ -7,10 +7,7 @@ import java.util.Vector;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
-import domain.Event;
-import domain.Question;
-import domain.User;
-import domain.fee;
+import domain.*;
 import exceptions.EventAlreadyExists;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
@@ -64,4 +61,6 @@ public interface BlFacade  {
 	@WebMethod public fee setFee(String result,Float fee, String quest,Event ev);
 	
 	@WebMethod public boolean feeExists(String f, String s);
+
+	@WebMethod public Bet placeBet(fee f, Float stake);
 }

@@ -96,6 +96,9 @@ public class DataAccess  {
 			}
 			else if (Locale.getDefault().equals(new Locale("en"))) {
 				q1 = ev1.addQuestion("Who will win the match?", 1);
+				q1.addFee(new fee((float) 1.9,"Atletico"));
+				q1.addFee(new fee((float) 3.5 ,"Draw"));
+				q1.addFee(new fee((float)3.0,"Athletic"));
 				q2 = ev1.addQuestion("Who will score first?", 2);
 				q3 = ev11.addQuestion("Who will win the match?", 1);
 				q4 = ev11.addQuestion("How many goals will be scored in the match?", 2);

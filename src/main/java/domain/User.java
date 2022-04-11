@@ -13,7 +13,8 @@ public class User {
 	private String realName;
 	private String surname;
 	private String email;
-	
+	private Float availableMoney;
+
 	public User(int age, String username, String password, String realName, String surname, String email) {
 		this.age = age;
 		this.username = username;
@@ -21,6 +22,7 @@ public class User {
 		this.realName = realName;
 		this.surname = surname;
 		this.email = email;
+		this.availableMoney = (float) 0.0;
 	}
 
 	public User(){
