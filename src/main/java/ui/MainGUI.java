@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class MainGUI {
 
-  private Window mainLag, userLag, createQuestionLag, browseQuestionsLag, loginWin, registerWin, setFeesWin, createEventsWin, placeBetWin, showBal;
+  private Window mainLag, userLag, createQuestionLag, browseQuestionsLag, loginWin, registerWin, setFeesWin, createEventsWin, placeBetWin, showMoves;
 
 
   private BlFacade businessLogic;
@@ -111,7 +111,7 @@ public class MainGUI {
     setFeesWin = load("/setFees.fxml");
     createEventsWin = load("/CreateEvents.fxml");
     userLag = load("/UserGUI.fxml");
-    showBal = load("/showBalance.fxml");
+    showMoves = load("/showMovements.fxml");
 
     placeBetWin = load("/PlaceABet.fxml");
 
@@ -154,9 +154,8 @@ public class MainGUI {
   public void showUser(){setupScene(userLag.ui,"MainTitle",600,454);}
   public void showDeposit(){setupScene(userLag.ui,"Show Deposit",600,454);}
   public void showPlace(){setupScene(placeBetWin.ui,"PlaceBet",800,500);}
-  //public void showMovements(){setupScene(userLag.ui,"Show Deposit",600,454);}
   public void showCreateEvents(){setupScene(createEventsWin.ui, "CreateEvent", 446, 302);}
-  public void showBalance(){setupScene(showBal.ui, "Show Balance", 600,454);  }
+  public void showMovements(){setupScene(showMoves.ui, "ShowMovements", 350,310);  }
 
   private void setupScene(Parent ui, String title, int width, int height) {
     if (scene == null){
