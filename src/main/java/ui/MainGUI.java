@@ -154,7 +154,7 @@ public class MainGUI {
   public void showUser(){setupScene(userLag.ui,"MainTitle",600,454);}
   public void showDeposit(){setupScene(userLag.ui,"Show Deposit",600,454);}
   public void showPlace(){setupScene(placeBetWin.ui,"PlaceBet",800,500);}
-  public void showMovements(){setupScene(userLag.ui,"Show Deposit",600,454);}
+  //public void showMovements(){setupScene(userLag.ui,"Show Deposit",600,454);}
   public void showCreateEvents(){setupScene(createEventsWin.ui, "CreateEvent", 446, 302);}
   public void showBalance(){setupScene(showBal.ui, "Show Balance", 600,454);  }
 

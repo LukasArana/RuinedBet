@@ -55,9 +55,7 @@ public class UserGUIController implements Controller{
     }
 
     @FXML
-    void showClick() {
-        mainGUI.showMovements();
-    }
+    void showBalance() {mainGUI.showBalance(); }
 
     public UserGUIController(BlFacade bl) {
         businessLogic = bl;
