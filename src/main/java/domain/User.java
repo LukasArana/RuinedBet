@@ -22,7 +22,11 @@ public class User {
 		this.surname = surname;
 		this.email = email;
 	}
-	
+
+	public User(){
+
+	}
+
 	public User(String username, String password, Boolean admin) {
 		this.username = username;
 		this.password = password;

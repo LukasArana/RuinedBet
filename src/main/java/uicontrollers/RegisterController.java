@@ -94,6 +94,7 @@ public class RegisterController implements Controller{
             answrLbl.getStyleClass().setAll("lbl","lbl-danger");
         }
         else{
+            businessLogic.registerNewUser(Integer.parseInt(ageField.getText()),usrField.getText(),passField.getText(),nameField.getText(),surnameField.getText(),emailField.getText());
             answrLbl.setText("You have successfully registered");
             answrLbl.getStyleClass().setAll("lbl","lbl-success");
         }
