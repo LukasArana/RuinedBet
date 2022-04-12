@@ -26,6 +26,7 @@ public class User {
 	}
 
 	public User(){
+		this.availableMoney = (float) 0.0;
 
 	}
 
@@ -33,11 +34,13 @@ public class User {
 		this.username = username;
 		this.password = password;
 		this.admin = admin;
+		this.availableMoney = (float) 0.0;
 	}
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
 		this.admin = true;
+		this.availableMoney = (float) 0.0;
 	}
 	
 	public int getAge() {
@@ -50,4 +53,9 @@ public class User {
 	public boolean isAdmin() {
 		return this.admin;
 	}
+	public void updateAvailableMoney(float money){this.availableMoney += money;}
+
+    public float getAvailableMoney() {
+		return this.availableMoney;
+    }
 }

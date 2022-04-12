@@ -1,4 +1,4 @@
-	package dataAccess;
+package dataAccess;
 
 import java.util.*;
 
@@ -7,11 +7,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
-import configuration.ConfigXML;
-import configuration.UtilDate;
+
 import domain.*;
 import exceptions.EventAlreadyExists;
 import exceptions.QuestionAlreadyExist;
+import configuration.ConfigXML;
+import configuration.UtilDate;
 
 /**
  * Implements the Data Access utility to the objectDb database
@@ -144,7 +145,7 @@ public class DataAccess {
 			db.persist(ev20);
 
 			db.persist(u1);
-			//db.persist(u2);
+			db.persist(u2);
 			db.getTransaction().commit();
 			System.out.println("The database has been initialized");
 		} catch (Exception e) {
@@ -355,6 +356,27 @@ public class DataAccess {
 		db.getTransaction().commit();
 		System.out.println("New event has been registered in the database");
 		return u;
+	}
+	public void updateCurrency(float deposit, String username){
+		db.getTransaction().begin();
+
+		TypedQuery<User> q1 = db.createQuery("SELECT u FROM User u WHERE u.username = ?1", User.class);
+		q1.setParameter(1, username);
+		List<User> userList = q1.getResultList(); //user.isEmpty == false
+		User current = userList.get(0);
+		current.updateAvailableMoney(deposit);
+		System.out.println(current.getAvailableMoney());
+		db.persist(current);
+		db.getTransaction().commit();
+
+	}
+
+	public float getCurrency(String username) {
+		TypedQuery<User> q1 = db.createQuery("SELECT u FROM User u WHERE u.username = ?1", User.class);
+		q1.setParameter(1, username);
+		List<User> userList = q1.getResultList(); //user.isEmpty == false
+
+		return userList.get(0).getAvailableMoney();
 	}
 
 /*	public Vector<Movement> getMovements() {

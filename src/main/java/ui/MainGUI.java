@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class MainGUI {
 
-  private Window mainLag, userLag, createQuestionLag, browseQuestionsLag, loginWin, registerWin, setFeesWin, createEventsWin, placeBetWin, showMoves;
+  private Window mainLag, userLag, createQuestionLag, browseQuestionsLag, loginWin, registerWin, setFeesWin, createEventsWin, placeBetWin, showMoves, depositMoney;
 
 
   private BlFacade businessLogic;
@@ -84,6 +84,9 @@ public class MainGUI {
       if(controllerClass == PlaceBetController.class){
         return new PlaceBetController(businessLogic);
       }
+      if(controllerClass == DepositMoneyController.class){
+        return new DepositMoneyController(businessLogic);
+      }
 
       else {
         // default behavior for controllerFactory:
@@ -116,8 +119,8 @@ public class MainGUI {
     createEventsWin = load("/CreateEvents.fxml");
     userLag = load("/UserGUI.fxml");
     showMoves = load("/showMovements.fxml");
-
     placeBetWin = load("/PlaceABet.fxml");
+    depositMoney = load("/DepositMoney.fxml");
 
     showLogin();
 
@@ -156,11 +159,10 @@ public class MainGUI {
 
   public void showSetFees(){setupScene(setFeesWin.ui,"Set Fees",600,454);}
   public void showUser(){setupScene(userLag.ui,"MainTitle",332,283);}
-  public void showDeposit(){setupScene(userLag.ui,"Show Deposit",600,454);}
   public void showPlace(){setupScene(placeBetWin.ui,"PlaceBet",800,500);}
   public void showCreateEvents(){setupScene(createEventsWin.ui, "CreateEvent", 446, 302);}
   public void showMovements(){setupScene(showMoves.ui, "ShowMovements", 350,310);  }
-
+  public void showDeposit(){setupScene(depositMoney.ui, "DepositMoney", 350, 310);}
   private void setupScene(Parent ui, String title, int width, int height) {
     if (scene == null){
       scene = new Scene(ui, width, height);
@@ -176,7 +178,9 @@ public class MainGUI {
     stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
     stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
   }
-
+  public String getUsername(){
+    return this.username;
+  }
 //  public static void main(String[] args) {
 //    launch();
 //  }

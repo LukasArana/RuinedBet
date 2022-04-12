@@ -63,4 +63,8 @@ public interface BlFacade  {
 	@WebMethod public boolean feeExists(String f, String s);
 
 	@WebMethod public Bet placeBet(fee f, Float stake);
+
+	@WebMethod public void updateCurrency(float deposit, String username);
+
+    @WebMethod Float getCurrency(String username);
 }

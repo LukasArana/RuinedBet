@@ -53,6 +53,16 @@ public class BlFacadeImplementation implements BlFacade {
 		return null;
 	}
 
+	@Override
+	public void updateCurrency(float deposit, String username) {
+		dbManager.updateCurrency(deposit, username);
+	}
+
+	@Override
+	public Float getCurrency(String username) {
+		return dbManager.getCurrency(username);
+	}
+
 
 	public fee setFee(String result,Float fee, String quest,Event ev) {
 		return dbManager.setFee(result,fee,quest,ev);
