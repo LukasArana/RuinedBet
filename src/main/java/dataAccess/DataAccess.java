@@ -9,40 +9,37 @@ import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
 import configuration.UtilDate;
-import domain.Event;
-import domain.Question;
-import domain.User;
-import domain.fee;
+import domain.*;
 import exceptions.EventAlreadyExists;
 import exceptions.QuestionAlreadyExist;
 
 /**
  * Implements the Data Access utility to the objectDb database
  */
-public class DataAccess  {
+public class DataAccess {
 
-	protected EntityManager  db;
+	protected EntityManager db;
 	protected EntityManagerFactory emf;
 
 	ConfigXML config = ConfigXML.getInstance();
 
-	public DataAccess(boolean initializeMode)  {
-		System.out.println("Creating DataAccess instance => isDatabaseLocal: " + 
+	public DataAccess(boolean initializeMode) {
+		System.out.println("Creating DataAccess instance => isDatabaseLocal: " +
 				config.isDataAccessLocal() + " getDatabBaseOpenMode: " + config.getDataBaseOpenMode());
 		open(initializeMode);
 	}
 
-	public DataAccess()  {	
+	public DataAccess() {
 		this(true);
 	}
 
 
 	/**
-	 * This method initializes the database with some trial events and questions. 
-	 * It is invoked by the business logic when the option "initialize" is used 
+	 * This method initializes the database with some trial events and questions.
+	 * It is invoked by the business logic when the option "initialize" is used
 	 * in the tag dataBaseOpenMode of resources/config.xml file
-	 */	
-	public void initializeDB(){
+	 */
+	public void initializeDB() {
 
 		db.getTransaction().begin();
 
@@ -53,31 +50,34 @@ public class DataAccess  {
 			int month = today.get(Calendar.MONTH);
 			month += 1;
 			int year = today.get(Calendar.YEAR);
-			if (month == 12) { month = 0; year += 1;}  
+			if (month == 12) {
+				month = 0;
+				year += 1;
+			}
 
-			Event ev1 = new Event( "Atlético-Athletic", UtilDate.newDate(year, month, 17));
-			Event ev2 = new Event( "Eibar-Barcelona", UtilDate.newDate(year, month, 17));
-			Event ev3 = new Event( "Getafe-Celta", UtilDate.newDate(year, month, 17));
-			Event ev4 = new Event( "Alavés-Deportivo", UtilDate.newDate(year, month, 17));
-			Event ev5 = new Event( "Español-Villareal", UtilDate.newDate(year, month, 17));
-			Event ev6 = new Event( "Las Palmas-Sevilla", UtilDate.newDate(year, month, 17));
-			Event ev7 = new Event( "Malaga-Valencia", UtilDate.newDate(year, month, 17));
-			Event ev8 = new Event( "Girona-Leganés", UtilDate.newDate(year, month, 17));
-			Event ev9 = new Event( "Real Sociedad-Levante", UtilDate.newDate(year, month, 17));
-			Event ev10 = new Event( "Betis-Real Madrid", UtilDate.newDate(year, month, 17));
+			Event ev1 = new Event("Atlético-Athletic", UtilDate.newDate(year, month, 17));
+			Event ev2 = new Event("Eibar-Barcelona", UtilDate.newDate(year, month, 17));
+			Event ev3 = new Event("Getafe-Celta", UtilDate.newDate(year, month, 17));
+			Event ev4 = new Event("Alavés-Deportivo", UtilDate.newDate(year, month, 17));
+			Event ev5 = new Event("Español-Villareal", UtilDate.newDate(year, month, 17));
+			Event ev6 = new Event("Las Palmas-Sevilla", UtilDate.newDate(year, month, 17));
+			Event ev7 = new Event("Malaga-Valencia", UtilDate.newDate(year, month, 17));
+			Event ev8 = new Event("Girona-Leganés", UtilDate.newDate(year, month, 17));
+			Event ev9 = new Event("Real Sociedad-Levante", UtilDate.newDate(year, month, 17));
+			Event ev10 = new Event("Betis-Real Madrid", UtilDate.newDate(year, month, 17));
 
-			Event ev11 = new Event( "Atletico-Athletic", UtilDate.newDate(year, month, 1));
-			Event ev12 = new Event( "Eibar-Barcelona", UtilDate.newDate(year, month, 1));
-			Event ev13 = new Event( "Getafe-Celta", UtilDate.newDate(year, month, 1));
-			Event ev14 = new Event( "Alavés-Deportivo", UtilDate.newDate(year, month, 1));
-			Event ev15 = new Event( "Español-Villareal", UtilDate.newDate(year, month, 1));
-			Event ev16 = new Event( "Las Palmas-Sevilla", UtilDate.newDate(year, month, 1));
+			Event ev11 = new Event("Atletico-Athletic", UtilDate.newDate(year, month, 1));
+			Event ev12 = new Event("Eibar-Barcelona", UtilDate.newDate(year, month, 1));
+			Event ev13 = new Event("Getafe-Celta", UtilDate.newDate(year, month, 1));
+			Event ev14 = new Event("Alavés-Deportivo", UtilDate.newDate(year, month, 1));
+			Event ev15 = new Event("Español-Villareal", UtilDate.newDate(year, month, 1));
+			Event ev16 = new Event("Las Palmas-Sevilla", UtilDate.newDate(year, month, 1));
 
 
-			Event ev17 = new Event( "Málaga-Valencia", UtilDate.newDate(year, month + 1, 28));
-			Event ev18 = new Event( "Girona-Leganés", UtilDate.newDate(year, month + 1, 28));
-			Event ev19 = new Event( "Real Sociedad-Levante", UtilDate.newDate(year, month + 1, 28));
-			Event ev20 = new Event( "Betis-Real Madrid", UtilDate.newDate(year, month + 1, 28));
+			Event ev17 = new Event("Málaga-Valencia", UtilDate.newDate(year, month + 1, 28));
+			Event ev18 = new Event("Girona-Leganés", UtilDate.newDate(year, month + 1, 28));
+			Event ev19 = new Event("Real Sociedad-Levante", UtilDate.newDate(year, month + 1, 28));
+			Event ev20 = new Event("Betis-Real Madrid", UtilDate.newDate(year, month + 1, 28));
 
 			Question q1;
 			Question q2;
@@ -93,19 +93,17 @@ public class DataAccess  {
 				q4 = ev11.addQuestion("¿Cuántos goles se marcarán?", 2);
 				q5 = ev17.addQuestion("¿Quién ganará el partido?", 1);
 				q6 = ev17.addQuestion("¿Habrá goles en la primera parte?", 2);
-			}
-			else if (Locale.getDefault().equals(new Locale("en"))) {
+			} else if (Locale.getDefault().equals(new Locale("en"))) {
 				q1 = ev1.addQuestion("Who will win the match?", 1);
-				q1.addFee(new fee((float) 1.9,"Atletico"));
-				q1.addFee(new fee((float) 3.5 ,"Draw"));
-				q1.addFee(new fee((float)3.0,"Athletic"));
+				q1.addFee(new fee((float) 1.9, "Atletico"));
+				q1.addFee(new fee((float) 3.5, "Draw"));
+				q1.addFee(new fee((float) 3.0, "Athletic"));
 				q2 = ev1.addQuestion("Who will score first?", 2);
 				q3 = ev11.addQuestion("Who will win the match?", 1);
 				q4 = ev11.addQuestion("How many goals will be scored in the match?", 2);
 				q5 = ev17.addQuestion("Who will win the match?", 1);
 				q6 = ev17.addQuestion("Will there be goals in the first half?", 2);
-			}			
-			else {
+			} else {
 				q1 = ev1.addQuestion("Zeinek irabaziko du partidua?", 1);
 				q2 = ev1.addQuestion("Zeinek sartuko du lehenengo gola?", 2);
 				q3 = ev11.addQuestion("Zeinek irabaziko du partidua?", 1);
@@ -113,9 +111,9 @@ public class DataAccess  {
 				q5 = ev17.addQuestion("Zeinek irabaziko du partidua?", 1);
 				q6 = ev17.addQuestion("Golak sartuko dira lehenengo zatian?", 2);
 			}
-			
+
 			User u2 = new User("user", "user", false);
-			User u1 = new User("admin","admin", true);
+			User u1 = new User("admin", "admin", true);
 
 			db.persist(q1);
 			db.persist(q2);
@@ -143,28 +141,27 @@ public class DataAccess  {
 			db.persist(ev17);
 			db.persist(ev18);
 			db.persist(ev19);
-			db.persist(ev20);	
-			
+			db.persist(ev20);
+
 			db.persist(u1);
 			//db.persist(u2);
 			db.getTransaction().commit();
 			System.out.println("The database has been initialized");
-		}
-		catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	/**
 	 * This method creates a question for an event, with a question text and the minimum bet
-	 * 
-	 * @param event to which question is added
-	 * @param question text of the question
+	 *
+	 * @param event      to which question is added
+	 * @param question   text of the question
 	 * @param betMinimum minimum quantity of the bet
 	 * @return the created question, or null, or an exception
 	 * @throws QuestionAlreadyExist if the same question already exists for the event
 	 */
-	public Question createQuestion(Event event, String question, float betMinimum) 
+	public Question createQuestion(Event event, String question, float betMinimum)
 			throws QuestionAlreadyExist {
 		System.out.println(">> DataAccess: createQuestion=> event = " + event + " question = " +
 				question + " minimum bet = " + betMinimum);
@@ -185,21 +182,21 @@ public class DataAccess  {
 	}
 
 	/**
-	 * This method retrieves from the database the events of a given date 
-	 * 
+	 * This method retrieves from the database the events of a given date
+	 *
 	 * @param date in which events are retrieved
 	 * @return collection of events
 	 */
 	public Vector<Event> getEvents(Date date) {
-		
+
 		System.out.println(">> DataAccess: getEvents");
-		Vector<Event> res = new Vector<Event>();	
-		TypedQuery<Event> query = db.createQuery("SELECT ev FROM Event ev WHERE ev.eventDate=?1", 
-				Event.class);   
+		Vector<Event> res = new Vector<Event>();
+		TypedQuery<Event> query = db.createQuery("SELECT ev FROM Event ev WHERE ev.eventDate=?1",
+				Event.class);
 		query.setParameter(1, date);
 		List<Event> events = query.getResultList();
 		System.out.println(events);
-		for (Event ev:events){
+		for (Event ev : events) {
 			System.out.println(" Eventua: " + ev.toString());
 			res.add(ev);
 		}
@@ -209,25 +206,25 @@ public class DataAccess  {
 
 	/**
 	 * This method retrieves from the database the dates in a month for which there are events
-	 * 
-	 * @param date of the month for which days with events want to be retrieved 
+	 *
+	 * @param date of the month for which days with events want to be retrieved
 	 * @return collection of dates
 	 */
 	public Vector<Date> getEventsMonth(Date date) {
 		System.out.println(">> DataAccess: getEventsMonth");
-		Vector<Date> res = new Vector<Date>();	
+		Vector<Date> res = new Vector<Date>();
 
-		Date firstDayMonthDate= UtilDate.firstDayMonth(date);
-		Date lastDayMonthDate= UtilDate.lastDayMonth(date);
+		Date firstDayMonthDate = UtilDate.firstDayMonth(date);
+		Date lastDayMonthDate = UtilDate.lastDayMonth(date);
 
 
 		TypedQuery<Date> query = db.createQuery("SELECT DISTINCT ev.eventDate FROM Event ev "
-				+ "WHERE ev.eventDate BETWEEN ?1 and ?2", Date.class);   
+				+ "WHERE ev.eventDate BETWEEN ?1 and ?2", Date.class);
 		query.setParameter(1, firstDayMonthDate);
 		query.setParameter(2, lastDayMonthDate);
 		List<Date> dates = query.getResultList();
-		for (Date d:dates){
-			System.out.println(d.toString());		 
+		for (Date d : dates) {
+			System.out.println(d.toString());
 			res.add(d);
 		}
 		return res;
@@ -236,29 +233,29 @@ public class DataAccess  {
 	public boolean checkUsername(String username) {
 		TypedQuery<User> q1 = db.createQuery("SELECT u FROM User u WHERE u.username = ?1", User.class);
 		q1.setParameter(1, username);
-		List<User> user= q1.getResultList();
+		List<User> user = q1.getResultList();
 		return user.isEmpty();
 	}
-	
+
 	public boolean checkEmail(String email) {
 		TypedQuery<User> q1 = db.createQuery("SELECT u FROM User u WHERE u.email = ?1", User.class);
 		q1.setParameter(1, email);
-		List<User> user= q1.getResultList();
+		List<User> user = q1.getResultList();
 		return user.isEmpty();
 	}
-	
+
 	public User register(int age, String username, String password, String name, String surname, String email) {
 		db.getTransaction().begin();
-		User u = new User(age,username,password,name,surname,email);
+		User u = new User(age, username, password, name, surname, email);
 		db.persist(u);
 		db.getTransaction().commit();
 		System.out.println("New user has been registered in the database");
 		return u;
 	}
 
-	public void open(boolean initializeMode){
+	public void open(boolean initializeMode) {
 
-		System.out.println("Opening DataAccess instance => isDatabaseLocal: " + 
+		System.out.println("Opening DataAccess instance => isDatabaseLocal: " +
 				config.isDataAccessLocal() + " getDatabBaseOpenMode: " + config.getDataBaseOpenMode());
 
 		String fileName = config.getDataBaseFilename();
@@ -276,33 +273,34 @@ public class DataAccess  {
 			properties.put("javax.persistence.jdbc.password", config.getDataBasePassword());
 
 			emf = Persistence.createEntityManagerFactory("objectdb://" + config.getDataAccessNode() +
-					":"+config.getDataAccessPort() + "/" + fileName, properties);
+					":" + config.getDataAccessPort() + "/" + fileName, properties);
 
 			db = emf.createEntityManager();
 		}
 	}
 
 	public boolean existQuestion(Event event, String question) {
-		System.out.println(">> DataAccess: existQuestion => event = " + event + 
+		System.out.println(">> DataAccess: existQuestion => event = " + event +
 				" question = " + question);
 		Event ev = db.find(Event.class, event.getEventNumber());
 		return ev.doesQuestionExist(question);
 	}
-	
+
 	public boolean checkLogIn(String username, String password) {
 		if (!checkUsername(username)) {
 			TypedQuery<User> q1 = db.createQuery("SELECT u FROM User u WHERE u.username = ?1 AND u.password = ?2 ", User.class); //We tried to use the proof in the database for security reasons 
 			q1.setParameter(1, username);
 			q1.setParameter(2, password);
 			List<User> user = q1.getResultList();
-			return(!user.isEmpty());
+			return (!user.isEmpty());
 		}
 		return false;
-		
+
 		//Not making a difference between a wrong password and a non existing username makes imposible to figure out if that username is registered or not. This is a used practice in order to repect the privacy of users.
 
 	}
-	public void close(){
+
+	public void close() {
 		//db.close();
 		System.out.println("DataBase is closed");
 	}
@@ -311,31 +309,31 @@ public class DataAccess  {
 		// TODO Auto-generated method stub
 		TypedQuery<User> q1 = db.createQuery("SELECT u FROM User u WHERE u.username = ?1 AND u.admin= true", User.class);
 		q1.setParameter(1, username);
-		List<User> userList= q1.getResultList(); //user.isEmpty == false
-		return(userList.isEmpty() == false);
+		List<User> userList = q1.getResultList(); //user.isEmpty == false
+		return (userList.isEmpty() == false);
 	}
-	
-	public fee setFee(String result,Float fee, String quest,Event ev) {
-		fee f = new fee(fee,result);
+
+	public fee setFee(String result, Float fee, String quest, Event ev) {
+		fee f = new fee(fee, result);
 		TypedQuery<Question> q1 = db.createQuery("SELECT q FROM Question q WHERE q.question = ?1", Question.class);
 		q1.setParameter(1, quest);
 		List<Question> questList = q1.getResultList();
-		
+
 		Question q = questList.get(0);
 		db.getTransaction().begin();
 		q.addFee(f);
 		db.getTransaction().commit();
 		return f;
-		
+
 	}
-	
+
 	public boolean feeExists(String f, String s) {
 		TypedQuery<Question> q1 = db.createQuery("SELECT q FROM Question q WHERE q.question = ?1", Question.class);
 		q1.setParameter(1, s);
 		List<Question> questList = q1.getResultList();
 		Question q = questList.get(0);
-		for(fee fe:q.getFeeList()) {
-			if(fe.getResult().equals(f)) {
+		for (fee fe : q.getFeeList()) {
+			if (fe.getResult().equals(f)) {
 				return true;
 			}
 		}
@@ -345,9 +343,9 @@ public class DataAccess  {
 	public Event createEvent(String description, Date date) throws EventAlreadyExists {
 		// TODO Auto-generated method stub
 		db.getTransaction().begin();
-		
+
 		Event u = new Event(description, date);
-		List<Event> events  = getEvents(date);
+		List<Event> events = getEvents(date);
 		for (Event i : events) {
 			if (i.equals(u)) {
 				throw new EventAlreadyExists("Event already exists");
@@ -358,4 +356,10 @@ public class DataAccess  {
 		System.out.println("New event has been registered in the database");
 		return u;
 	}
+
+/*	public Vector<Movement> getMovements() {
+		Vector<Movement> res = new Vector<>();
+		return res;
+	}*/
+
 }
