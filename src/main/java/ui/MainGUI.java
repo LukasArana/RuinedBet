@@ -88,6 +88,10 @@ public class MainGUI {
         return new DepositMoneyController(businessLogic);
       }
 
+      if (controllerClass == ShowMovementsController.class){
+        return new ShowMovementsController(businessLogic);
+      }
+
       else {
         // default behavior for controllerFactory:
         try {

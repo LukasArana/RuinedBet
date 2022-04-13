@@ -43,6 +43,7 @@ public class DepositMoneyController implements Controller{
 
     @FXML
     void backPressed(ActionEvent event) { mainGUI.showMain();}
+
     @FXML
     void depositUpdate(InputMethodEvent event) {
         System.out.println("a" + businessLogic.getCurrency(mainGUI.getUsername()).toString());
@@ -61,6 +62,9 @@ public class DepositMoneyController implements Controller{
 
         if (deposit > 0 ){
             businessLogic.updateCurrency(deposit, mainGUI.getUsername());
+            newBalance.setText("" + deposit);
+            depositField.setText("");
+            currentBalance.setText(businessLogic.getCurrency(mainGUI.getUsername()).toString());
         } else{
             outputLabel.setText("Please insert a valid value to currency");
         }

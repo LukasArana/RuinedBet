@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import businessLogic.BlFacade;
 import configuration.UtilDate;
 import domain.Event;
 import domain.Movement;
@@ -25,6 +26,8 @@ public class ShowMovementsController implements Controller{
     private MainGUI mainGUI;
 
     ObservableList<Movement> data;
+
+    private BlFacade businessLogic;
 
     @FXML
     private ResourceBundle resources;
@@ -65,6 +68,9 @@ public class ShowMovementsController implements Controller{
         LocalDate now = LocalDate.now();
 
         data = FXCollections.observableArrayList();
+        for (Movement m: data.toArray(new Movement[0])) {
+            data.add(m);
+        }
         data.addAll(
             new Movement(now, "Barça-Athletic", "+15"),
             new Movement(now, "real-osasuna", "-5")
@@ -80,6 +86,10 @@ public class ShowMovementsController implements Controller{
                 System.out.println(operationTable.getSelectionModel().getSelectedItem());
             }
         });
+    }
+
+    public ShowMovementsController(BlFacade bl) {
+        businessLogic = bl;
     }
 
     @Override
