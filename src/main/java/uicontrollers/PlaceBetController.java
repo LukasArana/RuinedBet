@@ -64,6 +64,12 @@ public class PlaceBetController implements Controller{
     @FXML
     private Label messageLbl;
 
+    @FXML
+    private Label outputLbl;
+
+    @FXML
+    private Label balanceLbl;
+
     private MainGUI mainGUI;
     private BlFacade businessLogic;
     private List<LocalDate> holidays = new ArrayList<>();
@@ -81,25 +87,44 @@ public class PlaceBetController implements Controller{
 
     @FXML
     void placeBetClick(ActionEvent event) {
+        fee f = feeComboBox.getSelectionModel().getSelectedItem();
+        Event ev = tblEvents.getSelectionModel().getSelectedItem();
+        Question q = tblQuestions.getSelectionModel().getSelectedItem();
         messageLbl.getStyleClass().clear();
         try {
             if (stakeField.getText().equals("")) {
                 messageLbl.setText("You must introduce the stake to bet");
                 messageLbl.getStyleClass().setAll("lbl", "lbl-danger");
-            }
-            if (Float.parseFloat(stakeField.getText()) >= 10) {
+            }else if(Float.parseFloat(stakeField.getText()) < 1){
+                messageLbl.setText("Minimum bet: 1€");
+                messageLbl.getStyleClass().setAll("lbl", "lbl-danger");
+            }else if (Float.parseFloat(stakeField.getText()) > businessLogic.getCurrency(mainGUI.getUsername())) {
                 messageLbl.setText("You don't have enough money to place the bet");
                 messageLbl.getStyleClass().setAll("lbl", "lbl-danger");
-            } else {
+            }else {
                 messageLbl.setText("Bet placed correctly");
                 messageLbl.getStyleClass().setAll("lbl", "lbl-success");
+                outputLbl.setText("Fee: "+feeComboBox.getSelectionModel().getSelectedItem()
+                        +"\nStake: "+stakeField.getText()+"€"+
+                        "\nWinnings: "+ Float.parseFloat(stakeField.getText())*feeComboBox.getSelectionModel().getSelectedItem().getFee()+"€");
+                businessLogic.placeBet(Float.parseFloat(stakeField.getText()), mainGUI.getUsername(),f,q,ev);
+                balanceLbl.setText(businessLogic.getCurrency(mainGUI.getUsername()).toString()+"€");
                 stakeField.setText("");
+                winningsLb.setText("0.0");
+                feeComboBox.getSelectionModel().select(null);
             }
         }
         catch (NumberFormatException e) {
             messageLbl.setText("The stake must be a number");
             messageLbl.getStyleClass().setAll("lbl", "lbl-danger");
         }
+    }
+
+    @FXML
+    void enteringStake(ActionEvent event) {
+        Float stake = Float.parseFloat(stakeField.getText());
+        Float fee = feeComboBox.getSelectionModel().getSelectedItem().getFee();
+        winningsLb.setText(String.valueOf(stake*fee)+"€");
     }
 
     @Override
@@ -127,6 +152,7 @@ public class PlaceBetController implements Controller{
     void initialize(){
         betBt.setDisable(true);
         datepicker.setOnMouseClicked(e -> {
+            balanceLbl.setText(businessLogic.getCurrency(mainGUI.getUsername()).toString()+"€");
             DatePickerSkin skin = (DatePickerSkin) datepicker.getSkin();
             skin.getPopupContent().lookupAll(".button").forEach(node -> {
                 node.setOnMouseClicked(event -> {
@@ -211,11 +237,22 @@ public class PlaceBetController implements Controller{
         feeComboBox.getSelectionModel().selectedItemProperty().addListener((obs, oldselection, newselection) -> {
             if(newselection != null){
                 betBt.setDisable(false);
+                if(!stakeField.getText().equals("")){
+                    try {
+                        Float stake = Float.parseFloat(stakeField.getText());
+                        Float fee = newselection.getFee();
+                        winningsLb.setText(String.valueOf(stake*fee)+"€");
+                    }
+                    catch (NumberFormatException e){
+                        messageLbl.setText("The stake must be a number");
+                        messageLbl.getStyleClass().setAll("lbl", "lbl-danger");
+                        stakeField.setText("");
+                    }
+                }
             }
         });
 
-        //float winnings = feeComboBox.getSelectionModel().getSelectedItem().getFee()*Float.parseFloat (stakeField.getText());
-        //winningsLb.setText(String.valueOf(winnings));
+
 
     }
 }

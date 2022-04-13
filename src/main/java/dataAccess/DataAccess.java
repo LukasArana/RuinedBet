@@ -396,4 +396,22 @@ public class DataAccess {
 		}
 		return current;
 	}
+	public void placeBet(float stake, String username, fee f, Question q, Event e){
+		Bet b = new Bet(f, stake);
+		TypedQuery<User> q1 = db.createQuery("SELECT u FROM User u WHERE u.username = ?1", User.class);
+		q1.setParameter(1,username);
+		List<User> userList = q1.getResultList();
+
+		User current = userList.get(0);
+		db.getTransaction().begin();
+		current.addBet(b);
+		db.getTransaction().commit();
+
+	}
+
+/*	public Vector<Movement> getMovements() {
+		Vector<Movement> res = new Vector<>();
+		return res;
+	}*/
+
 }

@@ -49,8 +49,10 @@ public class BlFacadeImplementation implements BlFacade {
 	}
 
 	@Override
-	public Bet placeBet(fee f, Float stake) {
-		return null;
+	public void placeBet(float stake, String username, fee f, Question q, Event e) {
+		dbManager.updateCurrency(stake*(-1), username);
+		dbManager.placeBet(stake,username,f,q,e);
+
 	}
 
 	@Override

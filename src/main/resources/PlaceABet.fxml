@@ -39,9 +39,12 @@
       <Label layoutX="181.0" layoutY="332.0" text="%Fee" />
       <Label layoutX="396.0" layoutY="332.0" text="%Stake" />
       <Button fx:id="betBt" layoutX="294.0" layoutY="392.0" mnemonicParsing="false" onAction="#placeBetClick" text="%PlaceBet" />
-      <TextField fx:id="stakeField" layoutX="439.0" layoutY="328.0" prefHeight="25.0" prefWidth="90.0" />
+      <TextField fx:id="stakeField" layoutX="439.0" layoutY="328.0" onAction="#enteringStake" prefHeight="25.0" prefWidth="90.0" />
       <Label layoutX="318.0" layoutY="363.0" text="%Winnings" />
       <Label fx:id="winningsLb" layoutX="390.0" layoutY="363.0" text="0.0" />
       <Label fx:id="messageLbl" layoutX="261.0" layoutY="432.0" prefHeight="17.0" prefWidth="242.0" textAlignment="CENTER" />
+      <Label fx:id="outputLbl" layoutX="555.0" layoutY="362.0" prefHeight="60.0" prefWidth="175.0" />
+      <Label layoutX="624.0" layoutY="18.0" text="%currentBalance" />
+      <Label fx:id="balanceLbl" layoutX="638.0" layoutY="36.0" prefHeight="17.0" prefWidth="60.0" textAlignment="CENTER" />
     </children>
 </AnchorPane>

@@ -2,6 +2,7 @@ package domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.ArrayList;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +18,7 @@ public class User {
 	private String surname;
 	private String email;
 	private Float availableMoney;
+	private ArrayList<Bet> betList = new ArrayList<>();
 	private ArrayList<Float> moneyMovements;
 	private ArrayList<Date> dateList;
 	private ArrayList<String> eventList;
@@ -105,5 +107,9 @@ public class User {
 
 	public void addEvent(String e){
 		eventList.add(e);
+	}
+
+	public void addBet(Bet b) {
+		betList.add(b);
 	}
 }
