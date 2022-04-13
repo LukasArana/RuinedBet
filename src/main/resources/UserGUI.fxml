@@ -12,7 +12,7 @@
       <Button fx:id="placeBetBtn" layoutX="81.0" layoutY="118.0" mnemonicParsing="false" onAction="#placeClick" prefHeight="25.0" prefWidth="167.0" text="%PlaceBet" />
       <Button fx:id="depositBtn" layoutX="81.0" layoutY="159.0" mnemonicParsing="false" onAction="#depositClick" prefHeight="25.0" prefWidth="167.0" text="%DepositMoney" />
       <Button fx:id="ShowMoveBtn" layoutX="81.0" layoutY="199.0" mnemonicParsing="false" onAction="#showMovements" prefHeight="25.0" prefWidth="167.0" text="%ShowMovements" />
-      <Label layoutX="113.0" layoutY="30.0" prefHeight="31.0" prefWidth="115.0" text="%SelectUseCase" />
+      <Label layoutX="112.0" layoutY="39.0" prefHeight="31.0" prefWidth="115.0" text="%SelectUseCase" />
       <RadioButton layoutX="135.0" layoutY="245.0" mnemonicParsing="false" onAction="#putEnglish" text="English">
          <toggleGroup>
             <ToggleGroup fx:id="Idioms" />

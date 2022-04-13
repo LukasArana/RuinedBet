@@ -82,18 +82,23 @@ public class PlaceBetController implements Controller{
     @FXML
     void placeBetClick(ActionEvent event) {
         messageLbl.getStyleClass().clear();
-        if(stakeField.getText().equals("")) {
-            messageLbl.setText("You must introduce the stake to bet");
-            messageLbl.getStyleClass().setAll("lbl", "lbl-danger");
+        try {
+            if (stakeField.getText().equals("")) {
+                messageLbl.setText("You must introduce the stake to bet");
+                messageLbl.getStyleClass().setAll("lbl", "lbl-danger");
+            }
+            if (Float.parseFloat(stakeField.getText()) >= 10) {
+                messageLbl.setText("You don't have enough money to place the bet");
+                messageLbl.getStyleClass().setAll("lbl", "lbl-danger");
+            } else {
+                messageLbl.setText("Bet placed correctly");
+                messageLbl.getStyleClass().setAll("lbl", "lbl-success");
+                stakeField.setText("");
+            }
         }
-        if (Float.parseFloat(stakeField.getText()) >= 10){
-            messageLbl.setText("You don't have enough money to place the bet");
+        catch (NumberFormatException e) {
+            messageLbl.setText("The stake must be a number");
             messageLbl.getStyleClass().setAll("lbl", "lbl-danger");
-        }
-        else{
-            messageLbl.setText("Bet placed correctly");
-            messageLbl.getStyleClass().setAll("lbl","lbl-success");
-            stakeField.setText("");
         }
     }
 
@@ -120,6 +125,7 @@ public class PlaceBetController implements Controller{
 
     @FXML
     void initialize(){
+        betBt.setDisable(true);
         datepicker.setOnMouseClicked(e -> {
             DatePickerSkin skin = (DatePickerSkin) datepicker.getSkin();
             skin.getPopupContent().lookupAll(".button").forEach(node -> {
@@ -192,7 +198,7 @@ public class PlaceBetController implements Controller{
                     messageLbl.setText("There are no fees for this question");
                     messageLbl.getStyleClass().setAll("lbl", "lbl-danger");
                 }else {
-                    betBt.setDisable(false);
+                    //betBt.setDisable(false);
                     messageLbl.setText("");
                     messageLbl.getStyleClass().clear();
 
@@ -200,6 +206,12 @@ public class PlaceBetController implements Controller{
 
             }
 
+        });
+
+        feeComboBox.getSelectionModel().selectedItemProperty().addListener((obs, oldselection, newselection) -> {
+            if(newselection != null){
+                betBt.setDisable(false);
+            }
         });
 
         //float winnings = feeComboBox.getSelectionModel().getSelectedItem().getFee()*Float.parseFloat (stakeField.getText());

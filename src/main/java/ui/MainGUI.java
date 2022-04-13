@@ -139,7 +139,7 @@ public class MainGUI {
     if (businessLogic.isAdmin(this.username)) {
       setupScene(mainLag.ui, "MainTitle", 320, 320);
     } else{
-      setupScene(userLag.ui, "userTitle", 600, 400);
+      setupScene(userLag.ui, "userTitle", 332, 320);
     }
   }
 
@@ -162,7 +162,7 @@ public class MainGUI {
   public void showPlace(){setupScene(placeBetWin.ui,"PlaceBet",800,500);}
   public void showCreateEvents(){setupScene(createEventsWin.ui, "CreateEvent", 446, 302);}
   public void showMovements(){setupScene(showMoves.ui, "ShowMovements", 350,310);  }
-  public void showDeposit(){setupScene(depositMoney.ui, "DepositMoney", 350, 310);}
+  public void showDeposit(){setupScene(depositMoney.ui, "DepositMoney", 600, 400);}
   private void setupScene(Parent ui, String title, int width, int height) {
     if (scene == null){
       scene = new Scene(ui, width, height);
