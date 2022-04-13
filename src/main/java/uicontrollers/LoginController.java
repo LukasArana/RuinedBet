@@ -6,7 +6,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import ui.MainGUI;
 
+import java.util.ResourceBundle;
+
 public class LoginController implements Controller{
+
+    @FXML
+    private ResourceBundle resources;
 
     @FXML
     private Label answrLbl;
@@ -45,12 +50,12 @@ public class LoginController implements Controller{
 //            mainGUI.showMain();
 //        }
         if (usrField.getText().isBlank() || passField.getText().isBlank()) { //No values in text fields
-            answrLbl.setText("Please insert valid username and passwords");
+            answrLbl.setText(resources.getString("usPass"));
             answrLbl.getStyleClass().setAll("lbl","lbl-danger");
             passField.setText("");
         }
         else if (!businessLogic.checkLogIn(usrField.getText(), passField.getText())) {
-            answrLbl.setText("Not valid credentials, please try again");
+            answrLbl.setText(resources.getString("invalidCredentials"));
             answrLbl.getStyleClass().setAll("lbl","lbl-danger");
             passField.setText("");
         } else { //Valid credentials
@@ -59,6 +64,10 @@ public class LoginController implements Controller{
     }
     @FXML
     void registerAction(ActionEvent event) {
+        usrField.clear();
+        answrLbl.setText("");
+        answrLbl.getStyleClass().clear();
+        passField.clear();
         mainGUI.showRegister();
     }
 

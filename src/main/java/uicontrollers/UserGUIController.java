@@ -5,13 +5,20 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import businessLogic.BlFacade;
+import configuration.ConfigXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.text.TextAlignment;
 import ui.MainGUI;
 
 public class UserGUIController implements Controller{
+
+    @FXML
+    private Label answerLbl;
 
     @FXML
     private ResourceBundle resources;
@@ -66,35 +73,27 @@ public class UserGUIController implements Controller{
         this.mainGUI = mainGUI;
     }
 
-    @FXML
-    void putCastellano(javafx.event.ActionEvent event) {
-        Locale.setDefault(new Locale("es"));
-        System.out.println("Locale: " + Locale.getDefault());
-        redraw();
-    }
 
-    @FXML
-    void putEnglish(javafx.event.ActionEvent event) {
-        Locale.setDefault(new Locale("en"));
-        System.out.println("Locale: " + Locale.getDefault());
-        redraw();
-    }
+    @FXML void changeLanguage(ActionEvent event) {
+        String language = ((RadioButton) Idioms.getSelectedToggle()).getText();
 
-    @FXML
-    void putEuskara(ActionEvent event) {
-        Locale.setDefault(new Locale("eus"));
-        System.out.println("Locale: " + Locale.getDefault());
-        redraw();
-    }
-    private void redraw() {
-        browseBtn.setText(ResourceBundle.getBundle("Etiquetas").
-                getString("BrowseQuestions"));
-        placeBetBtn.setText(ResourceBundle.getBundle("Etiquetas").
-                getString("PlaceBet"));
-        depositBtn.setText(ResourceBundle.getBundle("Etiquetas").
-                getString("DepositMoney"));
-        ShowMoveBtn.setText(ResourceBundle.getBundle("Etiquetas").
-                getString("ShowMovements"));
+        switch (language){
+            case "English":
+                ConfigXML.getInstance().setLocale("en");
+                answerLbl.setText("Restart to apply changes");
+                break;
+            case "Castellano":
+                ConfigXML.getInstance().setLocale("es");
+                answerLbl.setText("Reinicia para aplicar cambios");
+                break;
+            case "Euskera":
+                ConfigXML.getInstance().setLocale("eus");
+                answerLbl.setText("Berrireki aldaketak aplikatzeko");
+
+                break;
+        }
+        answerLbl.setTextAlignment(TextAlignment.CENTER);
+        answerLbl.getStyleClass().setAll("lbl","lbl-warning");
 
     }
 

@@ -34,11 +34,11 @@
         <Label layoutX="24.0" layoutY="84.0" text="%Events" />
         <Label layoutX="358.0" layoutY="49.0" text="  " />
         <Label layoutX="397.0" layoutY="84.0" text="%SelectedEvent" />
-        <Button fx:id="btnClose" layoutX="409.0" layoutY="392.0" mnemonicParsing="false" onAction="#closeClick" text="%Back" />
+        <Button fx:id="btnClose" layoutX="429.0" layoutY="392.0" mnemonicParsing="false" onAction="#closeClick" text="%Back" />
       <ComboBox fx:id="feeComboBox" layoutX="225.0" layoutY="328.0" prefHeight="25.0" prefWidth="115.0" />
       <Label layoutX="181.0" layoutY="332.0" text="%Fee" />
       <Label layoutX="396.0" layoutY="332.0" text="%Stake" />
-      <Button fx:id="betBt" layoutX="294.0" layoutY="392.0" mnemonicParsing="false" onAction="#placeBetClick" text="%PlaceBet" />
+      <Button fx:id="betBt" layoutX="273.0" layoutY="392.0" mnemonicParsing="false" onAction="#placeBetClick" text="%PlaceBet" />
       <TextField fx:id="stakeField" layoutX="439.0" layoutY="328.0" onAction="#enteringStake" prefHeight="25.0" prefWidth="90.0" />
       <Label layoutX="318.0" layoutY="363.0" text="%Winnings" />
       <Label fx:id="winningsLb" layoutX="390.0" layoutY="363.0" text="0.0" />

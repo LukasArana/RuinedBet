@@ -3,17 +3,22 @@ package uicontrollers;
 import businessLogic.BlFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import ui.MainGUI;
+
+import java.util.ResourceBundle;
 
 public class RegisterController implements Controller{
 
     private BlFacade businessLogic;
 
     private MainGUI mainGUI;
+
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private CheckBox adminCheck;
 
     @FXML
     private TextField ageField;
@@ -48,55 +53,70 @@ public class RegisterController implements Controller{
 
     @FXML
     void goToLogin(ActionEvent event) {
+        answrLbl.setText("");
+        answrLbl.getStyleClass().clear();
+        passField.clear();
+        usrField.clear();
+        surnameField.clear();
+        emailField.clear();
+        nameField.clear();
+        ageField.clear();
         mainGUI.showLogin();
     }
 
     @FXML
     void registerClick(ActionEvent event) {
         if(usrField.getText().equals("")){
-            answrLbl.setText("You must enter a username");
+            answrLbl.setText(resources.getString("enterUsername"));
             answrLbl.getStyleClass().setAll("lbl","lbl-danger");
         }
         else if(passField.getText().equals("")){
-            answrLbl.setText("You must enter a password");
+            answrLbl.setText(resources.getString("enterPassword"));
             answrLbl.getStyleClass().setAll("lbl","lbl-danger");
         }
+        else if(adminCheck.isSelected()){
+            businessLogic.registerNewAdmin(usrField.getText(),passField.getText());
+            answrLbl.setText(resources.getString("successRegister"));
+            answrLbl.getStyleClass().setAll("lbl","lbl-success");
+            return;
+        }
         else if(nameField.getText().equals("")){
-            answrLbl.setText("You must enter a name");
+            answrLbl.setText(resources.getString("enterName"));
             answrLbl.getStyleClass().setAll("lbl","lbl-danger");
         }
         else if(emailField.getText().equals("")){
-            answrLbl.setText("You must enter an email");
+            answrLbl.setText(resources.getString("enterEmail"));
             answrLbl.getStyleClass().setAll("lbl","lbl-danger");
         }
         else if(surnameField.getText().equals("")){
-            answrLbl.setText("You must enter a surname");
+            answrLbl.setText(resources.getString("enterSurname"));
             answrLbl.getStyleClass().setAll("lbl","lbl-danger");
         }
         else if(ageField.getText().equals("")){
-            answrLbl.setText("You must enter an age");
+            answrLbl.setText(resources.getString("enterAge"));
             answrLbl.getStyleClass().setAll("lbl","lbl-danger");
         }
         else if(!isInteger(ageField.getText())){
-            answrLbl.setText("You must enter a valid age");
+            answrLbl.setText(resources.getString("enterValAge"));
             answrLbl.getStyleClass().setAll("lbl","lbl-danger");
         }
         else if(Integer.parseInt(ageField.getText()) < 18){
-            answrLbl.setText("You must be older than 18");
+            answrLbl.setText(resources.getString("older18"));
             answrLbl.getStyleClass().setAll("lbl","lbl-danger");
         }
         else if(!businessLogic.emailIsFree(emailField.getText())) {
-            answrLbl.setText("Email is already in use.");
+            answrLbl.setText(resources.getString("emailInUse"));
             answrLbl.getStyleClass().setAll("lbl","lbl-danger");
         }
         else if(!businessLogic.usernameIsFree(usrField.getText())){
-            answrLbl.setText("Username is already in use.");
+            answrLbl.setText(resources.getString("usernameInUse"));
             answrLbl.getStyleClass().setAll("lbl","lbl-danger");
         }
         else{
             businessLogic.registerNewUser(Integer.parseInt(ageField.getText()),usrField.getText(),passField.getText(),nameField.getText(),surnameField.getText(),emailField.getText());
-            answrLbl.setText("You have successfully registered");
+            answrLbl.setText(resources.getString("successRegister"));
             answrLbl.getStyleClass().setAll("lbl","lbl-success");
+
         }
     }
 

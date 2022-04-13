@@ -17,6 +17,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class CreateEventsController implements Controller {
 
@@ -35,6 +36,9 @@ public class CreateEventsController implements Controller {
     @FXML
     private TextField eventField;
 
+    @FXML
+    private ResourceBundle resources;
+
     private MainGUI mainGUI;
 
     private BlFacade businessLogic;
@@ -47,27 +51,31 @@ public class CreateEventsController implements Controller {
 
     @FXML
     void backClick(ActionEvent event) {
+        datePicker.getEditor().clear();
+        eventField.clear();
+        answerLbl.setText("");
+        answerLbl.getStyleClass().clear();
         mainGUI.showMain();
     }
 
     @FXML
     void createClick(ActionEvent event) throws EventAlreadyExists {
         if(datePicker.getValue() == null){
-            answerLbl.setText("You must select a date");
+            answerLbl.setText(resources.getString("selectDate"));
             answerLbl.getStyleClass().setAll("lbl","lbl-danger");
         }
         else if(eventField.getText().equals("")){
-            answerLbl.setText("You must enter an event");
+            answerLbl.setText(resources.getString("enterEvent"));
             answerLbl.getStyleClass().setAll("lbl","lbl-danger");
         }
         else{
             try{
                 businessLogic.createEvent(eventField.getText(),Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-                answerLbl.setText("Event created correctly");
+                answerLbl.setText(resources.getString("eventCreated"));
                 answerLbl.getStyleClass().setAll("lbl","lbl-success");
             }
             catch (Exception e){
-                answerLbl.setText("This event already exists");
+                answerLbl.setText(resources.getString("eventExists"));
                 answerLbl.getStyleClass().setAll("lbl","lbl-danger");
             }
             eventField.setText("");

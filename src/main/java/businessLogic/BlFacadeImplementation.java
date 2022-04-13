@@ -50,7 +50,7 @@ public class BlFacadeImplementation implements BlFacade {
 
 	@Override
 	public void placeBet(float stake, String username, fee f, Question q, Event e) {
-		dbManager.updateCurrency(stake*(-1), username);
+		//dbManager.updateCurrency(stake*(-1), username);
 		dbManager.placeBet(stake,username,f,q,e);
 
 	}
@@ -150,6 +150,11 @@ public class BlFacadeImplementation implements BlFacade {
 		User e =  dbManager.register(age,username,password,name,surname,email);
 		dbManager.close();
 		return e;
+	}
+
+	@WebMethod
+	public User registerNewAdmin(String username, String password){
+		return dbManager.register(username,password);
 	}
 	
 	@WebMethod

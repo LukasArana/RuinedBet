@@ -81,6 +81,13 @@ public class setFeesController implements Controller {
 
     @FXML
     void closeClick(ActionEvent event) {
+        eventTable.getItems().clear();
+        questionTable.getItems().clear();
+        resultField.clear();
+        dateSelector.getEditor().clear();
+        feeField.clear();
+        answerLbl.setText("");
+        answerLbl.getStyleClass().clear();
         mainGUI.showMain();
     }
 
@@ -90,27 +97,27 @@ public class setFeesController implements Controller {
         answerLbl.getStyleClass().clear();
         try{
             if(dateSelector.getValue() == null){
-                answerLbl.setText("You must select a date");
+                answerLbl.setText(resources.getString("selectDate"));
                 answerLbl.getStyleClass().setAll("lbl","lbl-danger");
             }
             else if(eventTable.getSelectionModel().getSelectedItem() == null){
-                answerLbl.setText("You must select an event");
+                answerLbl.setText(resources.getString("selectEvent"));
                 answerLbl.getStyleClass().setAll("lbl","lbl-danger");
             }
             else if(questionTable.getSelectionModel().getSelectedItem() == null){
-                answerLbl.setText("You must select a question");
+                answerLbl.setText(resources.getString("selectQuestion"));
                 answerLbl.getStyleClass().setAll("lbl","lbl-danger");
             }
             else if(resultField.getText().equals("")){
-                answerLbl.setText("You must enter a result");
+                answerLbl.setText(resources.getString("enterResult"));
                 answerLbl.getStyleClass().setAll("lbl","lbl-danger");
             }
             else if(feeField.getText().equals("")){
-                answerLbl.setText("You must select a fee");
+                answerLbl.setText(resources.getString("selectFee"));
                 answerLbl.getStyleClass().setAll("lbl","lbl-danger");
             }
             else if(Float.parseFloat(feeField.getText()) < 1){
-                answerLbl.setText("The fee must be at least 1");
+                answerLbl.setText(resources.getString("feeBigger"));
                 answerLbl.getStyleClass().setAll("lbl","lbl-danger");
             }
             //else if(businessLogic.feeExists(answerLbl.getText(),(String) questionTableModel.getValueAt(j,1))) {
@@ -123,11 +130,11 @@ public class setFeesController implements Controller {
                         , question, selectedEvent);
                 answerLbl.getStyleClass().clear();
                 answerLbl.getStyleClass().setAll("lbl", "lbl-success");
-                answerLbl.setText("Fee correctly added");
+                answerLbl.setText(resources.getString("feeAdded"));
             }
         }
         catch (NumberFormatException ex){
-            answerLbl.setText("The fee must be a number");
+            answerLbl.setText(resources.getString("feeNumber"));
             answerLbl.getStyleClass().setAll("lbl","lbl-danger");
         }
 

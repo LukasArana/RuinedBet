@@ -18,12 +18,12 @@ import utils.Dates;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Vector;
+import java.util.*;
 
 public class PlaceBetController implements Controller{
+
+    @FXML
+    private ResourceBundle resources;
 
     @FXML
     private Button betBt;
@@ -93,20 +93,20 @@ public class PlaceBetController implements Controller{
         messageLbl.getStyleClass().clear();
         try {
             if (stakeField.getText().equals("")) {
-                messageLbl.setText("You must introduce the stake to bet");
+                messageLbl.setText(resources.getString("introduceStake"));
                 messageLbl.getStyleClass().setAll("lbl", "lbl-danger");
             }else if(Float.parseFloat(stakeField.getText()) < 1){
-                messageLbl.setText("Minimum bet: 1€");
+                messageLbl.setText(resources.getString("minbet1"));
                 messageLbl.getStyleClass().setAll("lbl", "lbl-danger");
             }else if (Float.parseFloat(stakeField.getText()) > businessLogic.getCurrency(mainGUI.getUsername())) {
-                messageLbl.setText("You don't have enough money to place the bet");
+                messageLbl.setText(resources.getString("notEnoughMoney"));
                 messageLbl.getStyleClass().setAll("lbl", "lbl-danger");
             }else {
-                messageLbl.setText("Bet placed correctly");
+                messageLbl.setText(resources.getString("betPlaced"));
                 messageLbl.getStyleClass().setAll("lbl", "lbl-success");
-                outputLbl.setText("Fee: "+feeComboBox.getSelectionModel().getSelectedItem()
-                        +"\nStake: "+stakeField.getText()+"€"+
-                        "\nWinnings: "+ Float.parseFloat(stakeField.getText())*feeComboBox.getSelectionModel().getSelectedItem().getFee()+"€");
+                outputLbl.setText(resources.getString("Fee") + ": "+feeComboBox.getSelectionModel().getSelectedItem()
+                        +"\n" + resources.getString("Stake") + ": "+stakeField.getText()+"€"+
+                        "\n" + resources.getString("Winnings") + ": "+ Float.parseFloat(stakeField.getText())*feeComboBox.getSelectionModel().getSelectedItem().getFee()+"€");
                 businessLogic.placeBet(Float.parseFloat(stakeField.getText()), mainGUI.getUsername(),f,q,ev);
                 balanceLbl.setText(businessLogic.getCurrency(mainGUI.getUsername()).toString()+"€");
                 stakeField.setText("");
@@ -115,7 +115,7 @@ public class PlaceBetController implements Controller{
             }
         }
         catch (NumberFormatException e) {
-            messageLbl.setText("The stake must be a number");
+            messageLbl.setText(resources.getString("stakeNumber"));
             messageLbl.getStyleClass().setAll("lbl", "lbl-danger");
         }
     }
@@ -221,7 +221,7 @@ public class PlaceBetController implements Controller{
                 feeComboBox.setItems(fees);
                 if(feeComboBox.getItems().size() == 0){
                     betBt.setDisable(true);
-                    messageLbl.setText("There are no fees for this question");
+                    messageLbl.setText(resources.getString("noFees"));
                     messageLbl.getStyleClass().setAll("lbl", "lbl-danger");
                 }else {
                     //betBt.setDisable(false);
@@ -244,7 +244,7 @@ public class PlaceBetController implements Controller{
                         winningsLb.setText(String.valueOf(stake*fee)+"€");
                     }
                     catch (NumberFormatException e){
-                        messageLbl.setText("The stake must be a number");
+                        messageLbl.setText(resources.getString("stakeNumber"));
                         messageLbl.getStyleClass().setAll("lbl", "lbl-danger");
                         stakeField.setText("");
                     }

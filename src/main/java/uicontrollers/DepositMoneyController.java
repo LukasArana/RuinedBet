@@ -38,11 +38,19 @@ public class DepositMoneyController implements Controller{
 
     @FXML
     private Label outputLabel;
+
     private MainGUI mainGUI;
+
     private BlFacade businessLogic;
 
     @FXML
-    void backPressed(ActionEvent event) { mainGUI.showMain();}
+    void backPressed(ActionEvent event) {
+        newBalance.setText("");
+        depositField.setText("");
+        outputLabel.setText("");
+        outputLabel.getStyleClass().clear();
+        mainGUI.showMain();
+    }
 
     @FXML
     void depositUpdate(InputMethodEvent event) {
@@ -57,7 +65,8 @@ public class DepositMoneyController implements Controller{
         try {
             deposit = Float.parseFloat(depositField.getText());
         } catch (NumberFormatException e) {
-            outputLabel.setText("Please insert a valid number");
+            outputLabel.setText(resources.getString("enterNumber"));
+            outputLabel.getStyleClass().setAll("lbl","lbl-danger");
         }
 
         if (deposit > 0 ){
@@ -65,13 +74,21 @@ public class DepositMoneyController implements Controller{
             newBalance.setText("" + deposit);
             depositField.setText("");
             currentBalance.setText(businessLogic.getCurrency(mainGUI.getUsername()).toString());
+            outputLabel.setText(resources.getString("currencyAdded"));
+            outputLabel.getStyleClass().setAll("lbl","lbl-success");
         } else{
-            outputLabel.setText("Please insert a valid value to currency");
+            outputLabel.setText(resources.getString("validCurrency"));
+            outputLabel.getStyleClass().setAll("lbl","lbl-danger");
         }
     }
     public DepositMoneyController(BlFacade bl) {
         businessLogic = bl;
 
+    }
+
+    @FXML
+    void initialize(){
+        //currentBalance.setText(businessLogic.getCurrency(mainGUI.getUsername()).toString());
     }
 
     @FXML

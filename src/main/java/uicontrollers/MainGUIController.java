@@ -58,8 +58,8 @@ public class MainGUIController implements Controller{
     @FXML
     private Button createEventBtn;
 
-    @FXML
-    void userLogIn(ActionEvent event){ mainGUI.showUser();}
+    //@FXML
+    //void userLogIn(ActionEvent event){ mainGUI.showUser();}
 
     @FXML
     void browseQuestions(ActionEvent event) {
@@ -96,7 +96,7 @@ public class MainGUIController implements Controller{
                 break;
         }
         answerLbl.setTextAlignment(TextAlignment.CENTER);
-        answerLbl.getStyleClass().setAll("lbl-warning");
+        answerLbl.getStyleClass().setAll("lbl","lbl-warning");
 
     }
     /*

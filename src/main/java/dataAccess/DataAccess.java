@@ -116,6 +116,8 @@ public class DataAccess {
 				q6 = ev17.addQuestion("Golak sartuko dira lehenengo zatian?", 2);
 			}
 
+			fee f1 = q1.addFee(new fee(5F,"Atletico"));
+
 			User u2 = new User("user", "user", false);
 			User u1 = new User("admin", "admin", true);
 
@@ -146,6 +148,8 @@ public class DataAccess {
 			db.persist(ev18);
 			db.persist(ev19);
 			db.persist(ev20);
+
+			db.persist(f1);
 
 			db.persist(u1);
 			db.persist(u2);
@@ -251,6 +255,15 @@ public class DataAccess {
 	public User register(int age, String username, String password, String name, String surname, String email) {
 		db.getTransaction().begin();
 		User u = new User(age, username, password, name, surname, email);
+		db.persist(u);
+		db.getTransaction().commit();
+		System.out.println("New user has been registered in the database");
+		return u;
+	}
+
+	public User register(String username, String password){
+		db.getTransaction().begin();
+		User u = new User(username, password);
 		db.persist(u);
 		db.getTransaction().commit();
 		System.out.println("New user has been registered in the database");
@@ -397,13 +410,17 @@ public class DataAccess {
 		return current;
 	}
 	public void placeBet(float stake, String username, fee f, Question q, Event e){
+		db.getTransaction().begin();
 		Bet b = new Bet(f, stake);
 		TypedQuery<User> q1 = db.createQuery("SELECT u FROM User u WHERE u.username = ?1", User.class);
 		q1.setParameter(1,username);
 		List<User> userList = q1.getResultList();
 
 		User current = userList.get(0);
-		db.getTransaction().begin();
+		current.updateAvailableMoney(-stake);
+		current.addDate(new Date());
+		current.addEvent(e.getDescription());
+		current.addMovement(-stake);
 		current.addBet(b);
 		db.getTransaction().commit();
 

@@ -5,17 +5,16 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uicontrollers.DepositMoneyController">
+<AnchorPane prefHeight="245.0" prefWidth="427.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uicontrollers.DepositMoneyController">
    <children>
-      <Label layoutX="94.0" layoutY="123.0" text="%currentBalance" />
-      <Label layoutX="94.0" layoutY="180.0" text="%DepositMoney" />
-      <Label fx:id="currentBalance" layoutX="288.0" layoutY="123.0" prefHeight="16.0" prefWidth="170.0" />
-      <Label layoutX="94.0" layoutY="238.0" text="%newBalance" />
-      <TextField fx:id="depositField" layoutX="288.0" layoutY="176.0" onTouchReleased="#depositUpdate" prefHeight="25.0" prefWidth="170.0" />
-      <Label fx:id="newBalance" layoutX="288.0" layoutY="246.0" prefHeight="16.0" prefWidth="170.0" />
-      <Button fx:id="backBut" layoutX="167.0" layoutY="315.0" mnemonicParsing="false" onAction="#backPressed" text="Back" />
-      <Button fx:id="depositBut" layoutX="355.0" layoutY="315.0" mnemonicParsing="false" onAction="#depositPressed" text="Deposit money" />
-      <Label fx:id="outputLabel" layoutX="66.0" layoutY="357.0" prefHeight="16.0" prefWidth="514.0" />
+      <Label layoutX="40.0" layoutY="42.0" text="%currentBalance" />
+      <Label layoutX="41.0" layoutY="79.0" text="%DepositMoney" />
+      <Label fx:id="currentBalance" layoutX="184.0" layoutY="42.0" prefHeight="16.0" prefWidth="170.0" />
+      <Label layoutX="44.0" layoutY="123.0" text="%moneyAdded" />
+      <TextField fx:id="depositField" layoutX="184.0" layoutY="75.0" onTouchReleased="#depositUpdate" prefHeight="25.0" prefWidth="170.0" />
+      <Label fx:id="newBalance" layoutX="184.0" layoutY="123.0" prefHeight="16.0" prefWidth="170.0" />
+      <Button fx:id="backBut" layoutX="73.0" layoutY="166.0" mnemonicParsing="false" onAction="#backPressed" text="%Back" />
+      <Button fx:id="depositBut" layoutX="221.0" layoutY="166.0" mnemonicParsing="false" onAction="#depositPressed" text="%DepositMoney" />
+      <Label fx:id="outputLabel" layoutX="56.0" layoutY="202.0" prefHeight="18.0" prefWidth="314.0" textAlignment="CENTER" />
    </children>
 </AnchorPane>

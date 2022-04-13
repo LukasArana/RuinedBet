@@ -5,10 +5,12 @@ import domain.Event;
 import domain.Question;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.skin.DatePickerSkin;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import ui.MainGUI;
 import utils.Dates;
@@ -18,7 +20,7 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.*;
 
-public class BrowseQuestionsController implements Controller {
+public class BrowseQuestionsController implements Controller, Initializable {
 
   @FXML
   private ResourceBundle resources;
@@ -63,7 +65,12 @@ public class BrowseQuestionsController implements Controller {
 
 
   @FXML
-  void closeClick(ActionEvent event) {mainGUI.showMain();}
+  void closeClick(ActionEvent event) {
+    tblEvents.getItems().clear();
+    tblQuestions.getItems().clear();
+    datepicker.getEditor().clear();
+    mainGUI.showMain();
+  }
 
   private void setEvents(int year, int month) {
     Date date = Dates.toDate(year,month);
@@ -81,9 +88,13 @@ public class BrowseQuestionsController implements Controller {
   }
 
   @FXML
-  void initialize() {
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
 
     setupEventSelection();
+    tblEvents.getItems().clear();
+    tblQuestions.getItems().clear();
+    datepicker.getEditor().clear();
 
     setEventsPrePost(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue());
 
@@ -101,7 +112,6 @@ public class BrowseQuestionsController implements Controller {
           setEventsPrePost(ym.getYear(), ym.getMonthValue());
         });
       });
-
 
     });
 
@@ -126,6 +136,7 @@ public class BrowseQuestionsController implements Controller {
     // a date has been chosen, update the combobox of Events
     datepicker.setOnAction(actionEvent -> {
       tblEvents.getItems().clear();
+      tblQuestions.getItems().clear();
       Vector<Event> events = businessLogic.getEvents(Dates.convertToDate(datepicker.getValue()));
       for (Event ev : events) {
         tblEvents.getItems().add(ev);
@@ -157,4 +168,5 @@ public class BrowseQuestionsController implements Controller {
   public void setMainApp(MainGUI mainGUI) {
     this.mainGUI = mainGUI;
   }
+
 }

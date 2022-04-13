@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="272.0" prefWidth="334.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uicontrollers.MainGUIController">
    <children>
-      <Label fx:id="selectOptionLbl" layoutX="116.0" layoutY="14.0" text="%SelectUseCase" />
+      <Label fx:id="selectOptionLbl" layoutX="67.0" layoutY="14.0" prefHeight="18.0" prefWidth="182.0" text="%SelectUseCase" textAlignment="CENTER" />
       <Button fx:id="browseQuestionsBtn" layoutX="69.0" layoutY="50.0" mnemonicParsing="false" onAction="#browseQuestions" prefHeight="26.0" prefWidth="181.0" text="%BrowseQuestions" />
       <Button fx:id="createQuestionBtn" layoutX="68.0" layoutY="94.0" mnemonicParsing="false" onAction="#createQuestion" prefHeight="26.0" prefWidth="181.0" text="%CreateQuestion" />
       <Button fx:id="setFeesBtn" layoutX="68.0" layoutY="134.0" mnemonicParsing="false" onAction="#setFeesClick" prefHeight="26.0" prefWidth="181.0" text="%Set Fees" />

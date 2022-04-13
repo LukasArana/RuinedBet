@@ -1,6 +1,7 @@
 package uicontrollers;
 
 import businessLogic.BlFacade;
+import configuration.ConfigXML;
 import domain.Event;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
@@ -66,6 +67,10 @@ public class CreateQuestionController implements Controller {
 
   @FXML
   void closeClick(ActionEvent event) {
+    comboEvents.getSelectionModel().clearSelection();
+    txtQuestion.clear();
+    txtMinBet.clear();
+    datePicker.getEditor().clear();
     clearErrorLabels();
     mainGUI.showMain();
   }
@@ -94,25 +99,26 @@ public class CreateQuestionController implements Controller {
         inputPrice = Float.valueOf(txtMinBet.getText());
 
         if (inputPrice <= 0) {
-          lblErrorMinBet.setText("Min bet should be > 0");
+          lblErrorMinBet.setText(resources.getString("minbetNeg"));
         } else {
           businessLogic.createQuestion(event, inputQuestion, inputPrice);
           lblErrorQuestion.getStyleClass().clear();
           lblErrorQuestion.getStyleClass().setAll("lbl", "lbl-success");
-          lblErrorQuestion.setText("Question correctly created");
+          lblErrorQuestion.setText(resources.getString("QuestionCorrect"));
           lblErrorMinBet.getStyleClass().clear();
           showErrors = false;
         }
       } else {
-        lblErrorQuestion.setText("Question shouldn't be empty");
+        lblErrorQuestion.setText(resources.getString("shouldntEmpty"));
+
       }
 
     } catch (NumberFormatException ex) {
-      lblErrorMinBet.setText("Introduce a number");
+      lblErrorMinBet.setText(resources.getString("introduceNum"));
     } catch (EventFinished ex) {
-      lblErrorQuestion.setText("Event has finished");
+      lblErrorQuestion.setText(resources.getString("eventFinished"));
     } catch (QuestionAlreadyExist ex) {
-      lblErrorQuestion.setText("Question already exists");
+      lblErrorQuestion.setText(resources.getString("QuestionAlreadyExist"));
     } catch (Exception ex) {
       ex.printStackTrace();
     }

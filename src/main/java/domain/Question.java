@@ -32,9 +32,10 @@ public class Question implements Serializable {
 	@XmlIDREF
 	private Event event;
 	
-	public void addFee(fee f) {
+	public fee addFee(fee f) {
 		feeList.add(f);
-	}
+        return f;
+    }
 	
 	public ArrayList<fee> getFeeList(){
 		return this.feeList;
