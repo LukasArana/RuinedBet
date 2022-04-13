@@ -1,5 +1,6 @@
 package dataAccess;
 
+import java.time.LocalDate;
 import java.util.*;
 
 import javax.persistence.EntityManager;
@@ -79,6 +80,8 @@ public class DataAccess {
 			Event ev18 = new Event("Girona-Leganés", UtilDate.newDate(year, month + 1, 28));
 			Event ev19 = new Event("Real Sociedad-Levante", UtilDate.newDate(year, month + 1, 28));
 			Event ev20 = new Event("Betis-Real Madrid", UtilDate.newDate(year, month + 1, 28));
+
+			Event deposit = new Event("Deposit money", UtilDate.newDate(2003, 12, 17));
 
 			Question q1;
 			Question q2;
@@ -366,6 +369,9 @@ public class DataAccess {
 		User current = userList.get(0);
 		current.updateAvailableMoney(deposit);
 		System.out.println(current.getAvailableMoney());
+		current.addMovement(deposit);
+		Date now =  new Date();
+		current.addDate(now);
 		db.persist(current);
 		db.getTransaction().commit();
 

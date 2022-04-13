@@ -2,6 +2,9 @@ package domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 
 @Entity
 public class User {
@@ -14,6 +17,11 @@ public class User {
 	private String surname;
 	private String email;
 	private Float availableMoney;
+	private ArrayList<Float> moneyMovements;
+	private ArrayList<Date> dateList;
+	private ArrayList<Event> eventList;
+
+
 
 	public User(int age, String username, String password, String realName, String surname, String email) {
 		this.age = age;
@@ -23,10 +31,14 @@ public class User {
 		this.surname = surname;
 		this.email = email;
 		this.availableMoney = (float) 0.0;
+		this.moneyMovements = new ArrayList<>();
+		this.dateList = new ArrayList<>();
 	}
 
 	public User(){
 		this.availableMoney = (float) 0.0;
+		this.moneyMovements = new ArrayList<>();
+		this.dateList = new ArrayList<>();
 
 	}
 
@@ -35,12 +47,16 @@ public class User {
 		this.password = password;
 		this.admin = admin;
 		this.availableMoney = (float) 0.0;
+		this.moneyMovements = new ArrayList<>();
+		this.dateList = new ArrayList<>();
 	}
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
 		this.admin = true;
 		this.availableMoney = (float) 0.0;
+		this.moneyMovements = new ArrayList<>();
+		this.dateList = new ArrayList<>();
 	}
 	
 	public int getAge() {
@@ -58,4 +74,19 @@ public class User {
     public float getAvailableMoney() {
 		return this.availableMoney;
     }
+
+
+	public void addMovement(Float f){
+		this.moneyMovements.add(f);
+	}
+	public ArrayList<Float> getMoneyMovements(){return this.moneyMovements;}
+
+	public ArrayList<Date> getDateList() {
+		return dateList;
+	}
+
+	public void addDate(Date d){
+		dateList.add(d);
+	}
+
 }

@@ -11,6 +11,7 @@ import domain.*;
 import exceptions.EventAlreadyExists;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
+import javafx.collections.ObservableList;
 
 /**
  * Interface that specifies the business logic.
@@ -67,4 +68,5 @@ public interface BlFacade  {
 	@WebMethod public void updateCurrency(float deposit, String username);
 
     @WebMethod Float getCurrency(String username);
+
 }

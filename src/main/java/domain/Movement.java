@@ -4,21 +4,21 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class Movement {
-    private LocalDate date;
+    private Date date;
     private String event;
-    private String balance;
+    private Float balance;
 
-    public Movement(LocalDate date, String event, String balance) {
+    public Movement(Date date, String event, Float balance) {
         this.date = date;
         this.event = event;
         this.balance = balance;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -39,11 +39,11 @@ public class Movement {
         this.event = event;
     }
 
-    public String getBalance() {
+    public Float getBalance() {
         return balance;
     }
 
-    public void setBalance(String balance) {
+    public void setBalance(Float balance) {
         this.balance = balance;
     }
 }

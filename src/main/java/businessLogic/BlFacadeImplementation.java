@@ -63,7 +63,6 @@ public class BlFacadeImplementation implements BlFacade {
 		return dbManager.getCurrency(username);
 	}
 
-
 	public fee setFee(String result,Float fee, String quest,Event ev) {
 		return dbManager.setFee(result,fee,quest,ev);
 	}
@@ -189,5 +188,7 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager.close();
 		return e;
 	}
+
+
 
 }

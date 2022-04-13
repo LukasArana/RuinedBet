@@ -39,7 +39,7 @@ public class ShowMovementsController implements Controller{
     private Button backBtn;
 
     @FXML
-    private TableColumn<Movement, LocalDate> dateColumn;
+    private TableColumn<Movement, Date> dateColumn;
 
     @FXML
     private TableColumn<Movement, String> balanceColumn;
@@ -65,19 +65,22 @@ public class ShowMovementsController implements Controller{
         balanceColumn.setCellValueFactory(new PropertyValueFactory<>("balance"));
         eventColumn.setCellValueFactory(new PropertyValueFactory<>("event"));
 
-        LocalDate now = LocalDate.now();
+        Date now = new Date();
 
         data = FXCollections.observableArrayList();
+
+        data.addAll(
+            new Movement(now, "Barça-Athletic", 15f),
+            new Movement(now, "real-osasuna", -5f)
+        );
+
         for (Movement m: data.toArray(new Movement[0])) {
             data.add(m);
         }
-        data.addAll(
-            new Movement(now, "Barça-Athletic", "+15"),
-            new Movement(now, "real-osasuna", "-5")
-        );
         operationTable.getItems().addAll(data);
 
         setupOperationSelection();
+
     }
 
     private void setupOperationSelection(){
@@ -96,5 +99,6 @@ public class ShowMovementsController implements Controller{
     public void setMainApp(MainGUI mainGUI) {
         this.mainGUI = mainGUI;
     }
+
 
 }
