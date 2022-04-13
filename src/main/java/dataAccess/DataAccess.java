@@ -372,6 +372,7 @@ public class DataAccess {
 		current.addMovement(deposit);
 		Date now =  new Date();
 		current.addDate(now);
+		current.addEvent("Deposit money");
 		db.persist(current);
 		db.getTransaction().commit();
 
@@ -385,9 +386,14 @@ public class DataAccess {
 		return userList.get(0).getAvailableMoney();
 	}
 
-/*	public Vector<Movement> getMovements() {
-		Vector<Movement> res = new Vector<>();
-		return res;
-	}*/
-
+	public User getCurrentUser(String username){
+		TypedQuery<User> q1 = db.createQuery("SELECT u FROM User u WHERE u.username = ?1", User.class);
+		q1.setParameter(1, username);
+		List<User> userList = q1.getResultList(); //user.isEmpty == false
+		User current = null;
+		if (!userList.isEmpty()){
+			current = userList.get(0);
+		}
+		return current;
+	}
 }

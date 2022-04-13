@@ -190,5 +190,8 @@ public class BlFacadeImplementation implements BlFacade {
 	}
 
 
+	public User getCurrentUser(String username){
+		return dbManager.getCurrentUser(username);
+	}
 
 }

@@ -19,7 +19,7 @@ public class User {
 	private Float availableMoney;
 	private ArrayList<Float> moneyMovements;
 	private ArrayList<Date> dateList;
-	private ArrayList<Event> eventList;
+	private ArrayList<String> eventList;
 
 
 
@@ -33,13 +33,14 @@ public class User {
 		this.availableMoney = (float) 0.0;
 		this.moneyMovements = new ArrayList<>();
 		this.dateList = new ArrayList<>();
+		this.eventList = new ArrayList<>();
 	}
 
 	public User(){
 		this.availableMoney = (float) 0.0;
 		this.moneyMovements = new ArrayList<>();
 		this.dateList = new ArrayList<>();
-
+		this.eventList = new ArrayList<>();
 	}
 
 	public User(String username, String password, Boolean admin) {
@@ -49,7 +50,11 @@ public class User {
 		this.availableMoney = (float) 0.0;
 		this.moneyMovements = new ArrayList<>();
 		this.dateList = new ArrayList<>();
+		this.eventList = new ArrayList<>();
 	}
+
+
+
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
@@ -57,6 +62,7 @@ public class User {
 		this.availableMoney = (float) 0.0;
 		this.moneyMovements = new ArrayList<>();
 		this.dateList = new ArrayList<>();
+		this.eventList = new ArrayList<>();
 	}
 	
 	public int getAge() {
@@ -89,4 +95,15 @@ public class User {
 		dateList.add(d);
 	}
 
+	public void setEventList(ArrayList<String> eventList) {
+		this.eventList = eventList;
+	}
+
+	public ArrayList<String> getEventList() {
+		return eventList;
+	}
+
+	public void addEvent(String e){
+		eventList.add(e);
+	}
 }

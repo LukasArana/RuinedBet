@@ -69,4 +69,6 @@ public interface BlFacade  {
 
     @WebMethod Float getCurrency(String username);
 
+
+	@WebMethod User getCurrentUser(String username);
 }
