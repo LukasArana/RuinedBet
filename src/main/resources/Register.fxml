@@ -17,13 +17,13 @@
       <Label layoutX="256.0" layoutY="126.0" text="%Email" />
       <TextField fx:id="usrField" layoutX="96.0" layoutY="29.0" prefHeight="26.0" prefWidth="118.0" />
       <TextField fx:id="nameField" layoutX="310.0" layoutY="29.0" prefHeight="26.0" prefWidth="118.0" />
+      <PasswordField fx:id="passField" layoutX="96.0" layoutY="78.0" prefHeight="26.0" prefWidth="118.0" />
       <TextField fx:id="surnameField" layoutX="310.0" layoutY="77.0" prefHeight="26.0" prefWidth="118.0" />
-      <TextField fx:id="emailField" layoutX="310.0" layoutY="122.0" prefHeight="26.0" prefWidth="118.0" />
       <TextField fx:id="ageField" layoutX="96.0" layoutY="122.0" prefHeight="26.0" prefWidth="54.0" />
+      <TextField fx:id="emailField" layoutX="310.0" layoutY="122.0" prefHeight="26.0" prefWidth="118.0" />
+      <CheckBox fx:id="adminCheck" layoutX="369.0" layoutY="188.0" mnemonicParsing="false" text="Admin" />
       <Button fx:id="alreadyAccountBtn" layoutX="69.0" layoutY="184.0" mnemonicParsing="false" onAction="#goToLogin" text="%alreadyAccount" />
       <Button fx:id="registerBtn" layoutX="266.0" layoutY="184.0" mnemonicParsing="false" onAction="#registerClick" text="%Register" />
-      <PasswordField fx:id="passField" layoutX="96.0" layoutY="78.0" prefHeight="26.0" prefWidth="118.0" />
       <Label fx:id="answrLbl" layoutX="80.0" layoutY="239.0" prefHeight="18.0" prefWidth="290.0" textAlignment="CENTER" />
-      <CheckBox fx:id="adminCheck" layoutX="369.0" layoutY="188.0" mnemonicParsing="false" text="Admin" />
    </children>
 </AnchorPane>

@@ -34,6 +34,9 @@ public class DepositMoneyController implements Controller{
     private TextField depositField;
 
     @FXML
+    private Label monAddLbl;
+
+    @FXML
     private Label newBalance;
 
     @FXML
@@ -76,6 +79,7 @@ public class DepositMoneyController implements Controller{
             currentBalance.setText(businessLogic.getCurrency(mainGUI.getUsername()).toString());
             outputLabel.setText(resources.getString("currencyAdded"));
             outputLabel.getStyleClass().setAll("lbl","lbl-success");
+            monAddLbl.setVisible(true);
         } else{
             outputLabel.setText(resources.getString("validCurrency"));
             outputLabel.getStyleClass().setAll("lbl","lbl-danger");
@@ -88,7 +92,7 @@ public class DepositMoneyController implements Controller{
 
     @FXML
     void initialize(){
-        //currentBalance.setText(businessLogic.getCurrency(mainGUI.getUsername()).toString());
+        monAddLbl.setVisible(false);
     }
 
     @FXML
