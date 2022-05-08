@@ -1,14 +1,18 @@
 package domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @Entity
 public class Bet {
-
     private fee fee;
-    @Id
     private Float stake;
+    @Id
+    @XmlJavaTypeAdapter(IntegerAdapter.class)
+    @GeneratedValue
+    private Integer id;
     //private String username;
 
     //@Id
@@ -17,6 +21,14 @@ public class Bet {
     public Bet(domain.fee fee, Float stake) {
         this.fee = fee;
         this.stake = stake;
+    }
+
+    public fee getFee(){
+        return this.fee;
+    }
+
+    public float getStake(){
+        return this.stake;
     }
 
 

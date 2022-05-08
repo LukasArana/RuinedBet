@@ -1,5 +1,6 @@
 package dataAccess;
 
+import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -380,12 +381,12 @@ public class DataAccess {
 		q1.setParameter(1, username);
 		List<User> userList = q1.getResultList(); //user.isEmpty == false
 		User current = userList.get(0);
-		current.updateAvailableMoney(deposit);
+		changeMoney(current,deposit,"Deposit money");
+		//current.updateAvailableMoney(deposit);
 		System.out.println(current.getAvailableMoney());
-		current.addMovement(deposit);
-		Date now =  new Date();
-		current.addDate(now);
-		current.addEvent("Deposit money");
+		//current.addMovement(deposit);
+		//current.addDate(new Date());
+		//current.addEvent("Deposit money");
 		db.persist(current);
 		db.getTransaction().commit();
 
@@ -417,13 +418,45 @@ public class DataAccess {
 		List<User> userList = q1.getResultList();
 
 		User current = userList.get(0);
-		current.updateAvailableMoney(-stake);
-		current.addDate(new Date());
-		current.addEvent(e.getDescription());
-		current.addMovement(-stake);
+		//current.updateAvailableMoney(-stake);
+		//current.addDate(new Date());
+		//current.addEvent(e.getDescription());
+		//current.addMovement(-stake);
+		changeMoney(current,-stake,e.getDescription());
 		current.addBet(b);
+		db.persist(b);
 		db.getTransaction().commit();
 
+	}
+
+	public void payWinners(Question q, fee f) {
+		db.getTransaction().begin();
+		TypedQuery<Question> q2 = db.createQuery("SELECT q FROM Question q WHERE q.questionNumber=?1",Question.class);
+		q2.setParameter(1,q.getQuestionNumber());
+		List<Question> questionList = q2.getResultList();
+		Question qu = questionList.get(0);
+		qu.setResult(f.getResult());
+		TypedQuery<User> q1 = db.createQuery("SELECT u FROM User u", User.class);
+		List<User> userList = q1.getResultList();
+		for(User u: userList){
+			for(Bet b: u.getBetList()){
+				if(b.getFee().getResult().equals(f.getResult()) & b.getFee().getFee().equals(f.getFee())){
+					//changeMoney(u,b.getStake()*f.getFee(),new String("Winnings: " + q.getEvent().getDescription()));
+					changeMoney(u,b.getStake()*f.getFee(),new String("Winnings: "));
+				}
+			}
+		}
+		//db.persist(q);
+		db.getTransaction().commit();
+
+	}
+
+	public void changeMoney(User u, float amount,String eventDescription){
+		u.updateAvailableMoney(amount);
+		u.addDate(new Date());
+		u.addDate(new Date());
+		u.addEvent(eventDescription);
+		u.addMovement(amount);
 	}
 
 /*	public Vector<Movement> getMovements() {

@@ -201,4 +201,11 @@ public class BlFacadeImplementation implements BlFacade {
 		return dbManager.getCurrentUser(username);
 	}
 
+	@Override
+	public void payWinners(Question q, fee f) {
+		dbManager.open(false);
+		dbManager.payWinners(q,f);
+		dbManager.close();
+	}
+
 }

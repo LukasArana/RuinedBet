@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class MainGUI {
 
-  private Window mainLag, userLag, createQuestionLag, browseQuestionsLag, loginWin, registerWin, setFeesWin, createEventsWin, placeBetWin, showMoves, depositMoney;
+  private Window mainLag, userLag, createQuestionLag, browseQuestionsLag, loginWin, registerWin, setFeesWin, createEventsWin, placeBetWin, showMoves, depositMoney, publishResultsWin;
 
 
   private BlFacade businessLogic;
@@ -62,36 +62,36 @@ public class MainGUI {
       if (controllerClass == BrowseQuestionsController.class) {
         return new BrowseQuestionsController(businessLogic);
       }
-      if (controllerClass == CreateQuestionController.class) {
+      else if (controllerClass == CreateQuestionController.class) {
         return new CreateQuestionController(businessLogic);
       }
-      if(controllerClass == LoginController.class){
+      else if(controllerClass == LoginController.class){
         return new LoginController(businessLogic);
       }
-      if(controllerClass == RegisterController.class){
+      else if(controllerClass == RegisterController.class){
         return new RegisterController(businessLogic);
       }
-      if(controllerClass == setFeesController.class){
+      else if(controllerClass == setFeesController.class){
         return new setFeesController(businessLogic);
       }
-      if(controllerClass == CreateEventsController.class){
+      else if(controllerClass == CreateEventsController.class){
         return new CreateEventsController(businessLogic);
       }
-      if(controllerClass == UserGUIController.class){
+      else if(controllerClass == UserGUIController.class){
         return new UserGUIController(businessLogic);
       }
-
-      if(controllerClass == PlaceBetController.class){
+      else if(controllerClass == PlaceBetController.class){
         return new PlaceBetController(businessLogic);
       }
-      if(controllerClass == DepositMoneyController.class){
+      else if(controllerClass == DepositMoneyController.class){
         return new DepositMoneyController(businessLogic);
       }
-
-      if (controllerClass == ShowMovementsController.class){
+      else if (controllerClass == ShowMovementsController.class){
         return new ShowMovementsController(businessLogic);
       }
-
+      else if(controllerClass == publishResultsController.class){
+        return new publishResultsController(businessLogic);
+      }
       else {
         // default behavior for controllerFactory:
         try {
@@ -125,6 +125,7 @@ public class MainGUI {
     showMoves = load("/showMovements.fxml");
     placeBetWin = load("/PlaceABet.fxml");
     depositMoney = load("/DepositMoney.fxml");
+    publishResultsWin = load("/publishResults.fxml");
 
     showLogin();
 
@@ -167,6 +168,7 @@ public class MainGUI {
   public void showCreateEvents(){setupScene(createEventsWin.ui, "CreateEvent", 446, 302);}
   public void showMovements(){setupScene(showMoves.ui, "ShowMovements", 350,310);  }
   public void showDeposit(){setupScene(depositMoney.ui, "DepositMoney", 427, 265);}
+  public void showPublishResults(){setupScene(publishResultsWin.ui,"PublishResults",640,462);}
 
   private void setupScene(Parent ui, String title, int width, int height) {
     if (scene == null){

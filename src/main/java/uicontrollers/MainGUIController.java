@@ -56,6 +56,9 @@ public class MainGUIController implements Controller{
     private ToggleGroup g1;
 
     @FXML
+    private Button publishBtn;
+
+    @FXML
     private Button createEventBtn;
 
     //@FXML
@@ -69,6 +72,11 @@ public class MainGUIController implements Controller{
     @FXML
     void createQuestion(ActionEvent event) {
         mainGUI.showCreateQuestion();
+    }
+
+    @FXML
+    void publishResults(ActionEvent event) {
+        mainGUI.showPublishResults();
     }
 
     @FXML
