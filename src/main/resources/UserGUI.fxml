@@ -8,11 +8,11 @@
 
 <AnchorPane prefHeight="298.0" prefWidth="332.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uicontrollers.UserGUIController">
    <children>
-      <Button fx:id="browseBtn" layoutX="81.0" layoutY="76.0" mnemonicParsing="false" onAction="#browseClick" prefHeight="25.0" prefWidth="167.0" text="%BrowseQuestions" />
-      <Button fx:id="placeBetBtn" layoutX="81.0" layoutY="118.0" mnemonicParsing="false" onAction="#placeClick" prefHeight="25.0" prefWidth="167.0" text="%PlaceBet" />
-      <Button fx:id="depositBtn" layoutX="81.0" layoutY="159.0" mnemonicParsing="false" onAction="#depositClick" prefHeight="25.0" prefWidth="167.0" text="%DepositMoney" />
-      <Button fx:id="ShowMoveBtn" layoutX="81.0" layoutY="199.0" mnemonicParsing="false" onAction="#showMovements" prefHeight="25.0" prefWidth="167.0" text="%ShowMovements" />
-      <Label layoutX="81.0" layoutY="39.0" prefHeight="31.0" prefWidth="167.0" text="%SelectUseCase" />
+      <Button fx:id="browseBtn" layoutX="81.0" layoutY="45.0" mnemonicParsing="false" onAction="#browseClick" prefHeight="25.0" prefWidth="167.0" text="%BrowseQuestions" />
+      <Button fx:id="placeBetBtn" layoutX="81.0" layoutY="80.0" mnemonicParsing="false" onAction="#placeClick" prefHeight="25.0" prefWidth="167.0" text="%PlaceBet" />
+      <Button fx:id="depositBtn" layoutX="81.0" layoutY="115.0" mnemonicParsing="false" onAction="#depositClick" prefHeight="25.0" prefWidth="167.0" text="%DepositMoney" />
+      <Button fx:id="ShowMoveBtn" layoutX="81.0" layoutY="149.0" mnemonicParsing="false" onAction="#showMovements" prefHeight="25.0" prefWidth="167.0" text="%ShowMovements" />
+      <Label layoutX="81.0" layoutY="14.0" prefHeight="31.0" prefWidth="167.0" text="%SelectUseCase" />
       <RadioButton layoutX="135.0" layoutY="245.0" mnemonicParsing="false" onAction="#changeLanguage" text="English">
          <toggleGroup>
             <ToggleGroup fx:id="Idioms" />
@@ -21,5 +21,6 @@
       <RadioButton layoutX="36.0" layoutY="245.0" mnemonicParsing="false" onAction="#changeLanguage" text="Euskera" toggleGroup="$Idioms" />
       <RadioButton layoutX="216.0" layoutY="245.0" mnemonicParsing="false" onAction="#changeLanguage" text="Castellano" toggleGroup="$Idioms" />
       <Label fx:id="answerLbl" layoutX="86.0" layoutY="275.0" prefHeight="18.0" prefWidth="167.0" />
+      <Button fx:id="removeBetBtn" layoutX="82.0" layoutY="186.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="167.0" text="%RemoveBet" />
    </children>
 </AnchorPane>
