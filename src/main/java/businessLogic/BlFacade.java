@@ -11,7 +11,6 @@ import domain.*;
 import exceptions.EventAlreadyExists;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
-import javafx.collections.ObservableList;
 
 /**
  * Interface that specifies the business logic.
@@ -73,4 +72,6 @@ public interface BlFacade  {
 
 
 	@WebMethod User getCurrentUser(String username);
+
+    @WebMethod void payWinners(Question q, fee f);
 }

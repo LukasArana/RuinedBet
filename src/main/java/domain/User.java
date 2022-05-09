@@ -1,11 +1,11 @@
 package domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class User {
@@ -18,6 +18,7 @@ public class User {
 	private String surname;
 	private String email;
 	private Float availableMoney;
+	@OneToMany(cascade = CascadeType.PERSIST)
 	private ArrayList<Bet> betList = new ArrayList<>();
 	private ArrayList<Float> moneyMovements;
 	private ArrayList<Date> dateList;
@@ -112,4 +113,6 @@ public class User {
 	public void addBet(Bet b) {
 		betList.add(b);
 	}
+
+	public List<Bet> getBetList(){return this.betList;}
 }
