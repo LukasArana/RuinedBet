@@ -18,6 +18,8 @@ import ui.MainGUI;
 public class UserGUIController implements Controller{
 
     @FXML
+    private Button logOutButton;
+    @FXML
     private Label answerLbl;
 
     @FXML
@@ -45,6 +47,7 @@ public class UserGUIController implements Controller{
 
     private BlFacade businessLogic;
 
+
     @FXML
     void browseClick() {
         mainGUI.showBrowseQuestions();
@@ -62,7 +65,7 @@ public class UserGUIController implements Controller{
     }
 
     @FXML
-    void showMovements() {mainGUI.showMovements(); }
+    void showMovements() {;mainGUI.showMovements();}
 
     public UserGUIController(BlFacade bl) {
         businessLogic = bl;
@@ -73,6 +76,10 @@ public class UserGUIController implements Controller{
         this.mainGUI = mainGUI;
     }
 
+    @FXML
+    void logoutPressed(ActionEvent event) {
+        mainGUI.showLogin();
+    }
 
     @FXML void changeLanguage(ActionEvent event) {
         String language = ((RadioButton) Idioms.getSelectedToggle()).getText();

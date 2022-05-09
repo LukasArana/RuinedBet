@@ -89,7 +89,7 @@ public class LogInGUI extends JFrame {
 				else if (!businessLogic.checkLogIn(txtUsername.getText(), txtPassword.getText())) { 
 						output.setText("Not valid credentials, please try again");
 					} else { //Valid credentials
-						if (businessLogic.isAdmin(txtUsername.getText())) { //open admin gui
+						if (businessLogic.isAdmin()) { //open admin gui
 //						if (true) {
 							MainGUI admin = new MainGUI();
 							admin.setVisible(true);

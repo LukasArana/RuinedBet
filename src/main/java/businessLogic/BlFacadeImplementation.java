@@ -21,6 +21,7 @@ import exceptions.QuestionAlreadyExist;
  */
 @WebService(endpointInterface = "businessLogic.BlFacade")
 public class BlFacadeImplementation implements BlFacade {
+	String username;
 
 	DataAccess dbManager;
 	ConfigXML config = ConfigXML.getInstance();
@@ -181,9 +182,9 @@ public class BlFacadeImplementation implements BlFacade {
 	}
 	
 	@WebMethod
-	public boolean isAdmin(String username) {
+	public boolean isAdmin() {
 		dbManager.open(false);
-		boolean e =  dbManager.isAdmin(username);
+		boolean e =  dbManager.isAdmin(this.username);
 		dbManager.close();
 		return e;
 	}
@@ -195,10 +196,12 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager.close();
 		return e;
 	}
+	public void setUser(String username){
+		this.username = username;
+	}
 
-
-	public User getCurrentUser(String username){
-		return dbManager.getCurrentUser(username);
+	public User getCurrentUser(){
+		return dbManager.getCurrentUser(this.username);
 	}
 
 }

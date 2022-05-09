@@ -23,7 +23,6 @@ public class MainGUI {
   private BlFacade businessLogic;
   private Stage stage;
   private Scene scene;
-  private String username;
 
   public BlFacade getBusinessLogic() {
     return businessLogic;
@@ -136,11 +135,11 @@ public class MainGUI {
 
 //This method will only be called from LoginController
   public void showMain(String username){
-    this.username = username;
+    businessLogic.setUser(username);
     this.showMain();
   }
   public void showMain(){
-    if (businessLogic.isAdmin(this.username)) {
+    if (businessLogic.isAdmin()) {
       setupScene(mainLag.ui, "MainTitle", 320, 320);
     } else{
       setupScene(userLag.ui, "userTitle", 332, 340);
@@ -165,7 +164,10 @@ public class MainGUI {
   //public void showUser(){setupScene(userLag.ui,"MainTitle",332,281);}
   public void showPlace(){setupScene(placeBetWin.ui,"PlaceBet",820,500);}
   public void showCreateEvents(){setupScene(createEventsWin.ui, "CreateEvent", 446, 302);}
-  public void showMovements(){setupScene(showMoves.ui, "ShowMovements", 350,310);  }
+  public void showMovements(){
+    ((ShowMovementsController)showMoves.c).showHistory();
+    setupScene(showMoves.ui, "ShowMovements", 350,310);
+  }
   public void showDeposit(){setupScene(depositMoney.ui, "DepositMoney", 427, 265);}
 
   private void setupScene(Parent ui, String title, int width, int height) {
@@ -184,7 +186,7 @@ public class MainGUI {
     stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
   }
   public String getUsername(){
-    return this.username;
+    return businessLogic.getCurrentUser().getUsername();
   }
 //  public static void main(String[] args) {
 //    launch();

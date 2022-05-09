@@ -43,6 +43,7 @@ public class MainGUIController implements Controller{
     @FXML
     private Button setFeesBtn;
 
+
     @FXML
     private RadioButton englishRB;
 
@@ -69,6 +70,10 @@ public class MainGUIController implements Controller{
     @FXML
     void createQuestion(ActionEvent event) {
         mainGUI.showCreateQuestion();
+    }
+    @FXML
+    void logOut(ActionEvent event){
+        mainGUI.showLogin();
     }
 
     @FXML
