@@ -83,6 +83,16 @@ public class PlaceBetController implements Controller{
     @FXML
     void closeClick(ActionEvent event) {
         mainGUI.showMain();
+        feeComboBox.getItems().clear();
+        tblEvents.getItems().clear();
+        tblQuestions.getItems().clear();
+        stakeField.clear();
+        messageLbl.setText("");
+        messageLbl.getStyleClass().clear();
+        balanceLbl.getStyleClass().clear();
+        balanceLbl.setText("");
+        outputLbl.getStyleClass().clear();
+        outputLbl.setText("");
     }
 
     @FXML

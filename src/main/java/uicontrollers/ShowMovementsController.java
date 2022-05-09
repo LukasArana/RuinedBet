@@ -56,7 +56,10 @@ public class ShowMovementsController implements Controller{
     private TableView<Movement> operationTable;
 
     @FXML
-    void goBack(ActionEvent event) {mainGUI.showMain();}
+    void goBack(ActionEvent event) {
+        mainGUI.showMain();
+        operationTable.getItems().clear();
+    }
 
     @FXML
     void initialize() {
@@ -88,6 +91,8 @@ public class ShowMovementsController implements Controller{
 
         setupOperationSelection();
 */
+
+        
     }
 
     private void setupOperationSelection(){

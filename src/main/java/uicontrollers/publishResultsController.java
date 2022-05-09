@@ -87,13 +87,11 @@ public class publishResultsController implements Controller{
     void publish(ActionEvent event) {
         messageLbl.getStyleClass().clear();
 
-        /*
         if(datePicker.getValue().isAfter(LocalDate.now())){
             messageLbl.setText(resources.getString("eventNotFinished"));
             messageLbl.getStyleClass().setAll("lbl","lbl-danger");
         }
-         */
-        if(tblEvents.getSelectionModel().getSelectedItem() == null){
+        else if(tblEvents.getSelectionModel().getSelectedItem() == null){
             messageLbl.setText(resources.getString("selectEvent"));
             messageLbl.getStyleClass().setAll("lbl","lbl-danger");
         }
@@ -105,7 +103,6 @@ public class publishResultsController implements Controller{
             messageLbl.setText(resources.getString("chooseResult"));
             messageLbl.getStyleClass().setAll("lbl","lbl-danger");
         }
-
         else{
             businessLogic.payWinners(tblQuestions.getSelectionModel().getSelectedItem(),resultCombo.getSelectionModel().getSelectedItem());
             tblQuestions.getItems().remove(tblQuestions.getSelectionModel().getSelectedItem());

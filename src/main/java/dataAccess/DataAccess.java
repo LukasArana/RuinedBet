@@ -441,8 +441,7 @@ public class DataAccess {
 		for(User u: userList){
 			for(Bet b: u.getBetList()){
 				if(b.getFee().getResult().equals(f.getResult()) & b.getFee().getFee().equals(f.getFee())){
-					//changeMoney(u,b.getStake()*f.getFee(),new String("Winnings: " + q.getEvent().getDescription()));
-					changeMoney(u,b.getStake()*f.getFee(),new String("Winnings: "));
+					changeMoney(u,b.getStake()*f.getFee(),new String("Winnings: " + q.getEvent().getDescription()));
 				}
 			}
 		}
@@ -453,7 +452,6 @@ public class DataAccess {
 
 	public void changeMoney(User u, float amount,String eventDescription){
 		u.updateAvailableMoney(amount);
-		u.addDate(new Date());
 		u.addDate(new Date());
 		u.addEvent(eventDescription);
 		u.addMovement(amount);
