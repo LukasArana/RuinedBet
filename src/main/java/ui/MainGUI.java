@@ -140,7 +140,7 @@ public class MainGUI {
   }
   public void showMain(){
     if (businessLogic.isAdmin()) {
-      setupScene(mainLag.ui, "MainTitle", 320, 320);
+      setupScene(mainLag.ui, "MainTitle", 356, 370);
     } else{
       setupScene(userLag.ui, "userTitle", 332, 340);
     }

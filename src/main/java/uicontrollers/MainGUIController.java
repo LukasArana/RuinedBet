@@ -59,6 +59,9 @@ public class MainGUIController implements Controller{
     @FXML
     private Button createEventBtn;
 
+    @FXML
+    private Button removeEventBt;
+
     //@FXML
     //void userLogIn(ActionEvent event){ mainGUI.showUser();}
 
@@ -102,6 +105,11 @@ public class MainGUIController implements Controller{
         }
         answerLbl.setTextAlignment(TextAlignment.CENTER);
         answerLbl.getStyleClass().setAll("lbl","lbl-warning");
+
+    }
+
+    @FXML
+    void removeEvent(ActionEvent event) {
 
     }
     /*
