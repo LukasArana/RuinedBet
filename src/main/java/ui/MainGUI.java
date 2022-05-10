@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class MainGUI {
 
-  private Window mainLag, userLag, createQuestionLag, browseQuestionsLag, loginWin, registerWin, setFeesWin, createEventsWin, placeBetWin, showMoves, depositMoney, removeBet, publishResultsWin;
+  private Window mainLag, userLag, createQuestionLag, browseQuestionsLag, loginWin, registerWin, setFeesWin, createEventsWin, placeBetWin, showMoves, depositMoney, removeBet, publishResultsWin, removeEventWin;
 
 
   private BlFacade businessLogic;
@@ -91,6 +91,9 @@ public class MainGUI {
       else if(controllerClass == publishResultsController.class){
         return new publishResultsController(businessLogic);
       }
+      else if(controllerClass == RemoveEventController.class){
+        return new RemoveEventController(businessLogic);
+      }
       else {
         // default behavior for controllerFactory:
         try {
@@ -126,6 +129,7 @@ public class MainGUI {
     depositMoney = load("/DepositMoney.fxml");
     removeBet = load("/RemoveBet.fxml");
     publishResultsWin = load("/publishResults.fxml");
+    removeEventWin = load("/RemoveEvent.fxml");
 
     showLogin();
 
@@ -173,6 +177,7 @@ public class MainGUI {
   public void showDeposit(){setupScene(depositMoney.ui, "DepositMoney", 427, 265);}
   public void showPublishResults(){setupScene(publishResultsWin.ui,"PublishResults",640,462);}
   public void removeBet(){setupScene(removeBet.ui, "RemoveBet", 670, 470);}
+  public void showRemoveEvent(){setupScene(removeEventWin.ui,"RemoveEvent", 590, 405);}
 
   private void setupScene(Parent ui, String title, int width, int height) {
     if (scene == null){

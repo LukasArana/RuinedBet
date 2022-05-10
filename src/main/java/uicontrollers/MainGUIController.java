@@ -99,6 +99,10 @@ public class MainGUIController implements Controller{
     @FXML
     void removeBet(ActionEvent event) {mainGUI.removeBet();}
 
+
+    @FXML
+    void removeEvent(ActionEvent event) {mainGUI.showRemoveEvent();}
+
     @FXML void changeLanguage(ActionEvent event) {
         String language = ((RadioButton) g1.getSelectedToggle()).getText();
 
@@ -122,10 +126,7 @@ public class MainGUIController implements Controller{
 
     }
 
-    @FXML
-    void removeEvent(ActionEvent event) {
 
-    }
     /*
     @FXML
     void putCastellano(ActionEvent event) {
