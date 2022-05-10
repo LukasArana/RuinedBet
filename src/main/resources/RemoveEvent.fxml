@@ -23,6 +23,7 @@
         <Label layoutX="232.0" layoutY="49.0" text="%Events" />
         <Label layoutX="358.0" layoutY="49.0" text="  " />
         <Button fx:id="btnClose" layoutX="199.0" layoutY="322.0" mnemonicParsing="false" onAction="#closeClick" text="%Back" />
-      <Button layoutX="299.0" layoutY="322.0" mnemonicParsing="false" text="%RemoveEvent" />
+      <Button fx:id="removeBt" layoutX="299.0" layoutY="322.0" mnemonicParsing="false" onAction="#removeClick" text="%RemoveEvent" />
+      <Label fx:id="messageLbl" layoutX="262.0" layoutY="362.0" />
     </children>
 </AnchorPane>

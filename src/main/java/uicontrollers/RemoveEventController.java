@@ -2,6 +2,8 @@ package uicontrollers;
 
 import businessLogic.BlFacade;
 import domain.Event;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -35,9 +37,18 @@ public class RemoveEventController implements Controller {
     @FXML
     private TableView<Event> tblEvents;
 
+    @FXML
+    private Button removeBt;
+
+    @FXML
+    private Label messageLbl;
+
     private MainGUI mainGUI;
     private BlFacade businessLogic;
     private List<LocalDate> holidays = new ArrayList<>();
+
+
+
 
     public RemoveEventController(businessLogic.BlFacade bl) {
         businessLogic = bl;
@@ -50,12 +61,10 @@ public class RemoveEventController implements Controller {
         mainGUI.showMain();
     }
 
-    private void setEvents(int year, int month) {
-        Date date = Dates.toDate(year,month);
-
-        for (Date day : businessLogic.getEventsMonth(date)) {
-            holidays.add(Dates.convertToLocalDateViaInstant(day));
-        }
+    @FXML
+    void removeClick(ActionEvent event) {
+        messageLbl.setText("You must choose an event");
+        messageLbl.getStyleClass().setAll("lbl","lbl-danger");
     }
 
     private void setEventsPrePost(int year, int month) {
@@ -65,28 +74,51 @@ public class RemoveEventController implements Controller {
         setEvents(date.plusMonths(-1).getYear(), date.plusMonths(-1).getMonth().getValue());
     }
 
-    @FXML
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    private void setEvents(int year, int month) {
 
-        tblEvents.getItems().clear();
-        datepicker.getEditor().clear();
+        Date date = Dates.toDate(year, month);
+
+        for (Date day : businessLogic.getEventsMonth(date)) {
+            holidays.add(Dates.convertToLocalDateViaInstant(day));
+        }
+    }
+
+    @FXML
+    void initialize() {
+
+        removeBt.setDisable(true);
+
+        // only show the text of the event in the combobox (without the id)
+        Callback<ListView<Event>, ListCell<Event>> factory = lv -> new ListCell<>() {
+            @Override
+            protected void updateItem(Event item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? "" : item.getDescription());
+            }
+        };
+
+
+
+
 
         setEventsPrePost(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue());
 
+
+        // get a reference to datepicker inner content
+        // attach a listener to the  << and >> buttons
+        // mark events for the (prev, current, next) month and year shown
         datepicker.setOnMouseClicked(e -> {
-            // get a reference to datepicker inner content
-            // attach a listener to the  << and >> buttons
-            // mark events for the (prev, current, next) month and year shown
             DatePickerSkin skin = (DatePickerSkin) datepicker.getSkin();
             skin.getPopupContent().lookupAll(".button").forEach(node -> {
                 node.setOnMouseClicked(event -> {
                     List<Node> labels = skin.getPopupContent().lookupAll(".label").stream().toList();
                     String month = ((Label) (labels.get(0))).getText();
-                    String year =  ((Label) (labels.get(1))).getText();
+                    String year = ((Label) (labels.get(1))).getText();
                     YearMonth ym = Dates.getYearMonth(month + " " + year);
                     setEventsPrePost(ym.getYear(), ym.getMonthValue());
                 });
             });
+
 
         });
 
@@ -108,18 +140,20 @@ public class RemoveEventController implements Controller {
             }
         });
 
-        // a date has been chosen, update the combobox of Events
+        // when a date is selected...
         datepicker.setOnAction(actionEvent -> {
+            removeBt.setDisable(false);
             tblEvents.getItems().clear();
+
             Vector<Event> events = businessLogic.getEvents(Dates.convertToDate(datepicker.getValue()));
             for (Event ev : events) {
                 tblEvents.getItems().add(ev);
             }
-        });
 
-        // Bind columns to Event attributes
-        ec1.setCellValueFactory(new PropertyValueFactory<>("eventNumber"));
-        ec2.setCellValueFactory(new PropertyValueFactory<>("description"));
+            // Bind columns to Event attributes
+            ec1.setCellValueFactory(new PropertyValueFactory<>("eventNumber"));
+            ec2.setCellValueFactory(new PropertyValueFactory<>("description"));
+        });
 
     }
 
