@@ -57,7 +57,7 @@ public interface BlFacade  {
 	
 	@WebMethod public boolean emailIsFree(String email);
 	@WebMethod public boolean checkLogIn(String username, String password);
-	@WebMethod public boolean isAdmin(String username);
+	@WebMethod public boolean isAdmin();
 	
 	@WebMethod public Event createEvent(String description,Date date) throws EventAlreadyExists;
 	
@@ -73,8 +73,6 @@ public interface BlFacade  {
 
 	void setUser(String username);
 	User getCurrentUser();
-
-	@WebMethod User getCurrentUser(String username);
 
     @WebMethod void payWinners(Question q, fee f);
 }

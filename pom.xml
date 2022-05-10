@@ -10,7 +10,18 @@
 			<url>https://m2.objectdb.com</url>
 		</repository>
 	</repositories>
-
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<release>${java.version}</release>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 
 	<dependencies>
@@ -69,6 +80,23 @@
 			<artifactId>bootstrapfx-core</artifactId>
 			<version>0.4.0</version>
 		</dependency>
+	<dependency>
+		<groupId>org.jfxtras</groupId>
+		<artifactId>jmetro</artifactId>
+		<version>${jmetro.version}</version>
+		<exclusions>
+			<!-- The following exclusions are necessary to override all hard coded dependencies -->
+			<!-- on outdated or not needed external libaries -->
+			<exclusion>
+				<groupId>org.controlsfx</groupId>
+				<artifactId>controlsfx</artifactId>
+			</exclusion>
+			<exclusion>
+				<groupId>org.openjfx</groupId>
+				<artifactId>*</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
 
 		<dependency>
 			<groupId>org.openjfx</groupId>
@@ -100,5 +128,7 @@
 		<maven.compiler.target>17</maven.compiler.target>
 
 	</properties>
+
+
 </project>
 
