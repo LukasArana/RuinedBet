@@ -13,14 +13,15 @@
       <Button fx:id="depositBtn" layoutX="81.0" layoutY="159.0" mnemonicParsing="false" onAction="#depositClick" prefHeight="25.0" prefWidth="167.0" text="%DepositMoney" />
       <Button fx:id="ShowMoveBtn" layoutX="81.0" layoutY="199.0" mnemonicParsing="false" onAction="#showMovements" prefHeight="25.0" prefWidth="167.0" text="%ShowMovements" />
       <Label layoutX="81.0" layoutY="39.0" prefHeight="31.0" prefWidth="167.0" text="%SelectUseCase" />
-      <RadioButton layoutX="135.0" layoutY="245.0" mnemonicParsing="false" onAction="#changeLanguage" text="English">
+      <RadioButton layoutX="135.0" layoutY="273.0" mnemonicParsing="false" onAction="#changeLanguage" text="English">
          <toggleGroup>
             <ToggleGroup fx:id="Idioms" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="36.0" layoutY="245.0" mnemonicParsing="false" onAction="#changeLanguage" text="Euskera" toggleGroup="$Idioms" />
-      <RadioButton layoutX="216.0" layoutY="245.0" mnemonicParsing="false" onAction="#changeLanguage" text="Castellano" toggleGroup="$Idioms" />
-      <Label fx:id="answerLbl" layoutX="86.0" layoutY="275.0" prefHeight="18.0" prefWidth="167.0" />
-      <Button fx:id="logoutButton" layoutX="134.0" layoutY="293.0" mnemonicParsing="false" onAction="#logoutPressed" text="Logout" />
+      <RadioButton layoutX="36.0" layoutY="273.0" mnemonicParsing="false" onAction="#changeLanguage" text="Euskera" toggleGroup="$Idioms" />
+      <RadioButton layoutX="221.0" layoutY="273.0" mnemonicParsing="false" onAction="#changeLanguage" text="Castellano" toggleGroup="$Idioms" />
+      <Label fx:id="answerLbl" layoutX="81.0" layoutY="298.0" prefHeight="18.0" prefWidth="167.0" />
+      <Button fx:id="logoutButton" layoutX="221.0" layoutY="42.0" mnemonicParsing="false" onAction="#logoutPressed" text="Logout" />
+      <Button fx:id="removeBetBtn" layoutX="84.0" layoutY="238.0" mnemonicParsing="false" onAction="#removeBet" prefHeight="26.0" prefWidth="167.0" text="%RemoveBet" />
    </children>
 </AnchorPane>

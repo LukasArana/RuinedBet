@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class MainGUI {
 
-  private Window mainLag, userLag, createQuestionLag, browseQuestionsLag, loginWin, registerWin, setFeesWin, createEventsWin, placeBetWin, showMoves, depositMoney, publishResultsWin;
+  private Window mainLag, userLag, createQuestionLag, browseQuestionsLag, loginWin, registerWin, setFeesWin, createEventsWin, placeBetWin, showMoves, depositMoney, removeBet, publishResultsWin;
 
 
   private BlFacade businessLogic;
@@ -124,6 +124,7 @@ public class MainGUI {
     showMoves = load("/showMovements.fxml");
     placeBetWin = load("/PlaceABet.fxml");
     depositMoney = load("/DepositMoney.fxml");
+    removeBet = load("/RemoveBet.fxml");
     publishResultsWin = load("/publishResults.fxml");
 
     showLogin();
@@ -143,7 +144,7 @@ public class MainGUI {
     if (businessLogic.isAdmin()) {
       setupScene(mainLag.ui, "MainTitle", 356, 370);
     } else{
-      setupScene(userLag.ui, "userTitle", 332, 340);
+      setupScene(userLag.ui, "userTitle", 340, 360);
     }
   }
 
@@ -171,6 +172,7 @@ public class MainGUI {
   }
   public void showDeposit(){setupScene(depositMoney.ui, "DepositMoney", 427, 265);}
   public void showPublishResults(){setupScene(publishResultsWin.ui,"PublishResults",640,462);}
+  public void removeBet(){setupScene(removeBet.ui, "RemoveBet", 670, 470);}
 
   private void setupScene(Parent ui, String title, int width, int height) {
     if (scene == null){

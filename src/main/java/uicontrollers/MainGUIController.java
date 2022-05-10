@@ -43,6 +43,8 @@ public class MainGUIController implements Controller{
     @FXML
     private Button setFeesBtn;
 
+    @FXML
+    private Button removeBetBtn;
 
     @FXML
     private RadioButton englishRB;
@@ -77,6 +79,7 @@ public class MainGUIController implements Controller{
     void createQuestion(ActionEvent event) {
         mainGUI.showCreateQuestion();
     }
+
     @FXML
     void logOut(ActionEvent event){
         mainGUI.showLogin();
@@ -92,6 +95,9 @@ public class MainGUIController implements Controller{
 
     @FXML
     void createEvent(ActionEvent event) {mainGUI.showCreateEvents();}
+
+    @FXML
+    void removeBet(ActionEvent event) {mainGUI.removeBet();}
 
     @FXML void changeLanguage(ActionEvent event) {
         String language = ((RadioButton) g1.getSelectedToggle()).getText();

@@ -38,6 +38,9 @@ public class UserGUIController implements Controller{
     private Button browseBtn;
 
     @FXML
+    private Button removeBetBtn;
+
+    @FXML
     private Button depositBtn;
 
     @FXML
@@ -66,6 +69,9 @@ public class UserGUIController implements Controller{
 
     @FXML
     void showMovements() {;mainGUI.showMovements();}
+
+    @FXML
+    void removeBet(){mainGUI.removeBet();}
 
     public UserGUIController(BlFacade bl) {
         businessLogic = bl;

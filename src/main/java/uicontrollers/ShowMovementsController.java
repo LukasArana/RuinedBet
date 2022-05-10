@@ -47,7 +47,7 @@ public class ShowMovementsController implements Controller{
     private TableColumn<Movement, Date> dateColumn;
 
     @FXML
-    private TableColumn<Movement, String> balanceColumn;
+    private TableColumn<Movement, Float> balanceColumn;
 
     @FXML
     private TableColumn<Movement, String> eventColumn;
