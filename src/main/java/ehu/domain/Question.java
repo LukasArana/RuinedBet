@@ -1,4 +1,4 @@
-package domain;
+package ehu.domain;
 
 import java.io.*;
 import java.util.ArrayList;

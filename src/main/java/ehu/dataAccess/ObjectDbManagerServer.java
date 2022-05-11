@@ -1,4 +1,4 @@
-package dataAccess;
+package ehu.dataAccess;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -14,7 +14,7 @@ import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
-import configuration.ConfigXML;
+import ehu.configuration.ConfigXML;
 
 /**o
  * Runs the Data Access node as a separate, possibly remote process.

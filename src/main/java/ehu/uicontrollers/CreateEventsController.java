@@ -1,15 +1,15 @@
-package uicontrollers;
+package ehu.uicontrollers;
 
-import businessLogic.BlFacade;
-import utils.Dates;
-import exceptions.EventAlreadyExists;
+import ehu.businessLogic.BlFacade;
+import ehu.utils.Dates;
+import ehu.exceptions.EventAlreadyExists;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.skin.DatePickerSkin;
 import javafx.util.Callback;
-import ui.MainGUI;
+import ehu.ui.MainGUI;
 
 import java.time.LocalDate;
 import java.time.YearMonth;

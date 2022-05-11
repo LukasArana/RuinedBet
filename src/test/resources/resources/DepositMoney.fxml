@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="245.0" prefWidth="427.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.uicontrollers.DepositMoneyController">
+   <children>
+      <Label layoutX="40.0" layoutY="42.0" text="%currentBalance" />
+      <Label layoutX="41.0" layoutY="79.0" text="%DepositMoney" />
+      <Label fx:id="currentBalance" layoutX="184.0" layoutY="42.0" prefHeight="16.0" prefWidth="170.0" />
+      <Label fx:id="monAddLbl" layoutX="44.0" layoutY="123.0" text="%moneyAdded" />
+      <TextField fx:id="depositField" layoutX="184.0" layoutY="75.0" onTouchReleased="#depositUpdate" prefHeight="25.0" prefWidth="170.0" />
+      <Label fx:id="newBalance" layoutX="184.0" layoutY="123.0" prefHeight="16.0" prefWidth="170.0" />
+      <Button fx:id="backBut" layoutX="73.0" layoutY="166.0" mnemonicParsing="false" onAction="#backPressed" text="%Back" />
+      <Button fx:id="depositBut" layoutX="221.0" layoutY="166.0" mnemonicParsing="false" onAction="#depositPressed" text="%DepositMoney" />
+      <Label fx:id="outputLabel" layoutX="56.0" layoutY="202.0" prefHeight="18.0" prefWidth="314.0" textAlignment="CENTER" />
+   </children>
+</AnchorPane>

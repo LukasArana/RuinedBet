@@ -1,4 +1,4 @@
-package uicontrollers;
+package ehu.uicontrollers;
 
 import java.net.URL;
 import java.util.Date;
@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import ui.MainGUI;
+import ehu.ui.MainGUI;
 
 public class RemoveBetController implements Controller{
 

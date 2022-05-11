@@ -1,6 +1,6 @@
-package uicontrollers;
+package ehu.uicontrollers;
 
-import businessLogic.BlFacade;
+import ehu.businessLogic.BlFacade;
 import ehu.domain.Movement;
 import ehu.domain.User;
 import javafx.collections.FXCollections;
@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import ui.MainGUI;
+import ehu.ui.MainGUI;
 
 import java.net.URL;
 import java.util.Date;

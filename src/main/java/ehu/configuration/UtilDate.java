@@ -1,4 +1,4 @@
-package configuration;
+package ehu.configuration;
 
 import java.util.Calendar;
 import java.util.Date;

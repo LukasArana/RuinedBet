@@ -1,4 +1,4 @@
-package configuration;
+package ehu.configuration;
 
 import java.io.File;
 
@@ -152,8 +152,9 @@ public class ConfigXML {
 			dataAccessNode = getTagValue("dataAccessNode", config);
 			dataAccessPort = Integer.parseInt(getTagValue("dataAccessPort", config));
 
-			value = ((Element)config.getElementsByTagName("dataAccess").item(0)).
-					getAttribute("local");
+			value = "true";
+			//((Element)config.getElementsByTagName("s").item(0)).
+					//getAttribute("local");
 			dataAccessIsLocal=value.equals("true");
 
 			dataBaseFilename = getTagValue("dataBaseFilename", config);

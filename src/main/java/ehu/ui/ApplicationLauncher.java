@@ -1,7 +1,7 @@
-package ui;
+package ehu.ui;
 
-import businessLogic.BlFacade;
-import businessLogic.BlFacadeImplementation;
+import ehu.businessLogic.BlFacade;
+import ehu.businessLogic.BlFacadeImplementation;
 import ehu.configuration.ConfigXML;
 
 //import javax.xml.ws.Service;

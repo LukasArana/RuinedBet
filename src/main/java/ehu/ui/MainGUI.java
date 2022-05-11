@@ -1,6 +1,7 @@
-package ui;
+package ehu.ui;
 
-import businessLogic.BlFacade;
+import ehu.businessLogic.BlFacade;
+import ehu.uicontrollers.*;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -9,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
-import uicontrollers.*;
+import ehu.uicontrollers.*;
 
 import java.io.IOException;
 import java.util.Locale;

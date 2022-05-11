@@ -1,4 +1,4 @@
-package domain;
+package ehu.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +16,7 @@ public class Bet {
     //@Id
     //private Question betEvent;
 
-    public Bet(domain.fee fee, Float stake) {
+    public Bet(ehu.domain.fee fee, Float stake) {
         this.fee = fee;
         this.stake = stake;
     }

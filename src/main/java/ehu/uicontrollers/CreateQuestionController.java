@@ -1,10 +1,10 @@
-package uicontrollers;
+package ehu.uicontrollers;
 
-import businessLogic.BlFacade;
+import ehu.businessLogic.BlFacade;
 import ehu.domain.Event;
-import utils.Dates;
-import exceptions.EventFinished;
-import exceptions.QuestionAlreadyExist;
+import ehu.utils.Dates;
+import ehu.exceptions.EventFinished;
+import ehu.exceptions.QuestionAlreadyExist;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,7 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.skin.DatePickerSkin;
 import javafx.util.Callback;
-import ui.MainGUI;
+import ehu.ui.MainGUI;
 
 import java.net.URL;
 import java.time.LocalDate;

@@ -1,10 +1,10 @@
-package uicontrollers;
+package ehu.uicontrollers;
 
-import businessLogic.BlFacade;
+import ehu.businessLogic.BlFacade;
 import ehu.domain.Event;
 import ehu.domain.Question;
 import ehu.domain.fee;
-import utils.Dates;
+import ehu.utils.Dates;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,7 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.skin.DatePickerSkin;
 import javafx.util.Callback;
-import ui.MainGUI;
+import ehu.ui.MainGUI;
 
 import java.time.LocalDate;
 import java.time.YearMonth;

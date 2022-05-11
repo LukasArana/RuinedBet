@@ -1,20 +1,17 @@
-package dataAccess;
+package ehu.dataAccess;
 
-import java.lang.reflect.Type;
-import java.time.LocalDate;
 import java.util.*;
-import domain.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 
-import domain.Event;
-import exceptions.EventAlreadyExists;
-import exceptions.QuestionAlreadyExist;
-import configuration.ConfigXML;
-import configuration.UtilDate;
+import ehu.domain.*;
+import ehu.exceptions.EventAlreadyExists;
+import ehu.exceptions.QuestionAlreadyExist;
+import ehu.configuration.ConfigXML;
+import ehu.configuration.UtilDate;
 
 /**
  * Implements the Data Access utility to the objectDb database

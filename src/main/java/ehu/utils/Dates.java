@@ -1,4 +1,4 @@
-package utils;
+package ehu.utils;
 
 import java.time.LocalDate;
 import java.time.YearMonth;

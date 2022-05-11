@@ -1,6 +1,6 @@
-package uicontrollers;
+package ehu.uicontrollers;
 
-import businessLogic.BlFacade;
+import ehu.businessLogic.BlFacade;
 import ehu.domain.Event;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,8 +9,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.skin.DatePickerSkin;
 import javafx.util.Callback;
-import ui.MainGUI;
-import utils.Dates;
+import ehu.ui.MainGUI;
+import ehu.utils.Dates;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -46,7 +46,7 @@ public class RemoveEventController implements Controller {
 
 
 
-    public RemoveEventController(businessLogic.BlFacade bl) {
+    public RemoveEventController(BlFacade bl) {
         businessLogic = bl;
     }
 

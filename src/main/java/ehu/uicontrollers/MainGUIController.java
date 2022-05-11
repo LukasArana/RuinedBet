@@ -1,4 +1,4 @@
-package uicontrollers;
+package ehu.uicontrollers;
 
 import ehu.configuration.ConfigXML;
 import javafx.event.ActionEvent;
@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.TextAlignment;
-import ui.MainGUI;
+import ehu.ui.MainGUI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
